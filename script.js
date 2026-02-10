@@ -218,45 +218,35 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Contact Form Handling
+// Contact Form Handling (Formspree Entegrasyonu)
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Form verilerini al
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Console'a yazdır (geliştirme aşamasında)
-    console.log('Form Submitted:', formData);
-    
-    // Başarı mesajı göster
-    alert('Mesajınız gönderildi! En kısa sürede size dönüş yapacağım.');
-    
-    // Formu temizle
-    contactForm.reset();
-    
-    // Gerçek bir uygulamada burada form verilerini bir backend'e gönderirsin:
-    // fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     alert('Mesajınız başarıyla gönderildi!');
-    //     contactForm.reset();
-    // })
-    // .catch((error) => {
-    //     alert('Bir hata oluştu. Lütfen tekrar deneyin.');
-    // });
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        
+        try {
+            const response = await fetch(e.target.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                const successMsg = currentLang === 'tr' 
+                    ? 'Mesajınız başarıyla gönderildi!' 
+                    : 'Your message has been sent successfully!';
+                alert(successMsg);
+                contactForm.reset();
+            } else {
+                alert('Hata! Lütfen tekrar deneyin.');
+            }
+        } catch (error) {
+            alert('Bağlantı hatası oluştu.');
+        }
+    });
+}
 
 // Smooth Scroll Enhancement
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
