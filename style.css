@@ -72,6 +72,27 @@ html {
     gap: 2rem;
 }
 
+.lang-toggle {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.lang-toggle:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.lang-text {
+    font-size: 0.875rem;
+}
+
 .nav-link {
     color: var(--text-primary);
     text-decoration: none;
@@ -519,6 +540,11 @@ section {
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
+    }
+
+    .lang-toggle {
+        margin-left: 0;
+        margin-right: 1rem;
     }
 
     .nav-menu {
