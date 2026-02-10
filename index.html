@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bilgisayar Mühendisliği Öğrencisi - Kişisel Website">
-    <title>Adın Soyadın - Bilgisayar Mühendisi</title>
+    <title>Ahmet Burak Kaynak - Bilgisayar Mühendisi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,15 +12,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="#home">AS</a>
+                <a href="#home">ABK</a>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
-                <li><a href="#about" class="nav-link">Hakkımda</a></li>
-                <li><a href="#skills" class="nav-link">Yetenekler</a></li>
-                <li><a href="#projects" class="nav-link">Projeler</a></li>
-                <li><a href="#contact" class="nav-link">İletişim</a></li>
+                <li><a href="#home" class="nav-link" data-tr="nav-home">Ana Sayfa</a></li>
+                <li><a href="#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
+                <li><a href="#skills" class="nav-link" data-tr="nav-skills">Yetenekler</a></li>
+                <li><a href="#projects" class="nav-link" data-tr="nav-projects">Projeler</a></li>
+                <li><a href="#contact" class="nav-link" data-tr="nav-contact">İletişim</a></li>
             </ul>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-text">EN</span>
+            </button>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -33,15 +36,15 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Merhaba, Ben <span class="highlight">Adın Soyadın</span></h1>
-                <p class="hero-subtitle">Bilgisayar Mühendisliği Öğrencisi</p>
-                <p class="hero-description">Yazılım geliştirme, algoritma tasarımı ve teknoloji ile ilgileniyorum</p>
+                <h1 class="hero-title"><span data-tr="hero-greeting">Merhaba, Ben</span> <span class="highlight">Ahmet Burak Kaynak</span></h1>
+                <p class="hero-subtitle" data-tr="hero-subtitle">Bilgisayar Mühendisliği Öğrencisi</p>
+                <p class="hero-description" data-tr="hero-description">C, C++, Java, Algoritmalar</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Projelerimi Gör</a>
-                    <a href="#contact" class="btn btn-secondary">İletişime Geç</a>
+                    <a href="#projects" class="btn btn-primary" data-tr="hero-btn-projects">Projelerimi Gör</a>
+                    <a href="#contact" class="btn btn-secondary" data-tr="hero-btn-contact">İletişime Geç</a>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/kullaniciadin" target="_blank" class="social-icon">
+                    <a href="https://github.com/abk7474" target="_blank" class="social-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
@@ -51,7 +54,7 @@
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
                     </a>
-                    <a href="mailto:email@example.com" class="social-icon">
+                    <a href="mailto:ahmetburakresmi@gmail.com" class="social-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                         </svg>
@@ -64,25 +67,25 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">Hakkımda</h2>
+            <h2 class="section-title" data-tr="about-title">Hakkımda</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Merhaba! Ben [Üniversite Adı] Bilgisayar Mühendisliği bölümünde 1. sınıf öğrencisiyim. Teknoloji ve yazılım geliştirme konusunda tutkulu bir öğrenciyim.</p>
-                    <p>Programlama, algoritma tasarımı ve problem çözme becerilerimi sürekli geliştirmeye çalışıyorum. Web geliştirme, veri yapıları ve algoritmalar gibi konularda kendimi geliştiriyorum.</p>
-                    <p>Hedefim, teknoloji dünyasında iz bırakacak projeler geliştirmek ve yazılım alanında kendimi sürekli ilerletmektir.</p>
+                    <p data-tr="about-p1">Merhaba! Ben Gazi Üniversitesi Bilgisayar Mühendisliği bölümünde 1. sınıf öğrencisiyim. Teknoloji ve yazılım geliştirme konusunda tutkulu bir öğrenciyim.</p>
+                    <p data-tr="about-p2">Programlama, algoritma tasarımı ve problem çözme becerilerimi sürekli geliştirmeye çalışıyorum. C, C++, Java, OOP, veri yapıları ve algoritmalar gibi konularda kendimi geliştiriyorum.</p>
+                    <p data-tr="about-p3">Hedefim, teknoloji dünyasında iz bırakacak projeler geliştirmek ve yazılım alanında kendimi sürekli ilerletmektir.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-card">
                         <h3>2024</h3>
-                        <p>Başlangıç Yılı</p>
+                        <p data-tr="stat-year">Başlangıç Yılı</p>
                     </div>
                     <div class="stat-card">
                         <h3>10+</h3>
-                        <p>Tamamlanan Proje</p>
+                        <p data-tr="stat-projects">Tamamlanan Proje</p>
                     </div>
                     <div class="stat-card">
                         <h3>5+</h3>
-                        <p>Öğrenilen Teknoloji</p>
+                        <p data-tr="stat-tech">Öğrenilen Teknoloji</p>
                     </div>
                 </div>
             </div>
@@ -92,36 +95,36 @@
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Yetenekler</h2>
+            <h2 class="section-title" data-tr="skills-title">Yetenekler</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-icon">💻</div>
-                    <h3>Programlama Dilleri</h3>
-                    <p>Python, JavaScript, C++, Java</p>
+                    <h3 data-tr="skill-prog">Programlama Dilleri</h3>
+                    <p>C, C++, Java</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🌐</div>
-                    <h3>Web Geliştirme</h3>
-                    <p>HTML, CSS, JavaScript, React</p>
+                    <h3 data-tr="skill-web">Web Geliştirme</h3>
+                    <p>HTML, JavaScript</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🗄️</div>
-                    <h3>Veritabanı</h3>
-                    <p>MySQL, MongoDB, PostgreSQL</p>
+                    <h3 data-tr="skill-db">Veritabanı</h3>
+                    <p>MySQL</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🔧</div>
-                    <h3>Araçlar & Framework'ler</h3>
+                    <h3 data-tr="skill-tools">Araçlar & Framework'ler</h3>
                     <p>Git, Node.js, Django, Flask</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">📊</div>
-                    <h3>Veri Yapıları & Algoritmalar</h3>
+                    <h3 data-tr="skill-algo">Veri Yapıları & Algoritmalar</h3>
                     <p>Sorting, Searching, Graph Theory</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🎨</div>
-                    <h3>Diğer</h3>
+                    <h3 data-tr="skill-other">Diğer</h3>
                     <p>Problem Solving, Teamwork, Agile</p>
                 </div>
             </div>
@@ -131,56 +134,56 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Projelerim</h2>
+            <h2 class="section-title" data-tr="projects-title">Projelerim</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <div class="placeholder-image">🚀</div>
+                        <div class="placeholder-image"></div>
                     </div>
                     <div class="project-content">
-                        <h3>Proje Adı 1</h3>
-                        <p>Bu projede Python kullanarak bir veri analizi uygulaması geliştirdim. Proje kapsamında...</p>
+                        <h3 data-tr="project1-title"></h3>
+                        <p data-tr="project1-desc"></p>
                         <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Data Science</span>
+                            <span class="tag"></span>
+                            <span class="tag"></span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link"></a>
+                            <a href="#" class="project-link"></a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <div class="placeholder-image">📱</div>
+                        <div class="placeholder-image"></div>
                     </div>
                     <div class="project-content">
-                        <h3>Proje Adı 2</h3>
-                        <p>React kullanarak responsive bir web uygulaması geliştirdim. Uygulama...</p>
+                        <h3 data-tr="project2-title"></h3>
+                        <p data-tr="project2-desc"></p>
                         <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">JavaScript</span>
+                            <span class="tag"></span>
+                            <span class="tag"></span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link"></a>
+                            <a href="#" class="project-link"></a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <div class="placeholder-image">🎮</div>
+                        <div class="placeholder-image"></div>
                     </div>
                     <div class="project-content">
-                        <h3>Proje Adı 3</h3>
-                        <p>C++ ile geliştirdiğim bir algoritma simülasyonu. Proje veri yapıları ve...</p>
+                        <h3 data-tr="project3-title"></h3>
+                        <p data-tr="project3-desc"></p>
                         <div class="project-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Algorithms</span>
+                            <span class="tag"></span>
+                            <span class="tag"></span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link"></a>
+                            <a href="#" class="project-link"></a>
                         </div>
                     </div>
                 </div>
@@ -191,46 +194,46 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">İletişim</h2>
+            <h2 class="section-title" data-tr="contact-title">İletişim</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Benimle İletişime Geçin</h3>
-                    <p>Projeler, iş birlikleri veya herhangi bir konuda benimle iletişime geçmekten çekinmeyin!</p>
+                    <h3 data-tr="contact-heading">Benimle İletişime Geçin</h3>
+                    <p data-tr="contact-text">Projeler, iş birlikleri veya herhangi bir konuda benimle iletişime geçmekten çekinmeyin</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <span class="contact-icon">📧</span>
                             <div>
                                 <h4>Email</h4>
-                                <p>email@example.com</p>
+                                <p>ahmetburakresmi@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📱</span>
                             <div>
-                                <h4>Telefon</h4>
-                                <p>+90 XXX XXX XX XX</p>
+                                <h4 data-tr="contact-phone">Telefon</h4>
+                                <p>+90 534 636 10 88</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📍</span>
                             <div>
-                                <h4>Konum</h4>
-                                <p>Çerkezköy, Tekirdağ, Türkiye</p>
+                                <h4 data-tr="contact-location">Konum</h4>
+                                <p>Çankaya, Ankara, Türkiye</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Adınız" required>
+                        <input type="text" id="name" name="name" data-tr-placeholder="form-name" placeholder="Adınız" required>
                     </div>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Mesajınız" required></textarea>
+                        <textarea id="message" name="message" rows="5" data-tr-placeholder="form-message" placeholder="Mesajınız" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Gönder</button>
+                    <button type="submit" class="btn btn-primary" data-tr="form-submit">Gönder</button>
                 </form>
             </div>
         </div>
@@ -239,11 +242,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Adın Soyadın. Tüm hakları saklıdır.</p>
+            <p data-tr="footer-rights">&copy; 2025 Ahmet Burak Kaynak. Tüm hakları saklıdır.</p>
             <div class="footer-links">
-                <a href="https://github.com/kullaniciadin" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/kullaniciadin" target="_blank">LinkedIn</a>
-                <a href="mailto:email@example.com">Email</a>
+                <a href="https://github.com/abk7474" target="_blank">GitHub</a>
+                <a href="www.linkedin.com/in/ahmet-burak-kaynak-abk180622" target="_blank">LinkedIn</a>
+                <a href="mailto:ahmetburakresmi@gmail.com">Email</a>
             </div>
         </div>
     </footer>
