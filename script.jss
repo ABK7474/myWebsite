@@ -1,3 +1,173 @@
+// Translations
+const translations = {
+    tr: {
+        // Navigation
+        'nav-home': 'Ana Sayfa',
+        'nav-about': 'Hakkımda',
+        'nav-skills': 'Yetenekler',
+        'nav-projects': 'Projeler',
+        'nav-contact': 'İletişim',
+        
+        // Hero Section
+        'hero-greeting': 'Merhaba, Ben',
+        'hero-subtitle': 'Bilgisayar Mühendisliği Öğrencisi',
+        'hero-description': 'C, C++, Java, Algoritmalar',
+        'hero-btn-projects': 'Projelerimi Gör',
+        'hero-btn-contact': 'İletişime Geç',
+        
+        // About Section
+        'about-title': 'Hakkımda',
+        'about-p1': 'Merhaba! Ben Gazi Üniversitesi Bilgisayar Mühendisliği bölümünde 1. sınıf öğrencisiyim. Teknoloji ve yazılım geliştirme konusunda tutkulu bir öğrenciyim.',
+        'about-p2': 'Programlama, algoritma tasarımı ve problem çözme becerilerimi sürekli geliştirmeye çalışıyorum. C, C++, Java, OOP, veri yapıları ve algoritmalar gibi konularda kendimi geliştiriyorum.',
+        'about-p3': 'Hedefim, teknoloji dünyasında iz bırakacak projeler geliştirmek ve yazılım alanında kendimi sürekli ilerletmektir.',
+        'stat-year': 'Başlangıç Yılı',
+        'stat-projects': 'Tamamlanan Proje',
+        'stat-tech': 'Öğrenilen Teknoloji',
+        
+        // Skills Section
+        'skills-title': 'Yetenekler',
+        'skill-prog': 'Programlama Dilleri',
+        'skill-web': 'Web Geliştirme',
+        'skill-db': 'Veritabanı',
+        'skill-tools': 'Araçlar & Framework\'ler',
+        'skill-algo': 'Veri Yapıları & Algoritmalar',
+        'skill-other': 'Diğer',
+        
+        // Projects Section
+        'projects-title': 'Projelerim',
+        'project1-title': 'Proje Adı 1',
+        'project1-desc': 'Projeniz hakkında açıklama buraya gelecek...',
+        'project2-title': 'Proje Adı 2',
+        'project2-desc': 'Projeniz hakkında açıklama buraya gelecek...',
+        'project3-title': 'Proje Adı 3',
+        'project3-desc': 'Projeniz hakkında açıklama buraya gelecek...',
+        
+        // Contact Section
+        'contact-title': 'İletişim',
+        'contact-heading': 'Benimle İletişime Geçin',
+        'contact-text': 'Projeler, iş birlikleri veya herhangi bir konuda benimle iletişime geçmekten çekinmeyin!',
+        'contact-phone': 'Telefon',
+        'contact-location': 'Konum',
+        'form-name': 'Adınız',
+        'form-message': 'Mesajınız',
+        'form-submit': 'Gönder',
+        
+        // Footer
+        'footer-rights': '© 2025 Ahmet Burak Kaynak. Tüm hakları saklıdır.'
+    },
+    en: {
+        // Navigation
+        'nav-home': 'Home',
+        'nav-about': 'About',
+        'nav-skills': 'Skills',
+        'nav-projects': 'Projects',
+        'nav-contact': 'Contact',
+        
+        // Hero Section
+        'hero-greeting': 'Hello, I\'m',
+        'hero-subtitle': 'Computer Engineering Student',
+        'hero-description': 'C, C++, Java, Algorithms',
+        'hero-btn-projects': 'View My Projects',
+        'hero-btn-contact': 'Get In Touch',
+        
+        // About Section
+        'about-title': 'About Me',
+        'about-p1': 'Hello! I\'m a first-year Computer Engineering student at Gazi University. I\'m passionate about technology and software development.',
+        'about-p2': 'I\'m constantly working on improving my programming, algorithm design, and problem-solving skills. I\'m developing myself in areas such as C, C++, Java, OOP, data structures, and algorithms.',
+        'about-p3': 'My goal is to develop projects that will make a mark in the technology world and continuously advance myself in the software field.',
+        'stat-year': 'Start Year',
+        'stat-projects': 'Completed Projects',
+        'stat-tech': 'Technologies Learned',
+        
+        // Skills Section
+        'skills-title': 'Skills',
+        'skill-prog': 'Programming Languages',
+        'skill-web': 'Web Development',
+        'skill-db': 'Database',
+        'skill-tools': 'Tools & Frameworks',
+        'skill-algo': 'Data Structures & Algorithms',
+        'skill-other': 'Other',
+        
+        // Projects Section
+        'projects-title': 'My Projects',
+        'project1-title': 'Project Name 1',
+        'project1-desc': 'Description of your project will go here...',
+        'project2-title': 'Project Name 2',
+        'project2-desc': 'Description of your project will go here...',
+        'project3-title': 'Project Name 3',
+        'project3-desc': 'Description of your project will go here...',
+        
+        // Contact Section
+        'contact-title': 'Contact',
+        'contact-heading': 'Get In Touch',
+        'contact-text': 'Feel free to contact me about projects, collaborations, or any topic!',
+        'contact-phone': 'Phone',
+        'contact-location': 'Location',
+        'form-name': 'Your Name',
+        'form-message': 'Your Message',
+        'form-submit': 'Send',
+        
+        // Footer
+        'footer-rights': '© 2025 Ahmet Burak Kaynak. All rights reserved.'
+    }
+};
+
+// Current language (default: Turkish)
+let currentLang = 'tr';
+
+// Language Toggle Function
+function toggleLanguage() {
+    currentLang = currentLang === 'tr' ? 'en' : 'tr';
+    updateLanguage();
+    
+    // Save preference to localStorage
+    localStorage.setItem('preferredLanguage', currentLang);
+}
+
+// Update all text elements
+function updateLanguage() {
+    // Update button text
+    const langButton = document.querySelector('.lang-text');
+    langButton.textContent = currentLang === 'tr' ? 'EN' : 'TR';
+    
+    // Update all elements with data-tr attribute
+    document.querySelectorAll('[data-tr]').forEach(element => {
+        const key = element.getAttribute('data-tr');
+        if (translations[currentLang][key]) {
+            element.textContent = translations[currentLang][key];
+        }
+    });
+    
+    // Update placeholders
+    document.querySelectorAll('[data-tr-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-tr-placeholder');
+        if (translations[currentLang][key]) {
+            element.placeholder = translations[currentLang][key];
+        }
+    });
+    
+    // Update page title
+    document.title = currentLang === 'tr' 
+        ? 'Ahmet Burak Kaynak - Bilgisayar Mühendisi' 
+        : 'Ahmet Burak Kaynak - Computer Engineer';
+}
+
+// Initialize language on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Check for saved language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        currentLang = savedLang;
+        updateLanguage();
+    }
+    
+    // Add event listener to language toggle button
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+    }
+});
+
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -217,4 +387,4 @@ createScrollToTopButton();
 // Console message for visitors
 console.log('%c👋 Merhaba!', 'font-size: 20px; color: #2563eb; font-weight: bold;');
 console.log('%cWeb siteme hoş geldiniz! Bu siteyi kendim geliştirdim.', 'font-size: 14px; color: #6b7280;');
-console.log('%cİletişim için: email@example.com', 'font-size: 12px; color: #9ca3af;');
+console.log('%cİletişim için: ahmetburakresmi@gmail.com', 'font-size: 12px; color: #9ca3af;');
