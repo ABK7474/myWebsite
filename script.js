@@ -35,6 +35,7 @@ const translations = {
         
         // Projects Section
         'projects-title': 'Projelerim',
+        'project-more': 'Detayları Gör',
         'project1-title': 'Proje Adı 1',
         'project1-desc': 'Projeniz hakkında açıklama buraya gelecek...',
         'project2-title': 'Proje Adı 2',
@@ -90,6 +91,7 @@ const translations = {
         
         // Projects Section
         'projects-title': 'My Projects',
+        'project-more': 'View Details',
         'project1-title': 'Project Name 1',
         'project1-desc': 'Description of your project will go here...',
         'project2-title': 'Project Name 2',
