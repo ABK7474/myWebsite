@@ -53,7 +53,7 @@ const translations = {
         'form-submit': 'Gönder',
         
         // Footer
-        'footer-rights': '© 2025 Ahmet Burak Kaynak. Tüm hakları saklıdır.'
+        'footer-rights': '© 2026 Ahmet Burak Kaynak. Tüm hakları saklıdır.'
     },
     en: {
         // Navigation
@@ -108,7 +108,7 @@ const translations = {
         'form-submit': 'Send',
         
         // Footer
-        'footer-rights': '© 2025 Ahmet Burak Kaynak. All rights reserved.'
+        'footer-rights': '© 2026 Ahmet Burak Kaynak. All rights reserved.'
     }
 };
 
@@ -310,7 +310,7 @@ if (heroTitle) {
 const currentYear = new Date().getFullYear();
 const footerText = document.querySelector('.footer p');
 if (footerText) {
-    footerText.innerHTML = footerText.innerHTML.replace('2025', currentYear);
+    footerText.innerHTML = footerText.innerHTML.replace('2026', currentYear);
 }
 
 // Add Loading Animation
