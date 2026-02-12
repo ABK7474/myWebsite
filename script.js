@@ -42,6 +42,12 @@ const translations = {
         'project2-desc': 'Projeniz hakkında açıklama buraya gelecek...',
         'project3-title': 'Proje Adı 3',
         'project3-desc': 'Projeniz hakkında açıklama buraya gelecek...',
+        'p1-title': 'Proje Adı 1',
+        'p1-subtitle': 'Bu proje hakkında teknik detaylar burada yer alacak.',
+        'p2-title': 'Proje Adı 2',
+        'p2-subtitle': 'Bu proje hakkında teknik detaylar burada yer alacak.',
+        'p3-title': 'Proje Adı 3',
+        'p3-subtitle': 'Bu proje hakkında teknik detaylar burada yer alacak.',
         
         // Contact Section
         'contact-title': 'İletişim',
@@ -98,6 +104,12 @@ const translations = {
         'project2-desc': 'Description of your project will go here...',
         'project3-title': 'Project Name 3',
         'project3-desc': 'Description of your project will go here...',
+        'p1-title': 'Project Name 1',
+        'p1-subtitle': 'Technical details about this project will be located here.',
+        'p2-title': 'Project Name 2',
+        'p2-subtitle': 'Technical details about this project will be located here.',
+        'p3-title': 'Project Name 3',
+        'p3-subtitle': 'Technical details about this project will be located here.',
         
         // Contact Section
         'contact-title': 'Contact',
