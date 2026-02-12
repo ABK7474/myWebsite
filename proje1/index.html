@@ -4,53 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proje 1 - Ahmet Burak Kaynak</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../project-style.css">
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="../#home">ABK</a>
+                <a href="../index.html#home">ABK</a>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" data-tr="nav-home">Ana Sayfa</a></li>
-                <li><a href="#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
-                <li><a href="#skills" class="nav-link" data-tr="nav-skills">Yetenekler</a></li>
-                <li><a href="#projects" class="nav-link" data-tr="nav-projects">Projeler</a></li>
-                <li><a href="#contact" class="nav-link" data-tr="nav-contact">İletişim</a></li>
+                <li><a href="../index.html#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="../index.html#about" class="nav-link">Hakkımda</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Yetenekler</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projeler</a></li>
+                <li><a href="../index.html#contact" class="nav-link">İletişim</a></li>
             </ul>
             <button class="lang-toggle" id="langToggle">
                 <span class="lang-text">EN</span>
             </button>
         </div>
     </nav>
+
+    <!-- Hero Section -->
     <section class="hero" style="min-height: 50vh;">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title" data-tr="p1-title">Proje Adı 1</h1>
-                <p class="hero-subtitle" data-tr="p1-subtitle">Bu proje hakkında teknik detaylar burada yer alacak.</p>
+                <h1 class="hero-title">Algoritma Simülasyonu</h1>
+                <p class="hero-subtitle">C++ ile geliştirilmiş görsel sorting algoritması projesi</p>
                 <div class="hero-buttons">
-                    <a href="../#projects" class="btn btn-secondary" data-tr="p-back">Ana Sayfa</a>
+                    <a href="../index.html#projects" class="btn btn-secondary">← Geri Dön</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Project Overview -->
     <section class="container" style="padding: 5rem 0;">
         <div class="about-text">
-            <h2 data-tr="p1-detail-title">Proje Detayı</h2>
-            <p data-tr="p1-detail-desc">Buraya proje aşamalarını, kullandığın algoritmaları (C++, Java vb.) veya ekran görüntülerini ekleyebilirsin.</p>
-            <br>
-            <p data-tr="p1-detail-desc-more">Örneğin: "Bu projede veri yapılarını kullanarak verimli bir arama algoritması geliştirdim."</p>
+            <h2>📌 Proje Özeti</h2>
+            <p>Bu projede çeşitli sorting algoritmalarını görselleştiren bir C++ uygulaması geliştirdim. 
+            Bubble Sort, Quick Sort ve Merge Sort algoritmalarının adım adım nasıl çalıştığını 
+            gösteren interaktif bir simülasyon.</p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="tech-stack">
+            <span class="tech-badge">C++</span>
+            <span class="tech-badge">Algorithms</span>
+            <span class="tech-badge">Data Structures</span>
+            <span class="tech-badge">OOP</span>
+        </div>
+
+        <!-- Features -->
+        <div class="about-text" style="margin-top: 3rem;">
+            <h2>⚡ Özellikler</h2>
+            <ul class="feature-list">
+                <li>Bubble Sort, Quick Sort ve Merge Sort algoritmalarının görsel simülasyonu</li>
+                <li>Algoritma performans karşılaştırması</li>
+                <li>Adım adım algoritma çalışma gösterimi</li>
+                <li>Kullanıcı tarafından girilen veri seti ile test</li>
+                <li>Execution time hesaplama</li>
+            </ul>
+        </div>
+
+        <!-- Code Example -->
+        <div class="about-text" style="margin-top: 3rem;">
+            <h2>💻 Kod Örneği</h2>
+            <div class="code-block">
+                <pre><code>// Bubble Sort Implementation
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                swap(arr[j], arr[j+1]);
+                visualize(arr, n, j); // Görselleştirme
+            }
+        }
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Terminal Example -->
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+            </div>
+            <div class="terminal-content">
+                <p class="terminal-prompt">g++ -o sorting main.cpp</p>
+                <p class="terminal-prompt">./sorting</p>
+                <p style="color: #34d399;">Sorting Algorithm Visualizer v1.0</p>
+                <p style="color: #60a5fa;">Enter array size: 10</p>
+                <p style="color: #a78bfa;">Choose algorithm: 1) Bubble 2) Quick 3) Merge</p>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Satır Kod</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Algoritma</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">O(n²)</div>
+                <div class="stat-label">Complexity</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2 Hafta</div>
+                <div class="stat-label">Süre</div>
+            </div>
+        </div>
+
+        <!-- Challenges & Solutions -->
+        <div class="about-text" style="margin-top: 3rem;">
+            <h2>🎯 Zorluklar & Çözümler</h2>
+            <div class="info-box">
+                <h3>Zorluk: Görselleştirme Performansı</h3>
+                <p>Büyük veri setlerinde görselleştirme çok yavaş oluyordu. 
+                Sleep fonksiyonu ile delay ekleyerek ve sadece kritik adımlarda 
+                görselleştirme yaparak bu problemi çözdüm.</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Öğrendiklerim</h3>
+                <p>Bu proje sayesinde algoritmaların time complexity'sini pratik olarak 
+                gözlemledim. Quick Sort'un average case'de neden daha hızlı olduğunu 
+                gerçek verilerle test ettim.</p>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="about-text" style="margin-top: 3rem;">
+            <h2>🚀 Gelecek Geliştirmeler</h2>
+            <p>✅ Heap Sort ve Radix Sort algoritmaları eklenecek</p>
+            <p>✅ GUI (Grafik arayüz) geliştirilecek</p>
+            <p>✅ Algoritma karşılaştırma grafiği eklenecek</p>
+            <p>✅ Export to file özelliği eklenecek</p>
+        </div>
+
+        <!-- Links -->
+        <div class="hero-buttons" style="margin-top: 3rem; text-align: center;">
+            <a href="https://github.com/abk7474" class="btn btn-secondary" target="_blank">GitHub'da Gör →</a>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p data-tr="footer-rights">&copy; 2026 Ahmet Burak Kaynak. Tüm hakları saklıdır.</p>
+            <p>&copy; 2025 Ahmet Burak Kaynak. Tüm hakları saklıdır.</p>
         </div>
     </footer>
-
-    <script src="../script.js"></script>
 </body>
 </html>
