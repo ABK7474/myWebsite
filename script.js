@@ -48,6 +48,7 @@ const translations = {
         'p2-subtitle': 'Bu proje hakkında teknik detaylar burada yer alacak.',
         'p3-title': 'Proje Adı 3',
         'p3-subtitle': 'Bu proje hakkında teknik detaylar burada yer alacak.',
+        'p-back' : 'Ana Sayfa',
         
         // Contact Section
         'contact-title': 'İletişim',
@@ -110,6 +111,7 @@ const translations = {
         'p2-subtitle': 'Technical details about this project will be located here.',
         'p3-title': 'Project Name 3',
         'p3-subtitle': 'Technical details about this project will be located here.',
+        'p-back' : 'Home',
         
         // Contact Section
         'contact-title': 'Contact',
