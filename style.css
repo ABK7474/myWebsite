@@ -136,6 +136,22 @@ html {
     transition: all 0.3s ease;
 }
 
+/* Top Header */
+.top-header {
+    min-height: 0;
+    padding: 6.5rem 0 1.5rem;
+    background-color: var(--bg-primary);
+}
+
+.top-header-content {
+    text-align: center;
+}
+
+.top-header-title {
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
 /* Hero Section */
 .hero {
     min-height: 50vh;
