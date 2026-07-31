@@ -1,0 +1,528 @@
+/* Introduction Screen Overlay */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #090d16;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Simulated Windows Desktop */
+.desktop-environment {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 75% 25%, #1e293b 0%, #020617 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+}
+
+/* Windows Desktop Icons Grid */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: default;
+    transition: background 0.2s;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon span {
+    color: #e2e8f0;
+    font-size: 11px;
+    margin-top: 6px;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    word-break: break-word;
+}
+
+/* Windows Taskbar at the bottom */
+.desktop-taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    box-sizing: border-box;
+    z-index: 10;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.taskbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.taskbar-start {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.taskbar-start:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.taskbar-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.taskbar-icon {
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-icon.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #38bdf8;
+}
+
+.taskbar-tray {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.taskbar-time {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+/* Simulated VS Code Window */
+.vscode-window {
+    width: 90%;
+    max-width: 1150px;
+    height: 82%;
+    max-height: 720px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+}
+
+/* VS Code Title Bar */
+.vscode-titlebar {
+    height: 35px;
+    background: #323233;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    border-bottom: 1px solid #252526;
+    user-select: none;
+}
+
+.vscode-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.vscode-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.vscode-control.close { background: #ff5f56; }
+.vscode-control.min { background: #ffbd2e; }
+.vscode-control.max { background: #27c93f; }
+
+.vscode-title {
+    color: #cccccc;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+/* VS Code Main Layout */
+.vscode-main {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+/* Sidebar Mockup */
+.vscode-sidebar {
+    width: 48px;
+    background: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 18px;
+    border-right: 1px solid #252526;
+}
+
+.sidebar-icon {
+    color: #858585;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.sidebar-icon.active {
+    color: #ffffff;
+    border-left: 2px solid #007acc;
+    padding-left: 2px;
+}
+
+/* Explorer Bar Mockup */
+.vscode-explorer {
+    width: 210px;
+    background: #252526;
+    border-right: 1px solid #3c3c3c;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #bbbbbb;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .vscode-explorer {
+        display: none;
+    }
+}
+
+.explorer-header {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding: 0 12px;
+    letter-spacing: 0.5px;
+    color: #858585;
+    font-size: 11px;
+}
+
+.explorer-tree {
+    display: flex;
+    flex-direction: column;
+}
+
+.tree-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tree-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-item.active {
+    background: #37373d;
+    color: #ffffff;
+}
+
+.arrow {
+    font-size: 9px;
+    color: #858585;
+}
+
+.cpp-icon {
+    font-size: 10px;
+    font-weight: bold;
+    color: #61afef;
+    font-family: monospace;
+}
+
+.file-icon {
+    font-size: 12px;
+}
+
+/* Editor Area */
+.vscode-editor-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    min-width: 0;
+}
+
+/* Editor Tabs */
+.vscode-tabs {
+    height: 35px;
+    background: #2d2d2d;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #252526;
+}
+
+.vscode-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    height: 100%;
+    background: #2d2d2d;
+    color: #969696;
+    font-size: 12px;
+    border-right: 1px solid #252526;
+    position: relative;
+}
+
+.vscode-tab.active {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+.vscode-tab.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #007acc;
+}
+
+/* Breadcrumbs bar */
+.vscode-breadcrumbs {
+    height: 22px;
+    background: #1e1e1e;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 11px;
+    color: #858585;
+    gap: 6px;
+    font-family: var(--font-mono);
+}
+
+.breadcrumb-fn {
+    color: #dcdcaa;
+}
+
+/* Action bar inside editor header (play button) */
+.editor-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+}
+
+.editor-play-btn {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.editor-play-btn:hover {
+    background: rgba(56, 189, 248, 0.25);
+    color: #7dd3fc;
+}
+
+/* Editor Code Area with Line Numbers */
+.vscode-code-area {
+    flex: 1;
+    padding: 12px 0;
+    font-family: "Fira Code", Consolas, Monaco, monospace;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #d4d4d4;
+    overflow-y: auto;
+    position: relative;
+}
+
+.code-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.line-numbers {
+    width: 45px;
+    padding-right: 12px;
+    text-align: right;
+    color: #858585;
+    user-select: none;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.code-content {
+    flex: 1;
+    white-space: pre;
+    tab-size: 4;
+}
+
+/* Syntax Highlighting Colors */
+.kwd { color: #569cd6; font-weight: 500; } /* keywords: struct, int, return, for */
+.typ { color: #4ec9b0; } /* types: std::string, std::vector, Profile */
+.str { color: #ce9178; } /* strings: "Gazi University" */
+.com { color: #6a9955; italic: true; } /* comments */
+.fn  { color: #dcdcaa; } /* functions: main, operator<< */
+.num { color: #b5cea8; } /* numbers */
+.inc { color: #c586c0; } /* includes: #include */
+
+/* Simulated Mouse Cursor */
+#fake-cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 100;
+    pointer-events: none;
+    top: 80%;
+    left: 50%;
+    transform: translate(-5px, -5px);
+}
+
+/* Status Bar */
+.vscode-statusbar {
+    height: 22px;
+    background: #007acc;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    font-size: 11px;
+}
+
+.status-left, .status-right {
+    display: flex;
+    gap: 12px;
+}
+
+/* Fade out animation overlay */
+#intro-blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 100000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+#intro-blackout.active {
+    opacity: 1;
+}
+
+/* Mobile Responsiveness for Intro Screen & VS Code Mockup */
+@media (max-width: 768px) {
+    .vscode-window {
+        width: 96%;
+        height: 88%;
+        border-radius: 6px;
+    }
+    
+    .desktop-icons {
+        display: none; /* Hide background icons on small screens */
+    }
+
+    .vscode-sidebar {
+        width: 36px;
+        padding-top: 8px;
+        gap: 14px;
+    }
+    
+    .sidebar-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .vscode-code-area {
+        font-size: 11px;
+        padding: 8px 0;
+    }
+
+    .line-numbers {
+        width: 28px;
+        padding-right: 6px;
+        font-size: 10.5px;
+    }
+
+    .vscode-breadcrumbs {
+        font-size: 9.5px;
+        height: 18px;
+        padding: 0 8px;
+    }
+
+    .editor-play-btn {
+        padding: 3px 6px;
+        font-size: 10px;
+    }
+    
+    .taskbar-tray span:not(.taskbar-time) {
+        display: none; /* Hide ENG text on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .vscode-window {
+        width: 98%;
+        height: 92%;
+    }
+    
+    .vscode-statusbar .status-right {
+        display: none; /* Hide status bar right details on tiny screens */
+    }
+    
+    .vscode-title {
+        font-size: 10px;
+    }
+}
