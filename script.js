@@ -1,3 +1,17 @@
+// Clean URL Helper: Immediately strips 'index.html' and '.html' from browser address bar
+(function cleanUrl() {
+    try {
+        const path = window.location.pathname;
+        if (path.endsWith('/index.html') || path.endsWith('index.html')) {
+            const cleanPath = path.replace(/index\.html$/, '') || '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        } else if (path.endsWith('.html')) {
+            const cleanPath = path.replace(/\.html$/, '');
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+    } catch (e) {}
+})();
+
 // Translations Dictionary
 const translations = {
     tr: {
@@ -56,12 +70,17 @@ const translations = {
         'ach-2029-title': '4. Sınıf — Bilgisayar Müh. Bölüm Birinciliği & EEM ÇAP Mezuniyeti',
         'ach-2029-desc': 'Gazi Üniversitesi Bilgisayar Mühendisliği lisans eğitimimi Bölüm Birincisi olarak tamamlayacağım. Elektrik-Elektronik Mühendisliği ÇAP bitirme projelerimi başarıyla sunarak çifte mühendislik diploması ile mezun olacağım.',
         
-        // Transcript Buttons
-        'btn-transcript-prep': 'Hazırlık Transkript Belgesi İste',
-        'btn-transcript-y1': '1. Sınıf Transkript Belgesi İste',
-        'btn-transcript-y2': '2. Sınıf Transkript Belgesi İste',
-        'btn-transcript-y3': '3. Sınıf Transkript Belgesi İste',
-        'btn-transcript-y4': '4. Sınıf Transkript Belgesi İste',
+        'ach-2024-b2': 'Bölüm 4.\'sü Giriş',
+        'ach-2024-b3': 'Gazi Bilgisayar Müh.',
+        'ach-2025-b2': 'Finalsiz Muafiyet',
+        'ach-2026-b3': 'Akademik Odak',
+        'ach-2027-b1': 'EEM ÇAP Başlangıcı',
+        'ach-2027-b3': 'Gömülü Sistemler',
+        'ach-2028-b1': 'Aday Mühendislik',
+        'ach-2028-b2': 'Savunma Sanayii Stajı',
+        'ach-2029-b1': 'Bölüm Birincisi Mezuniyet',
+        'ach-2029-b2': 'EEM ÇAP Mezuniyeti',
+        'ach-2029-b3': 'Çifte Mühendislik Derecesi',
         
         // Contact Section
         'contact-tag': 'İLETİŞİM',
@@ -82,6 +101,7 @@ const translations = {
         'form-sending': 'Gönderiliyor...',
         
         // Footer & Alerts
+        'footer-tagline': 'Gazi Üniversitesi • Bilgisayar Mühendisliği Öğrencisi',
         'footer-rights': 'Tüm hakları saklıdır.',
         'copied-email': 'E-posta adresi panoya kopyalandı!',
         'form-success': 'Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağım!',
@@ -147,12 +167,17 @@ const translations = {
         'ach-2029-title': '4th Year — Valedictorian CS Graduation & EEM Double Degree',
         'ach-2029-desc': 'I will graduate as Department Valedictorian from Gazi University Computer Engineering alongside completing my Electrical & Electronics Engineering Double Major degree.',
         
-        // Transcript Buttons
-        'btn-transcript-prep': 'Request Prep Transcript',
-        'btn-transcript-y1': 'Request 1st Year Transcript',
-        'btn-transcript-y2': 'Request 2nd Year Transcript',
-        'btn-transcript-y3': 'Request 3rd Year Transcript',
-        'btn-transcript-y4': 'Request 4th Year Transcript',
+        'ach-2024-b2': '4th Rank Entry',
+        'ach-2024-b3': 'Gazi Computer Eng.',
+        'ach-2025-b2': 'Final Exam Exemption',
+        'ach-2026-b3': 'Academic Focus',
+        'ach-2027-b1': 'EEM Double Major Start',
+        'ach-2027-b3': 'Embedded Systems',
+        'ach-2028-b1': 'Candidate Engineering',
+        'ach-2028-b2': 'Defense Industry Internship',
+        'ach-2029-b1': 'Valedictorian Graduation',
+        'ach-2029-b2': 'EEM Double Major Graduation',
+        'ach-2029-b3': 'Dual Engineering Degree',
         
         // Contact Section
         'contact-tag': 'CONTACT',
@@ -173,6 +198,7 @@ const translations = {
         'form-sending': 'Sending...',
         
         // Footer & Alerts
+        'footer-tagline': 'Gazi University • Computer Engineering Student',
         'footer-rights': 'All rights reserved.',
         'copied-email': 'Email address copied to clipboard!',
         'form-success': 'Your message has been sent successfully. I will get back to you soon!',
