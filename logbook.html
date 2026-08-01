@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="logbook-doc-title">Mühendislik Defteri — Ahmet Burak Kaynak</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" aria-label="Ana Sayfa">
+                <svg class="brand-logo-svg" width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" style="vertical-align: middle;">
+                    <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="#38bdf8" stroke-width="7" fill="rgba(56, 189, 248, 0.03)"/>
+                    <line x1="30" y1="65" x2="50" y2="25" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="50" y1="25" x2="70" y2="65" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="38" y1="50" x2="62" y2="50" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="50" cy="25" r="5" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                </svg>
+                <span style="font-weight: 800; font-family: var(--font-mono); color: #fff; margin-left: 8px; letter-spacing: 0.5px;">ABK</span>
+            </a>
+
+            <nav class="nav-wrapper">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html#home" class="nav-link" data-tr="nav-home">Ana Sayfa</a></li>
+                    <li><a href="index.html#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
+                    <li><a href="achievements.html" class="nav-link" data-tr="nav-achievements">Başarılarım</a></li>
+                    <li><a href="logbook.html" class="nav-link active" data-tr="nav-logbook">Mühendislik Defteri</a></li>
+                    <li><a href="index.html#contact" class="nav-link" data-tr="nav-contact">İletişime Geç</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Tema Değiştir">
+                    <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="lang-toggle" id="langToggle" aria-label="Dil Değiştir">
+                    <span class="lang-code">EN</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" style="padding-top: 100px;">
+        <!-- Matrix Background -->
+        <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+
+        <section class="section study-hub-section">
+            <div class="container stopwatch-container">
+                <!-- Dashboard Toolbar -->
+                <div class="hub-toolbar reveal">
+                    <button class="btn btn-secondary toolbar-btn" id="drawerToggleBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        <span data-tr="nav-logbook">Mühendislik Defteri</span>
+                    </button>
+                    
+                    <button class="btn btn-secondary toolbar-btn" id="authLockBtn">
+                        <svg class="lock-state-icon" id="lockStateIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span id="lockStateText">Yönetici Girişi</span>
+                    </button>
+                </div>
+
+                <!-- Minimal Stopwatch Screen -->
+                <div class="minimal-timer-pane reveal">
+                    <div class="timer-card">
+                        <div class="timer-glow-ring"></div>
+                        <div class="timer-session-badge" id="timerStatusText">Ready / Hazır</div>
+                        <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
+                        
+                        <div class="stopwatch-controls">
+                            <button class="btn btn-primary stopwatch-btn-lg" id="stopwatchStartBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                <span data-tr="admin-stopwatch-start">Başlat</span>
+                            </button>
+                            <button class="btn btn-secondary stopwatch-btn-lg" id="stopwatchPauseBtn" disabled>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                                <span data-tr="admin-stopwatch-pause">Duraklat</span>
+                            </button>
+                            <button class="btn btn-secondary stopwatch-btn-lg" id="stopwatchResetBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                <span data-tr="admin-stopwatch-reset">Sıfırla</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-Out Logs Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="logs-drawer" id="logsDrawer">
+        <div class="drawer-header">
+            <h3 data-tr="nav-logbook">Mühendislik Defteri</h3>
+            <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
+        </div>
+        
+        <div class="drawer-body">
+            <!-- Stats -->
+            <div class="log-stats-grid">
+                <div class="log-stat-card">
+                    <span class="log-stat-label" data-tr="log-stat-total-hrs">TOPLAM ODAK SÜRESİ</span>
+                    <div class="log-stat-val"><span id="totalHoursVal">0.0</span> <small data-tr="log-stat-hours-unit">Saat</small></div>
+                </div>
+                <div class="log-stat-card">
+                    <span class="log-stat-label" data-tr="log-stat-sessions">TOPLAM OTURUM</span>
+                    <div class="log-stat-val" id="totalSessionsVal">0</div>
+                </div>
+                <div class="log-stat-card">
+                    <span class="log-stat-label" data-tr="log-stat-streak">AKTİF SERİ (GÜN)</span>
+                    <div class="log-stat-val" id="activeStreakVal">0</div>
+                </div>
+            </div>
+
+            <!-- Chronological list -->
+            <div class="logbook-list" id="logbookList">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2FA Auth Lock Modal -->
+    <div class="modal-overlay" id="authModalOverlay">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="authModalCloseBtn">&times;</button>
+            <div class="modal-header-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3 data-tr="log-lock-title">Yönetici Girişi</h3>
+            <p data-tr="log-lock-subtitle">Günlük kaydı eklemek ve araçları yönetmek için 2FA doğrulama kodunu girin.</p>
+            
+            <form id="totpForm" onsubmit="return false;">
+                <div class="totp-input-group">
+                    <input type="text" id="totpInput" maxlength="6" inputmode="numeric" pattern="[0-9]*" placeholder="******" data-tr-placeholder="log-lock-placeholder" autocomplete="one-time-code" required>
+                    <button type="submit" class="btn btn-primary btn-full" id="totpUnlockBtn" data-tr="log-lock-btn">Kilidi Aç</button>
+                </div>
+                <div class="totp-error" id="totpError" data-tr="log-lock-error">Hatalı veya süresi geçmiş kod! Lütfen tekrar deneyin.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Save Focus Session Prompt Modal -->
+    <div class="modal-overlay" id="savePromptModalOverlay">
+        <div class="modal-card">
+            <!-- Step 1: Prompt Question -->
+            <div class="modal-step" id="saveStep1">
+                <h3 id="savePromptTitle">Çalışmayı Mühendislik Defterine Ekle?</h3>
+                <p id="savePromptDurationText">Çalışma süresi: 0.0 Saat</p>
+                
+                <div class="modal-actions-grid">
+                    <button class="btn btn-primary" id="savePromptAddBtn">Seansı Deftere Yaz</button>
+                    <button class="btn btn-secondary" id="savePromptDiscardBtn">Kaydetmeden Sıfırla</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Details Entry Form -->
+            <div class="modal-step" id="saveStep2" style="display: none;">
+                <h3 data-tr="admin-log-form-title">Yeni Çalışma Seansı Günlüğü</h3>
+                <form id="logSessionForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="logDetails" data-tr="admin-log-details-label font-bold">Neler Yapıldı? (Açıklama)</label>
+                        <textarea id="logDetails" rows="5" placeholder="STM32 üzerinde UART driver yazdım.&#10;Interrupt mimarisini inceledim." required></textarea>
+                    </div>
+
+                    <div class="modal-actions-grid">
+                        <button type="submit" class="btn btn-primary" id="saveLogSubmitBtn" data-tr="admin-log-submit">Deftere Kaydet</button>
+                        <button type="button" class="btn btn-secondary" id="saveLogCancelBtn">İptal Et</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <a href="index.html" class="logo-sm">
+                    <svg class="brand-logo-svg" width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" style="vertical-align: middle;">
+                        <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="#38bdf8" stroke-width="7" fill="rgba(56, 189, 248, 0.03)"/>
+                        <line x1="30" y1="65" x2="50" y2="25" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+                        <line x1="50" y1="25" x2="70" y2="65" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="50" cy="25" r="5" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                    </svg>
+                    <span style="font-weight: 800; font-family: var(--font-mono); color: #fff; margin-left: 6px;">ABK</span>
+                </a>
+                <p>&copy; <span id="currentYear">2026</span> Ahmet Burak Kaynak. <span data-tr="footer-rights">Tüm hakları saklıdır.</span></p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="https://github.com/ahmetburakresmi" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:ahmetburakresmi@gmail.com">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

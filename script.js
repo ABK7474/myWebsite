@@ -12,6 +12,18 @@
     } catch (e) {}
 })();
 
+// Theme Initialization IIFE: Run immediately to prevent Flash of Unstyled Theme (FOUT)
+(function initTheme() {
+    try {
+        let savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+            savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (e) {}
+})();
+
+
 // Translations Dictionary
 const translations = {
     tr: {
@@ -82,6 +94,29 @@ const translations = {
         'ach-2029-b2': 'EEM ÇAP Mezuniyeti',
         'ach-2029-b3': 'Çifte Mühendislik Derecesi',
         
+        // Logbook Section (TR)
+        'nav-logbook': 'Mühendislik Defteri',
+        'logbook-doc-title': 'Mühendislik Defteri — Ahmet Burak Kaynak',
+        'logbook-tag': 'ÇALIŞMA GÜNLÜĞÜ',
+        'logbook-title': 'Focus Hub & Mühendislik Defteri',
+        'logbook-subtitle': 'Gelişim sürecimi, günlük çalışma saatlerimi ve odaklandığım konuları takip ettiğim canlı log defteri.',
+        'log-stat-total-hrs': 'TOPLAM ODAK SÜRESİ',
+        'log-stat-sessions': 'TOPLAM OTURUM',
+        'log-stat-streak': 'AKTİF SERİ (GÜN)',
+        'log-stat-hours-unit': 'Saat',
+        'log-lock-title': 'Yönetici Girişi',
+        'log-lock-subtitle': 'Günlük kaydı eklemek ve araçları yönetmek için 2FA doğrulama kodunu girin.',
+        'log-lock-placeholder': '6 Haneli Google Authenticator Kodu',
+        'log-lock-btn': 'Kilidi Aç',
+        'log-lock-error': 'Hatalı veya süresi geçmiş kod! Lütfen tekrar deneyin.',
+        'admin-stopwatch-title': 'Çalışma Kronometresi',
+        'admin-stopwatch-start': 'Başlat',
+        'admin-stopwatch-pause': 'Duraklat',
+        'admin-stopwatch-reset': 'Sıfırla',
+        'admin-log-form-title': 'Yeni Oturum Ekle',
+        'admin-log-details-label': 'Neler Yapıldı? (Açıklama)',
+        'admin-log-submit': 'Deftere Kaydet',
+
         // Contact Section
         'contact-tag': 'İLETİŞİM',
         'contact-title': 'İletişime Geçin',
@@ -179,6 +214,29 @@ const translations = {
         'ach-2029-b2': 'EEM Double Major Graduation',
         'ach-2029-b3': 'Dual Engineering Degree',
         
+        // Logbook Section (EN)
+        'nav-logbook': 'Engineering Logbook',
+        'logbook-doc-title': 'Engineering Logbook — Ahmet Burak Kaynak',
+        'logbook-tag': 'FOCUS JOURNAL',
+        'logbook-title': 'Focus Hub & Engineering Logbook',
+        'logbook-subtitle': 'A live log tracking my development process, daily study hours, and technical focus areas.',
+        'log-stat-total-hrs': 'TOTAL FOCUS TIME',
+        'log-stat-sessions': 'TOTAL SESSIONS',
+        'log-stat-streak': 'ACTIVE STREAK (DAYS)',
+        'log-stat-hours-unit': 'Hours',
+        'log-lock-title': 'Admin Authorization',
+        'log-lock-subtitle': 'Enter the 2FA verification code to add new log entries and manage tools.',
+        'log-lock-placeholder': '6-Digit Google Authenticator Code',
+        'log-lock-btn': 'Unlock Dashboard',
+        'log-lock-error': 'Invalid or expired code! Please check your authenticator app.',
+        'admin-stopwatch-title': 'Focus Timer',
+        'admin-stopwatch-start': 'Start',
+        'admin-stopwatch-pause': 'Pause',
+        'admin-stopwatch-reset': 'Reset',
+        'admin-log-form-title': 'Log New Session',
+        'admin-log-details-label': 'What was done? (Description)',
+        'admin-log-submit': 'Log to Journal',
+
         // Contact Section
         'contact-tag': 'CONTACT',
         'contact-title': 'Get In Touch',
@@ -224,6 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
         langToggle.addEventListener('click', toggleLanguage);
     }
 
+    // 1.5. Initialize Theme Switcher
+    initThemeSwitcher();
+
     // 2. Navigation & Mobile Menu
     initNavigation();
 
@@ -243,11 +304,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearEl = document.getElementById('currentYear');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // 8. Typewriter Effect
-    initTypewriter();
+    // 8. Typewriter Effect (only auto-start if intro screen has already played)
+    if (sessionStorage.getItem('introPlayed') === 'true') {
+        initTypewriter();
+    }
 
     // 9. Matrix Hacker Background
     initMatrix();
+
+    // 10. Interactive Hover & Click Sounds
+    initInteractiveSounds();
+
+    // 11. Study Logbook & Focus Tools (2FA + Stopwatch)
+    initLogbookDashboard();
 });
 
 function initMatrix() {
@@ -261,35 +330,106 @@ function initMatrix() {
     
     // Letters, numbers, and symbols for the matrix
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%""\'#&_(),.;:?!\\|{}<>[]^~';
-    const fontSize = 14;
+    const fontSize = 12;
     const columns = Math.floor(canvas.width / fontSize);
     
-    // Array for the drops
+    // Array for the drops - randomize initial heights to distribute rainfall evenly
     const drops = [];
     for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
+        drops[x] = Math.floor(Math.random() * -60);
+    }
+
+    // Formulas for scientific light background
+    const scientificFormulas = [
+        "E = mc²",
+        "e^(iπ) + 1 = 0",
+        "∫ e^x dx = e^x + C",
+        "d/dx [sin(x)] = cos(x)",
+        "F = G * (m1*m2)/r²",
+        "∇ × E = -∂B/∂t",
+        "iℏ ∂/∂t Ψ = Ĥ Ψ",
+        "lim (x→∞) (1 + 1/x)^x = e",
+        "∫ x^n dx = (x^(n+1))/(n+1) + C",
+        "PV = nRT",
+        "Δx * Δp ≥ ℏ/2",
+        "∇ · E = ρ/ε₀",
+        "d/dx [ln(x)] = 1/x",
+        "a² + b² = c²",
+        "∑ (n=1 to ∞) 1/n² = π²/6",
+        "F = ma",
+        "V = IR",
+        "S = k * ln(W)",
+        "H(t) = -∑ p_i log(p_i)",
+        "∮ B · dl = μ₀ I_enc",
+        "f'(x) = lim(h→0) [f(x+h) - f(x)]/h",
+        "∇ × B = μ₀J + μ₀ε₀∂E/∂t",
+        "∮ E · dA = Q/ε₀",
+        "∮ B · dA = 0",
+        "L = r × p",
+        "λ = h/p",
+        "df = (∂f/∂x)dx + (∂f/∂y)dy",
+        "∫∫_S (∇×F)·dS = ∮_C F·dr"
+    ];
+
+    // Initialize particles for formulas
+    const formulaParticles = [];
+    const maxParticles = 25;
+    for (let i = 0; i < maxParticles; i++) {
+        formulaParticles.push({
+            text: scientificFormulas[Math.floor(Math.random() * scientificFormulas.length)],
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: 0.15 + Math.random() * 0.35, // Slow horizontal drift
+            vy: -0.05 + Math.random() * 0.15, // Very slow vertical drift
+            opacity: 0.06 + Math.random() * 0.09, // Balanced visual presence (6% to 15% opacity)
+            size: Math.floor(11 + Math.random() * 6) // Font size range
+        });
     }
     
     // Drawing the characters
     function draw() {
-        // Black background with 0.05 opacity to create trail effect
-        // Using a slightly dark green-tinted black for the hacker vibe
-        ctx.fillStyle = 'rgba(5, 8, 10, 0.08)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Green text
-        ctx.fillStyle = '#0F0'; 
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = letters.charAt(Math.floor(Math.random() * letters.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            // Send drop back to top randomly after it has crossed the screen
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
+        const isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
+
+        if (isLightTheme) {
+            // Light theme scientific formula layout
+            ctx.fillStyle = 'rgba(248, 250, 252, 0.15)'; // Trail fade for drifting formulas
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let p of formulaParticles) {
+                ctx.font = p.size + 'px "Fira Code", monospace';
+                ctx.fillStyle = `rgba(15, 23, 42, ${p.opacity})`;
+                ctx.fillText(p.text, p.x, p.y);
+
+                // Update particle coordinates
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Reset position if it moves off-screen
+                if (p.x > canvas.width + 150 || p.y < -50 || p.y > canvas.height + 50) {
+                    p.x = -150;
+                    p.y = Math.random() * canvas.height;
+                    p.text = scientificFormulas[Math.floor(Math.random() * scientificFormulas.length)];
+                }
             }
-            drops[i]++;
+        } else {
+            // Dark theme classic matrix rain
+            ctx.fillStyle = 'rgba(5, 8, 10, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0'; // Default green
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                drops[i]++;
+                
+                // Send drop back to top randomly after it has crossed the screen
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.94) {
+                    drops[i] = 0;
+                }
+            }
         }
     }
     
@@ -299,11 +439,10 @@ function initMatrix() {
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        // Re-initialize columns
         const newColumns = Math.floor(canvas.width / fontSize);
         if (newColumns > drops.length) {
             for (let x = drops.length; x < newColumns; x++) {
-                drops[x] = 1;
+                drops[x] = Math.floor(Math.random() * -60);
             }
         }
     });
@@ -346,13 +485,44 @@ function initTypewriter(lang = currentLang) {
     const codeText = translations[lang]['term-code'];
     const outputText = translations[lang]['term-output'];
 
+    function renderHighlightedCCode(rawText) {
+        const escaped = rawText
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+
+        const tokenRegex = /(\/\/.*|#include\s+&lt;[^&]+&gt;|"(?:\\.|[^"\\])*"|\b(?:typedef|struct|const|int|return|char)\b|\b(?:Profile)\b|\b(?:main|printf)\b)/g;
+
+        return escaped.replace(tokenRegex, (match) => {
+            if (match.startsWith('//')) {
+                return `<span class="com">${match}</span>`;
+            } else if (match.startsWith('#include')) {
+                return `<span class="inc">#include</span> <span class="str">&lt;stdio.h&gt;</span>`;
+            } else if (match.startsWith('"')) {
+                return `<span class="str">${match}</span>`;
+            } else if (/^(typedef|struct|const|int|return|char)$/.test(match)) {
+                return `<span class="kwd">${match}</span>`;
+            } else if (match === 'Profile') {
+                return `<span class="typ">${match}</span>`;
+            } else if (/^(main|printf)$/.test(match)) {
+                return `<span class="fn">${match}</span>`;
+            }
+            return match;
+        });
+    }
+
     let i = 0;
+    const writeChunkSize = 4;
     function typeWriter() {
         if (i < codeText.length) {
-            typewriterEl.textContent += codeText.charAt(i);
-            i++;
-            typewriterTimeoutId = setTimeout(typeWriter, 10); // 10ms typing speed
+            i += writeChunkSize;
+            const currentText = codeText.substring(0, i);
+            typewriterEl.innerHTML = renderHighlightedCCode(currentText);
+            playKeyboardTypeSound();
+            typewriterTimeoutId = setTimeout(typeWriter, 12); // Snappy 12ms ticks
         } else {
+            typewriterEl.innerHTML = renderHighlightedCCode(codeText);
+            
             // Typing finished, show Run button
             if (newRunBtn) {
                 newRunBtn.classList.add('visible');
@@ -366,6 +536,7 @@ function initTypewriter(lang = currentLang) {
     // Handle Run button click
     if (newRunBtn) {
         newRunBtn.addEventListener('click', () => {
+            playClickSound();
             if (cursor) cursor.style.display = 'none'; // Hide blinking cursor in editor
             if (outputWrapper) outputWrapper.style.display = 'flex';
             if (outputEl) outputEl.textContent = lang === 'tr' ? 'Derleniyor...' : 'Compiling...';
@@ -375,11 +546,13 @@ function initTypewriter(lang = currentLang) {
             compileTimeoutId = setTimeout(() => {
                 if (outputEl) outputEl.textContent = '';
                 let j = 0;
+                const outputChunkSize = 3;
                 
                 function typeOutput() {
                     if (j < outputText.length) {
-                        outputEl.textContent += outputText.charAt(j);
-                        j++;
+                        outputEl.textContent += outputText.substring(j, j + outputChunkSize);
+                        j += outputChunkSize;
+                        playKeyboardTypeSound();
                         outputTimeoutId = setTimeout(typeOutput, 15);
                     } else {
                         // Re-enable button if they want to run again
@@ -618,12 +791,15 @@ function initContactForm() {
             });
 
             if (response.ok) {
+                playSuccessSound();
                 showToast(translations[currentLang]['form-success']);
                 form.reset();
             } else {
+                playErrorSound();
                 showToast(translations[currentLang]['form-error']);
             }
         } catch (err) {
+            playErrorSound();
             showToast(translations[currentLang]['form-error']);
         } finally {
             submitBtn.disabled = false;
@@ -687,16 +863,14 @@ int main() {
     return 0;
 }`;
 
-    // Prepare code area DOM structure with line numbers
+    let lineNumsEl, codeContentEl;
+
+    // Show initial interactive prompt to satisfy browser autoplay requirements
     introCodeArea.innerHTML = `
-        <div class="code-wrapper">
-            <div class="line-numbers" id="lineNums">1</div>
-            <div class="code-content" id="codeContent"></div>
+        <div class="boot-prompt" style="color: var(--accent-cyan); font-family: var(--font-mono); cursor: pointer; text-align: center; padding-top: 5rem; font-size: 1.1rem; text-shadow: 0 0 10px rgba(56,189,248,0.5); animation: pulse 1.5s infinite; font-weight: 700;">
+            &gt;&gt; CLICK ANYWHERE TO INITIALIZE BOOT SEQUENCE &lt;&lt;
         </div>
     `;
-
-    const lineNumsEl = document.getElementById('lineNums');
-    const codeContentEl = document.getElementById('codeContent');
 
     // Single-pass Tokenizer for C++ Syntax Highlighting
     // Prevents nested regex replacement corruption when finishing code rendering
@@ -744,9 +918,10 @@ int main() {
             }
             lineNumsEl.innerHTML = linesStr;
 
-            // Use textContent while typing so unclosed quotes/brackets never corrupt HTML
-            codeContentEl.textContent = currentSubText;
+            // Highlight code dynamically while typing
+            codeContentEl.innerHTML = renderHighlightedCode(currentSubText);
 
+            playKeyboardTypeSound();
             setTimeout(typeCode, typingSpeed);
         } else {
             // Typing complete: apply full syntax highlighting on the complete, valid code
@@ -757,8 +932,31 @@ int main() {
         }
     }
 
-    // Start typing after brief initial pause
-    setTimeout(typeCode, 600);
+    const startBootSequence = () => {
+        // Unlock Web Audio Context on user gesture
+        getAudioContext();
+        playSuccessSound();
+
+        // Build code editor structure
+        introCodeArea.innerHTML = `
+            <div class="code-wrapper">
+                <div class="line-numbers" id="lineNums">1</div>
+                <div class="code-content" id="codeContent"></div>
+            </div>
+        `;
+
+        lineNumsEl = document.getElementById('lineNums');
+        codeContentEl = document.getElementById('codeContent');
+
+        document.removeEventListener('click', startBootSequence);
+        document.removeEventListener('keydown', startBootSequence);
+
+        // Start typing after brief initial pause
+        setTimeout(typeCode, 400);
+    };
+
+    document.addEventListener('click', startBootSequence);
+    document.addEventListener('keydown', startBootSequence);
 
     function startCursorMovement() {
         if (!runBtn || !cursor || !desktopEnv) return;
@@ -799,8 +997,8 @@ int main() {
             const cx = startX + (tx - startX) * ease;
             const cy = startY + (ty - startY) * ease;
 
-            // Interpolate scale dynamically based on device width (1.22x for mobile, 1.55x for desktop)
-            const maxZoom = window.innerWidth < 768 ? 1.22 : 1.55;
+            // Interpolate scale dynamically based on device width (1.7x for mobile, 2.1x for desktop)
+            const maxZoom = window.innerWidth < 768 ? 1.7 : 2.1;
             const scale = 1.0 + (maxZoom - 1.0) * ease;
 
             // Update cursor element position inside desktopEnv
@@ -808,8 +1006,15 @@ int main() {
             cursor.style.top = cy + 'px';
 
             // Dynamic Camera Focus: Track the cursor's (cx, cy) position as it moves to (tx, ty)
-            const currentDx = (centerX - cx) * ease;
-            const currentDy = (centerY - cy) * ease;
+            const rawDx = (centerX - cx) * ease;
+            const rawDy = (centerY - cy) * ease;
+
+            // Clamp camera shifts so desktop edges never enter the viewport (no black border leakage)
+            const maxShiftX = (scale - 1.0) * (desktopRect.width / 2);
+            const maxShiftY = (scale - 1.0) * (desktopRect.height / 2);
+
+            const currentDx = Math.max(-maxShiftX, Math.min(maxShiftX, rawDx));
+            const currentDy = Math.max(-maxShiftY, Math.min(maxShiftY, rawDy));
 
             desktopEnv.style.transform = `translate(${currentDx}px, ${currentDy}px) scale(${scale})`;
 
@@ -832,6 +1037,9 @@ int main() {
                     if (blackout) blackout.remove();
                     document.body.style.overflow = ''; // unlock scroll
                     sessionStorage.setItem('introPlayed', 'true');
+                    
+                    // Trigger typewriter on main portfolio IDE
+                    initTypewriter();
                 }, 1400);
             }
         }
@@ -840,15 +1048,54 @@ int main() {
     }
 }
 
+// Global Audio Manager for Synthesizing Clean UI Sounds
+let globalAudioCtx = null;
+
+function getAudioContext() {
+    if (!globalAudioCtx) {
+        globalAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (globalAudioCtx.state === 'suspended') {
+        globalAudioCtx.resume();
+    }
+    return globalAudioCtx;
+}
+
+// 1. Synthesize soft mechanical keyboard/UI hover tick (soft bubble/pop sound)
+function playHoverSound() {
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(600, now);
+
+        osc.type = 'sine';
+        // Gentle frequency glide downwards (C5 -> G4) for a organic bubble pop feel
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.exponentialRampToValueAtTime(392.00, now + 0.025);
+
+        // Soft, highly audible but non-intrusive volume curve
+        gain.gain.setValueAtTime(0.025, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.025);
+    } catch (e) {}
+}
+
+// 2. Synthesize mechanical switch click/snap sound
 function playClickSound() {
     try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        // Auto resume suspended AudioContext for instant sound playback
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
+        const audioCtx = getAudioContext();
         const now = audioCtx.currentTime;
 
         // Layer 1: Mechanical Body Bump (sine frequency drop)
@@ -858,7 +1105,7 @@ function playClickSound() {
         osc.frequency.setValueAtTime(400, now);
         osc.frequency.exponentialRampToValueAtTime(50, now + 0.06);
 
-        oscGain.gain.setValueAtTime(0.4, now);
+        oscGain.gain.setValueAtTime(0.32, now);
         oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
         osc.connect(oscGain);
@@ -881,7 +1128,7 @@ function playClickSound() {
         noiseFilter.Q.value = 1.5;
 
         const noiseGain = audioCtx.createGain();
-        noiseGain.gain.setValueAtTime(0.35, now);
+        noiseGain.gain.setValueAtTime(0.28, now);
         noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
 
         noise.connect(noiseFilter);
@@ -898,3 +1145,665 @@ function playClickSound() {
     }
 }
 
+// 2B. Synthesize keyboard typing click clack sound
+let lastTypeSoundTime = 0;
+
+function playKeyboardTypeSound() {
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // Prevent browser AudioContext thread flooding & clipping (minimum 40ms cooldown)
+        if (now - lastTypeSoundTime < 0.040) {
+            return;
+        }
+        lastTypeSoundTime = now;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        osc.type = 'triangle';
+        // Random pitch in high-mid range to simulate organic keycap sounds
+        const pitch = 850 + Math.random() * 500;
+        osc.frequency.setValueAtTime(pitch, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.015);
+
+        filter.type = 'bandpass';
+        filter.frequency.value = 1400;
+        filter.Q.value = 2.5;
+
+        // Soft, crisp clack sound envelope
+        gain.gain.setValueAtTime(0.02, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.015);
+    } catch (e) {}
+}
+
+// 3. Synthesize beautiful ascending clean chime for success
+function playSuccessSound() {
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+        notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+
+            const noteTime = now + (idx * 0.08);
+
+            gain.gain.setValueAtTime(0, noteTime);
+            gain.gain.linearRampToValueAtTime(0.1, noteTime + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 0.25);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(noteTime);
+            osc.stop(noteTime + 0.25);
+        });
+    } catch (e) {}
+}
+
+// 4. Synthesize soft buzz alert for error
+function playErrorSound() {
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        const buzzTimes = [0, 0.12];
+        buzzTimes.forEach(delay => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(140, now + delay);
+            osc.frequency.linearRampToValueAtTime(100, now + delay + 0.08);
+
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 300;
+
+            gain.gain.setValueAtTime(0.05, now + delay);
+            gain.gain.linearRampToValueAtTime(0.0001, now + delay + 0.08);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(now + delay);
+            osc.stop(now + delay + 0.08);
+        });
+    } catch (e) {}
+}
+
+// 5. Initialize sounds on hover & click for all interactive elements using Event Delegation
+let lastHoveredElement = null;
+
+function initInteractiveSounds() {
+    // A. Click Snap Sound delegation on body
+    document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('a, button, .lang-toggle, .hamburger, .social-link, .copy-btn, .run-btn, .editor-play-btn, .stat-card, .tree-item, .vscode-tab');
+        if (target) {
+            if (target.matches(':disabled') || target.classList.contains('disabled')) return;
+            playClickSound();
+        }
+    });
+
+    // B. Hover Pop Sound delegation on body
+    document.body.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, .lang-toggle, .hamburger, .social-link, .copy-btn, .run-btn, .editor-play-btn, .stat-card, .tree-item, .vscode-tab');
+        if (target) {
+            if (target === lastHoveredElement) return; // avoid repeats
+            if (target.matches(':disabled') || target.classList.contains('disabled') || target.style.opacity === '0') return;
+
+            lastHoveredElement = target;
+            playHoverSound();
+        }
+    });
+
+    // C. Reset tracking on mouseout
+    document.body.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('a, button, .lang-toggle, .hamburger, .social-link, .copy-btn, .run-btn, .editor-play-btn, .stat-card, .tree-item, .vscode-tab');
+        if (target && target === lastHoveredElement) {
+            lastHoveredElement = null;
+        }
+    });
+}
+
+// ==========================================================================
+// 6. Cryptographic 2FA (TOTP) & Focus Logbook Engine
+// ==========================================================================
+
+// Google Authenticator Base32 Secret Key for Ahmet Burak Kaynak
+const TOTP_SECRET = 'ABKSTUDYLOGBOOK2FA';
+
+// Default static logbook history (starts empty as requested)
+const defaultLogs = [];
+
+// Base32 Decoder Helper
+function base32ToBytes(b32) {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    b32 = b32.replace(/=+$/, '').toUpperCase();
+    const len = b32.length;
+    const bytes = new Uint8Array(Math.floor((len * 5) / 8));
+    let val = 0;
+    let count = 0;
+    let index = 0;
+
+    for (let i = 0; i < len; i++) {
+        const idx = alphabet.indexOf(b32[i]);
+        if (idx === -1) continue;
+        val = (val << 5) | idx;
+        count += 5;
+        if (count >= 8) {
+            bytes[index++] = (val >>> (count - 8)) & 255;
+            count -= 8;
+        }
+    }
+    return bytes;
+}
+
+// HMAC-SHA1 Cryptographic function in pure JS
+function hmacSha1(keyBytes, msgBytes) {
+    const block = new Uint8Array(64);
+    if (keyBytes.length > 64) {
+        block.set(sha1Bytes(keyBytes));
+    } else {
+        block.set(keyBytes);
+    }
+
+    const ipad = new Uint8Array(64);
+    const opad = new Uint8Array(64);
+    for (let i = 0; i < 64; i++) {
+        ipad[i] = block[i] ^ 0x36;
+        opad[i] = block[i] ^ 0x5c;
+    }
+
+    const inner = new Uint8Array(64 + msgBytes.length);
+    inner.set(ipad, 0);
+    inner.set(msgBytes, 64);
+    const innerHash = sha1Bytes(inner);
+
+    const outer = new Uint8Array(64 + innerHash.length);
+    outer.set(opad, 0);
+    outer.set(innerHash, 64);
+    return sha1Bytes(outer);
+}
+
+function sha1Bytes(data) {
+    const len = data.length;
+    const wordCount = ((len + 8) >> 6) + 1;
+    const words = new Uint32Array(wordCount * 16);
+
+    for (let i = 0; i < len; i++) {
+        words[i >> 2] |= data[i] << (24 - (i % 4) * 8);
+    }
+    words[len >> 2] |= 0x80 << (24 - (len % 4) * 8);
+    words[words.length - 1] = len * 8;
+
+    let h0 = 0x67452301;
+    let h1 = 0xEFCDAB89;
+    let h2 = 0x98BADCFE;
+    let h3 = 0x10325476;
+    let h4 = 0xC3D2E1F0;
+
+    const w = new Uint32Array(80);
+    for (let i = 0; i < words.length; i += 16) {
+        for (let t = 0; t < 16; t++) w[t] = words[i + t];
+        for (let t = 16; t < 80; t++) {
+            const val = w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16];
+            w[t] = (val << 1) | (val >>> 31);
+        }
+
+        let a = h0; let b = h1; let c = h2; let d = h3; let e = h4;
+        for (let t = 0; t < 80; t++) {
+            let f, k;
+            if (t < 20) {
+                f = (b & c) | (~b & d);
+                k = 0x5A827999;
+            } else if (t < 40) {
+                f = b ^ c ^ d;
+                k = 0x6ED9EBA1;
+            } else if (t < 60) {
+                f = (b & c) | (b & d) | (c & d);
+                k = 0x8F1BBCDC;
+            } else {
+                f = b ^ c ^ d;
+                k = 0xCA62C1D6;
+            }
+
+            const temp = (((a << 5) | (a >>> 27)) + f + e + k + w[t]) | 0;
+            e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = temp;
+        }
+
+        h0 = (h0 + a) | 0;
+        h1 = (h1 + b) | 0;
+        h2 = (h2 + c) | 0;
+        h3 = (h3 + d) | 0;
+        h4 = (h4 + e) | 0;
+    }
+
+    const result = new Uint8Array(20);
+    const view = new DataView(result.buffer);
+    view.setUint32(0, h0, false);
+    view.setUint32(4, h1, false);
+    view.setUint32(8, h2, false);
+    view.setUint32(12, h3, false);
+    view.setUint32(16, h4, false);
+    return result;
+}
+
+// Compute TOTP Code (Time-based One-Time Password)
+function getTotpCode(secret, stepOffset = 0) {
+    const key = base32ToBytes(secret);
+    const epoch = Math.floor(Date.now() / 1000);
+    const steps = Math.floor(epoch / 30) + stepOffset;
+
+    const msg = new Uint8Array(8);
+    let val = steps;
+    for (let i = 7; i >= 0; i--) {
+        msg[i] = val & 0xff;
+        val = Math.floor(val / 256);
+    }
+
+    const hash = hmacSha1(key, msg);
+    const offset = hash[19] & 0xf;
+    const binary = ((hash[offset] & 0x7f) << 24) |
+                   ((hash[offset + 1] & 0xff) << 16) |
+                   ((hash[offset + 2] & 0xff) << 8) |
+                   (hash[offset + 3] & 0xff);
+
+    const otp = binary % 1000000;
+    return otp.toString().padStart(6, '0');
+}
+
+// 2FA TOTP code validator (Checks current time, T-1, and T+1)
+function checkTotpCode(code) {
+    const cleanCode = code.trim().replace(/\s/g, '');
+    for (let offset = -1; offset <= 1; offset++) {
+        if (getTotpCode(TOTP_SECRET, offset) === cleanCode) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Focus Hub Logbook Initialization
+function initLogbookDashboard() {
+    const listEl = document.getElementById('logbookList');
+    if (!listEl) return;
+
+    // Load active logs (stored logs + static defaults if not overridden)
+    let logs = JSON.parse(localStorage.getItem('study_logs'));
+    // Auto-purge old mock entries if present on user browser
+    if (logs && logs.some(log => log.id === 1 || log.id === 2 || log.id === 3)) {
+        logs = [];
+        localStorage.setItem('study_logs', JSON.stringify(logs));
+    }
+    if (!logs || logs.length === 0) {
+        logs = [...defaultLogs];
+        localStorage.setItem('study_logs', JSON.stringify(logs));
+    }
+
+    // A. 1. Render Log Timeline Cards in Drawer (Date, Hours, Content only)
+    function renderLogs() {
+        listEl.innerHTML = '';
+        
+        // Sort chronologically in descending order
+        logs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        if (logs.length === 0) {
+            listEl.innerHTML = `<div style="text-align:center; padding: 2rem; color: #8892b0; font-family: var(--font-mono)">No log found. / Günlük kaydı bulunamadı.</div>`;
+            return;
+        }
+
+        logs.forEach(log => {
+            const isTr = currentLang === 'tr';
+            const details = isTr ? log.details_tr : log.details_en;
+            
+            const dateObj = new Date(log.date);
+            const dateStr = isTr 
+                ? dateObj.toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+                : dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+
+            const card = document.createElement('div');
+            card.className = 'log-card reveal';
+            card.innerHTML = `
+                <div class="log-card-header">
+                    <span class="log-card-date">${dateStr}</span>
+                    <span class="log-card-hours" style="background: rgba(56, 189, 248, 0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; color: var(--accent-cyan);">
+                        ${log.duration.toFixed(1)} ${translations[currentLang]['log-stat-hours-unit']}
+                    </span>
+                </div>
+                <ul class="log-card-details" style="margin-top: 1rem; border-top: 1px dashed rgba(255,255,255,0.06); padding-top: 0.75rem;">
+                    ${details.map(d => `<li>${d}</li>`).join('')}
+                </ul>
+            `;
+            listEl.appendChild(card);
+        });
+        
+        if (typeof initScrollReveal === 'function') initScrollReveal();
+    }
+
+    // A. 2. Compute Dashboard Statistics
+    function updateStats() {
+        const totalHours = logs.reduce((sum, log) => sum + log.duration, 0);
+        document.getElementById('totalHoursVal').textContent = totalHours.toFixed(1);
+        document.getElementById('totalSessionsVal').textContent = logs.length;
+
+        // Calculate Day Streak
+        const uniqueDates = [...new Set(logs.map(l => l.date))].sort((a, b) => new Date(b) - new Date(a));
+        let streak = 0;
+        if (uniqueDates.length > 0) {
+            const todayStr = new Date().toISOString().split('T')[0];
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+            let checkDate = new Date(uniqueDates[0]);
+            const startDiff = (new Date(todayStr) - checkDate) / (1000 * 60 * 60 * 24);
+
+            if (startDiff <= 1) {
+                streak = 1;
+                for (let i = 1; i < uniqueDates.length; i++) {
+                    const d1 = new Date(uniqueDates[i - 1]);
+                    const d2 = new Date(uniqueDates[i]);
+                    const diffDays = (d1 - d2) / (1000 * 60 * 60 * 24);
+                    if (diffDays === 1) {
+                        streak++;
+                    } else if (diffDays > 1) {
+                        break;
+                    }
+                }
+            }
+        }
+        document.getElementById('activeStreakVal').textContent = streak;
+    }
+
+    // B. Setup Log Drawer slide out logic
+    const drawerToggleBtn = document.getElementById('drawerToggleBtn');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const logsDrawer = document.getElementById('logsDrawer');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+    function openDrawer() {
+        logsDrawer.classList.add('open');
+        drawerOverlay.classList.add('open');
+    }
+
+    function closeDrawer() {
+        logsDrawer.classList.remove('open');
+        drawerOverlay.classList.remove('open');
+    }
+
+    if (drawerToggleBtn) drawerToggleBtn.addEventListener('click', openDrawer);
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+    // C. Stopwatch (Focus Timer) Logic
+    let stopwatchSeconds = 0;
+    let stopwatchInterval = null;
+    const stopwatchDisplay = document.getElementById('stopwatchDisplay');
+    const startBtn = document.getElementById('stopwatchStartBtn');
+    const pauseBtn = document.getElementById('stopwatchPauseBtn');
+    const resetBtn = document.getElementById('stopwatchResetBtn');
+    const timerStatusText = document.getElementById('timerStatusText');
+
+    function formatTime(sec) {
+        const hrs = Math.floor(sec / 3600);
+        const mins = Math.floor((sec % 3600) / 60);
+        const secs = sec % 60;
+        return [hrs, mins, secs].map(v => v.toString().padStart(2, '0')).join(':');
+    }
+
+    startBtn.addEventListener('click', () => {
+        if (stopwatchInterval) return;
+        stopwatchInterval = setInterval(() => {
+            stopwatchSeconds++;
+            stopwatchDisplay.textContent = formatTime(stopwatchSeconds);
+        }, 1000);
+
+        startBtn.disabled = true;
+        pauseBtn.disabled = false;
+        if (timerStatusText) {
+            timerStatusText.textContent = currentLang === 'tr' ? 'Çalışma Aktif' : 'Focus Session Active';
+            timerStatusText.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+            timerStatusText.style.color = 'var(--accent-cyan)';
+        }
+    });
+
+    pauseBtn.addEventListener('click', () => {
+        clearInterval(stopwatchInterval);
+        stopwatchInterval = null;
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+        if (timerStatusText) {
+            timerStatusText.textContent = currentLang === 'tr' ? 'Duraklatıldı' : 'Session Paused';
+            timerStatusText.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+            timerStatusText.style.color = '#f59e0b';
+        }
+    });
+
+    // D. Reset click handler: Handles 2FA log wizard logic or standard reset
+    const savePromptOverlay = document.getElementById('savePromptModalOverlay');
+    const saveStep1 = document.getElementById('saveStep1');
+    const saveStep2 = document.getElementById('saveStep2');
+    const savePromptDurationText = document.getElementById('savePromptDurationText');
+    const savePromptDiscardBtn = document.getElementById('savePromptDiscardBtn');
+    const savePromptAddBtn = document.getElementById('savePromptAddBtn');
+    const savePromptTitle = document.getElementById('savePromptTitle');
+
+    resetBtn.addEventListener('click', () => {
+        const isAdmin = sessionStorage.getItem('defterAdmin') === 'true';
+
+        // Check if recorded focus session is at least 1 hour (3600 seconds) AND admin is logged in
+        if (stopwatchSeconds >= 3600 && isAdmin) {
+            // Open Save Prompt Modal
+            const hours = parseFloat((stopwatchSeconds / 3600).toFixed(1));
+            
+            // Format Modal Text
+            if (savePromptDurationText) {
+                savePromptDurationText.textContent = currentLang === 'tr' 
+                    ? `Çalışma süresi: ${hours} Saat` 
+                    : `Focus duration: ${hours} Hours`;
+            }
+            if (savePromptTitle) {
+                savePromptTitle.textContent = currentLang === 'tr'
+                    ? 'Çalışmayı deftere eklemek ister misiniz?'
+                    : 'Log this session to your defter?';
+            }
+
+            // Show step 1, hide step 2
+            saveStep1.style.display = 'block';
+            saveStep2.style.display = 'none';
+            savePromptOverlay.classList.add('open');
+        } else {
+            // Not admin or less than 1 hour: Reset timer directly
+            directResetTimer();
+        }
+    });
+
+    function directResetTimer() {
+        clearInterval(stopwatchInterval);
+        stopwatchInterval = null;
+        stopwatchSeconds = 0;
+        stopwatchDisplay.textContent = '00:00:00';
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+        if (timerStatusText) {
+            timerStatusText.textContent = currentLang === 'tr' ? 'Hazır' : 'Ready';
+            timerStatusText.style.borderColor = 'var(--border-subtle)';
+            timerStatusText.style.color = '#8892b0';
+        }
+    }
+
+    // Modal Actions: Discard session
+    if (savePromptDiscardBtn) {
+        savePromptDiscardBtn.addEventListener('click', () => {
+            directResetTimer();
+            savePromptOverlay.classList.remove('open');
+            showToast(currentLang === 'tr' ? 'Seans kaydedilmeden silindi.' : 'Session discarded.');
+        });
+    }
+
+    // Modal Actions: Proceed to Step 2 (fill details)
+    if (savePromptAddBtn) {
+        savePromptAddBtn.addEventListener('click', () => {
+            saveStep1.style.display = 'none';
+            saveStep2.style.display = 'block';
+            
+            const detailsInput = document.getElementById('logDetails');
+            if (detailsInput) detailsInput.focus();
+        });
+    }
+
+    // Modal Actions: Cancel step 2 and go back to step 1
+    const saveLogCancelBtn = document.getElementById('saveLogCancelBtn');
+    if (saveLogCancelBtn) {
+        saveLogCancelBtn.addEventListener('click', () => {
+            saveStep2.style.display = 'none';
+            saveStep1.style.display = 'block';
+        });
+    }
+
+    // E. Admin 2FA Authentication Overlay Trigger
+    const authModalOverlay = document.getElementById('authModalOverlay');
+    const authLockBtn = document.getElementById('authLockBtn');
+    const authModalCloseBtn = document.getElementById('authModalCloseBtn');
+    const lockStateIcon = document.getElementById('lockStateIcon');
+    const lockStateText = document.getElementById('lockStateText');
+
+    function updateAuthUIState() {
+        const isAdmin = sessionStorage.getItem('defterAdmin') === 'true';
+        if (isAdmin) {
+            if (lockStateText) lockStateText.textContent = currentLang === 'tr' ? 'Oturum Açık (Çıkış)' : 'Admin Active (Logout)';
+            if (lockStateIcon) {
+                // Change padlock to unlocked
+                lockStateIcon.innerHTML = '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>';
+                lockStateIcon.style.color = 'var(--accent-emerald)';
+            }
+        } else {
+            if (lockStateText) lockStateText.textContent = currentLang === 'tr' ? 'Yönetici Girişi' : 'Admin Login';
+            if (lockStateIcon) {
+                // Change back to locked
+                lockStateIcon.innerHTML = '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>';
+                lockStateIcon.style.color = '#8892b0';
+            }
+        }
+    }
+
+    if (authLockBtn) {
+        authLockBtn.addEventListener('click', () => {
+            const isAdmin = sessionStorage.getItem('defterAdmin') === 'true';
+            if (isAdmin) {
+                // Log out
+                sessionStorage.removeItem('defterAdmin');
+                updateAuthUIState();
+                showToast(currentLang === 'tr' ? 'Yönetici oturumu kapatıldı.' : 'Admin logged out.');
+            } else {
+                // Open auth modal
+                authModalOverlay.classList.add('open');
+                const totpInput = document.getElementById('totpInput');
+                if (totpInput) totpInput.focus();
+            }
+        });
+    }
+
+    if (authModalCloseBtn) {
+        authModalCloseBtn.addEventListener('click', () => {
+            authModalOverlay.classList.remove('open');
+        });
+    }
+
+    // Google Authenticator 2FA validation
+    const totpForm = document.getElementById('totpForm');
+    const totpInput = document.getElementById('totpInput');
+    const totpError = document.getElementById('totpError');
+
+    if (totpForm) {
+        totpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const code = totpInput.value;
+            
+            if (checkTotpCode(code)) {
+                playSuccessSound();
+                totpError.style.display = 'none';
+                authModalOverlay.classList.remove('open');
+                sessionStorage.setItem('defterAdmin', 'true');
+                updateAuthUIState();
+                showToast(currentLang === 'tr' ? 'Giriş başarılı! Yönetici modu aktif.' : 'Authenticated successfully! Admin mode active.');
+                totpInput.value = '';
+            } else {
+                playErrorSound();
+                totpError.style.display = 'block';
+                totpInput.value = '';
+                totpInput.focus();
+            }
+        });
+    }
+
+    // F. Logging Form Submit inside Modal (Admin only)
+    const logForm = document.getElementById('logSessionForm');
+    if (logForm) {
+        logForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const details = document.getElementById('logDetails').value.split('\n').filter(line => line.trim() !== '');
+            const duration = Math.max(0.1, parseFloat((stopwatchSeconds / 3600).toFixed(1)));
+
+            const newLog = {
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                duration: duration,
+                details_tr: details,
+                details_en: details
+            };
+
+            logs.push(newLog);
+            localStorage.setItem('study_logs', JSON.stringify(logs));
+            
+            // Success audio, direct timer reset and UI updates
+            playSuccessSound();
+            logForm.reset();
+            directResetTimer();
+            savePromptOverlay.classList.remove('open');
+
+            showToast(currentLang === 'tr' ? 'Çalışma başarıyla deftere kaydedildi!' : 'Study logged successfully to defter!');
+            renderLogs();
+            updateStats();
+        });
+    }
+
+    // Initialize UI
+    updateAuthUIState();
+    renderLogs();
+    updateStats();
+}
+
+// 12. Theme Switcher Handler
+function initThemeSwitcher() {
+    const toggler = document.getElementById('themeToggle');
+    if (!toggler) return;
+
+    toggler.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Play tactile mechanical click switch sound
+        playClickSound();
+    });
+}
