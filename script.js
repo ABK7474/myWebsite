@@ -1,6 +1,11 @@
 // Clean URL Helper: Immediately strips 'index.html' and '.html' from browser address bar
+// Note: Safely preserves .html on GitHub Pages (github.io) to prevent F5 refresh 404 errors
 (function cleanUrl() {
     try {
+        const hostname = window.location.hostname;
+        if (hostname.includes('github.io')) {
+            return;
+        }
         const path = window.location.pathname;
         if (path.endsWith('/index.html') || path.endsWith('index.html')) {
             const cleanPath = path.replace(/index\.html$/, '') || '/';
@@ -247,7 +252,7 @@ const translations = {
         'contact-location': 'Location',
         'contact-location-val': 'Ankara, Turkey',
         'form-name-label': 'Full Name',
-        'form-name': 'John Doe',
+        'form-name': 'John Pork',
         'form-email-label': 'Your Email Address',
         'form-email-placeholder': 'john@example.com',
         'form-msg-label': 'Your Message',
