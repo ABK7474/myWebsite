@@ -46,14 +46,14 @@
    Light Mode Variables (Cyber-White Theme)
    ========================================================================== */
 [data-theme="light"] {
-    --bg-dark: #f8fafc;
-    --bg-surface: #f1f5f9;
-    --bg-surface-alt: #e2e8f0;
-    --bg-card: rgba(255, 255, 255, 0.7);
-    --bg-card-hover: rgba(255, 255, 255, 0.85);
+    --bg-dark: #edf1f6;
+    --bg-surface: #e2e8f0;
+    --bg-surface-alt: #cbd5e1;
+    --bg-card: #f8fafc;
+    --bg-card-hover: #ffffff;
     
-    --border-subtle: rgba(15, 23, 42, 0.08);
-    --border-accent: rgba(2, 132, 199, 0.25);
+    --border-subtle: rgba(15, 23, 42, 0.18);
+    --border-accent: rgba(15, 23, 42, 0.35);
     
     --text-main: #0f172a;
     --text-muted: #475569;
@@ -64,7 +64,7 @@
     --accent-emerald: #059669;
     
     --gradient-accent: linear-gradient(135deg, #0f172a 30%, #0284c7 100%);
-    --gradient-glow: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.06), transparent 450px);
+    --gradient-glow: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.04), transparent 450px);
 }
 
 /* ==========================================================================
@@ -2426,4 +2426,37 @@ body {
 /* Make background canvas more opaque in light mode to ensure drifting formulas are visible */
 [data-theme="light"] .matrix-bg {
     opacity: 0.85 !important;
+}
+
+/* Card Components & Panels: Opaque Off-White (Kırık Beyaz) with Electrical Dark Framing */
+[data-theme="light"] .stat-card,
+[data-theme="light"] .about-text-card,
+[data-theme="light"] .skill-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .contact-info-card,
+[data-theme="light"] .contact-form,
+[data-theme="light"] .timeline-content,
+[data-theme="light"] .timer-card,
+[data-theme="light"] .log-stat-card,
+[data-theme="light"] .log-card,
+[data-theme="light"] .modal-card {
+    background: #f8fafc !important; /* Solid off-white (kırık beyaz), completely opaque */
+    border: 1.5px solid rgba(15, 23, 42, 0.22) !important; /* Electrical black frame */
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 4px 16px -2px rgba(15, 23, 42, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="light"] .stat-card:hover,
+[data-theme="light"] .about-text-card:hover,
+[data-theme="light"] .skill-card:hover,
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .contact-info-card:hover,
+[data-theme="light"] .contact-form:hover,
+[data-theme="light"] .timeline-content:hover,
+[data-theme="light"] .timer-card:hover,
+[data-theme="light"] .log-card:hover {
+    border-color: rgba(15, 23, 42, 0.45) !important;
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.35), 0 0 16px rgba(15, 23, 42, 0.12), 0 8px 24px -4px rgba(15, 23, 42, 0.12) !important;
+    transform: translateY(-3px);
 }

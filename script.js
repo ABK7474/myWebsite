@@ -59,6 +59,8 @@ const translations = {
         'stat-int-1': 'Gömülü Sistemler',
         'stat-int-2': 'Edge AI',
         'stat-int-3': 'Makine Öğrenmesi',
+        'stat-int-4': 'Siber Güvenlik',
+        'stat-int-5': 'Bilgisayar Ağları',
 
         // Achievements Page (Timeline Roadmap)
         'ach-doc-title': 'Başarılarım — Ahmet Burak Kaynak',
@@ -147,9 +149,41 @@ const translations = {
         'form-success': 'Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağım!',
         'form-error': 'Bir hata oluştu. Lütfen tekrar deneyin veya doğrudan e-posta atın.',
         
-        // Terminal Code
-        'term-code': `#include <stdio.h>\n\ntypedef struct {\n    const char *role;\n    const char *university;\n    const char *focus[2];\n} Profile;\n\nint main() {\n    Profile abk = {\n        .role = "Bilgisayar Mühendisliği",\n        .university = "Gazi Üniversitesi",\n        .focus = {"Gömülü Sistemler", "Edge AI"}\n    };\n\n    printf(">> SİSTEM BAŞLATILIYOR...\\n");\n    printf(">> PROFİL: %s, %s\\n", abk.role, abk.university);\n    printf(">> HEDEF MODÜLLER: [%s] | [%s]\\n", abk.focus[0], abk.focus[1]);\n    printf(">> DURUM: Kesintisiz Optimizasyon Devam Ediyor.\\n");\n\n    return 0;\n}`,
-        'term-output': `>> SİSTEM BAŞLATILIYOR...\n>> PROFİL: Bilgisayar Mühendisliği, Gazi Üniversitesi\n>> HEDEF MODÜLLER: [Gömülü Sistemler] | [Edge AI]\n>> DURUM: Kesintisiz Optimizasyon Devam Ediyor.`
+                // Terminal Code
+        'term-code': `#include <stdio.h>
+
+typedef struct {
+    const char *name;
+    const char *university;
+    const char *major;
+    const char *focus[3];
+} Profile;
+
+int main(void) {
+    Profile abk = {
+        .name       = "Ahmet Burak Kaynak",
+        .university = "Gazi Üniversitesi",
+        .major      = "Bilgisayar Müh. (ÇAP: Elektrik-Elektronik Müh.)",
+        .focus      = {"Gömülü Sistemler", "Edge AI", "Makine Öğrenmesi"}
+    };
+
+    printf(">> SİSTEM BAŞLATILIYOR...\n");
+    printf(">> PROFİL: %s | %s\n", abk.name, abk.university);
+    printf(">> BÖLÜM: %s\n", abk.major);
+    for (int i = 0; i < 3; i++) {
+        printf(">> MODÜL[%d]: %s\n", i, abk.focus[i]);
+    }
+    printf(">> DURUM: Hazır.\n");
+
+    return 0;
+}`,
+        'term-output': `>> SİSTEM BAŞLATILIYOR...
+>> PROFİL: Ahmet Burak Kaynak | Gazi Üniversitesi
+>> BÖLÜM: Bilgisayar Müh. (ÇAP: Elektrik-Elektronik Müh.)
+>> MODÜL[0]: Gömülü Sistemler
+>> MODÜL[1]: Edge AI
+>> MODÜL[2]: Makine Öğrenmesi
+>> DURUM: Hazır.`
     },
     en: {
         // Navigation
@@ -179,6 +213,8 @@ const translations = {
         'stat-int-1': 'Embedded Systems',
         'stat-int-2': 'Edge AI',
         'stat-int-3': 'Machine Learning',
+        'stat-int-4': 'Cybersecurity',
+        'stat-int-5': 'Computer Networks',
         
         // Achievements Page (Timeline Roadmap)
         'ach-doc-title': 'Achievements — Ahmet Burak Kaynak',
@@ -267,9 +303,41 @@ const translations = {
         'form-success': 'Your message has been sent successfully. I will get back to you soon!',
         'form-error': 'An error occurred. Please try again or email directly.',
         
-        // Terminal Code
-        'term-code': `#include <stdio.h>\n\ntypedef struct {\n    const char *role;\n    const char *university;\n    const char *focus[2];\n} Profile;\n\nint main() {\n    Profile abk = {\n        .role = "Computer Engineering",\n        .university = "Gazi University",\n        .focus = {"Embedded Systems", "Edge AI"}\n    };\n\n    printf(">> SYSTEM INIT...\\n");\n    printf(">> PROFILE: %s @ %s\\n", abk.role, abk.university);\n    printf(">> TARGETS: [%s] | [%s]\\n", abk.focus[0], abk.focus[1]);\n    printf(">> STATUS: Continuous Optimization in Progress.\\n");\n\n    return 0;\n}`,
-        'term-output': `>> SYSTEM INIT...\n>> PROFILE: Computer Engineering @ Gazi University\n>> TARGETS: [Embedded Systems] | [Edge AI]\n>> STATUS: Continuous Optimization in Progress.`
+                // Terminal Code
+        'term-code': `#include <stdio.h>
+
+typedef struct {
+    const char *name;
+    const char *university;
+    const char *major;
+    const char *focus[3];
+} Profile;
+
+int main(void) {
+    Profile abk = {
+        .name       = "Ahmet Burak Kaynak",
+        .university = "Gazi University",
+        .major      = "Computer Eng. (Double Major: Electrical & Electronics Eng.)",
+        .focus      = {"Embedded Systems", "Edge AI", "Machine Learning"}
+    };
+
+    printf(">> SYSTEM INITIALIZING...\n");
+    printf(">> PROFILE: %s | %s\n", abk.name, abk.university);
+    printf(">> DEPARTMENT: %s\n", abk.major);
+    for (int i = 0; i < 3; i++) {
+        printf(">> MODULE[%d]: %s\n", i, abk.focus[i]);
+    }
+    printf(">> STATUS: Ready.\n");
+
+    return 0;
+}`,
+        'term-output': `>> SYSTEM INITIALIZING...
+>> PROFILE: Ahmet Burak Kaynak | Gazi University
+>> DEPARTMENT: Computer Eng. (Double Major: Electrical & Electronics Eng.)
+>> MODULE[0]: Embedded Systems
+>> MODULE[1]: Edge AI
+>> MODULE[2]: Machine Learning
+>> STATUS: Ready.`
     }
 };
 
@@ -320,8 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 10. Interactive Hover & Click Sounds
     initInteractiveSounds();
 
-    // 11. Study Logbook & Focus Tools (2FA + Stopwatch)
-    initLogbookDashboard();
+    // 11. Study Logbook & Focus Tools (Deactivated)
+    // initLogbookDashboard();
 });
 
 function initMatrix() {
@@ -397,7 +465,7 @@ function initMatrix() {
 
         if (isLightTheme) {
             // Light theme scientific formula layout
-            ctx.fillStyle = 'rgba(248, 250, 252, 0.15)'; // Trail fade for drifting formulas
+            ctx.fillStyle = 'rgba(237, 241, 246, 0.15)'; // Trail fade matching --bg-dark
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (let p of formulaParticles) {
@@ -496,7 +564,7 @@ function initTypewriter(lang = currentLang) {
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
 
-        const tokenRegex = /(\/\/.*|#include\s+&lt;[^&]+&gt;|"(?:\\.|[^"\\])*"|\b(?:typedef|struct|const|int|return|char)\b|\b(?:Profile)\b|\b(?:main|printf)\b)/g;
+        const tokenRegex = /(\/\/.*$|#include\s+&lt;[^&]+&gt;|"(?:\\.|[^"\\])*"|\b(?:typedef|struct|const|int|char|return|for|void)\b|\b(?:Profile)\b|\b(?:main|printf)\b)/g;
 
         return escaped.replace(tokenRegex, (match) => {
             if (match.startsWith('//')) {
@@ -505,7 +573,7 @@ function initTypewriter(lang = currentLang) {
                 return `<span class="inc">#include</span> <span class="str">&lt;stdio.h&gt;</span>`;
             } else if (match.startsWith('"')) {
                 return `<span class="str">${match}</span>`;
-            } else if (/^(typedef|struct|const|int|return|char)$/.test(match)) {
+            } else if (/^(typedef|struct|const|int|return|for|void|char)$/.test(match)) {
                 return `<span class="kwd">${match}</span>`;
             } else if (match === 'Profile') {
                 return `<span class="typ">${match}</span>`;
@@ -820,173 +888,251 @@ function initIntroAnimation() {
     const runBtn = document.getElementById('introRunBtn');
     const cursor = document.getElementById('fake-cursor');
     const desktopEnv = document.getElementById('desktopEnv');
+    const winLockScreen = document.getElementById('winLockScreen');
+    const skipBtn = document.getElementById('skipIntroBtn');
+    const vscodeWindow = document.getElementById('vscodeWindow');
+    const lockTime = document.getElementById('lockTime');
+    const lockDate = document.getElementById('lockDate');
+    const tbTime = document.getElementById('tbTime');
+    const tbDate = document.getElementById('tbDate');
 
     if (!introScreen) return;
 
-    // Check if intro has already played in this session
-    if (sessionStorage.getItem('introPlayed') === 'true') {
+    // Fast-path bypass checks:
+    // 1. Already played in this session
+    // 2. Screen width < 768px (Mobile requirement)
+    // 3. Accessibility prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (sessionStorage.getItem('introPlayed') === 'true' || window.innerWidth < 768 || prefersReducedMotion) {
         introScreen.remove();
         if (blackout) blackout.remove();
+        document.body.style.overflow = '';
+        initTypewriter();
         return;
     }
 
-    // Lock page scroll during animation
+    // Lock page scroll during intro
     document.body.style.overflow = 'hidden';
 
-    // The user's exact C++ Code
-    const cppCode = `#include <iostream>
-#include <string>
-#include <vector>
+    // Live Clock & Date in Turkish (tr-TR)
+    function updateClocks() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeStr = `${hours}:${minutes}`;
 
-struct Profile {
-    std::string role;
-    std::string university;
-    std::vector<std::string> fields;
-};
+        const day = now.getDate();
+        const monthNames = [
+            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+        ];
+        const dayNames = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+        const lockDateStr = `${day} ${monthNames[now.getMonth()]} ${dayNames[now.getDay()]}`;
 
-std::ostream& operator<<(std::ostream& os, const Profile& p) {
-    os << "/* PROFILE INFO */\\n"
-       << "Role       : " << p.role << "\\n"
-       << "University : " << p.university << "\\n"
-       << "Focus      : ";
-    
-    for (size_t i = 0; i < p.fields.size(); ++i) {
-        os << p.fields[i] << (i < p.fields.size() - 1 ? " | " : "");
+        const dayStr = String(day).padStart(2, '0');
+        const monthStr = String(now.getMonth() + 1).padStart(2, '0');
+        const yearStr = now.getFullYear();
+        const tbDateStr = `${dayStr}.${monthStr}.${yearStr}`;
+
+        if (lockTime) lockTime.textContent = timeStr;
+        if (lockDate) lockDate.textContent = lockDateStr;
+        if (tbTime) tbTime.textContent = timeStr;
+        if (tbDate) tbDate.textContent = tbDateStr;
     }
-    return os << "\\n";
-}
 
-int main() {
-    Profile me = {
-        "Computer Engineering Student",
-        "Gazi University",
-        {"Embedded Systems", "Edge AI", "Quantum Computing"}
-    };
+    updateClocks();
+    const clockInterval = setInterval(updateClocks, 1000);
 
-    std::cout << me;
-    
-    return 0;
-}`;
+    // Realistic Embedded C++ Code (Profile - exactly 25 lines)
+    const cppCodeLines = [
+        '#include <iostream>',
+        '#include <string>',
+        '',
+        'struct Profile {',
+        '    std::string name;',
+        '    std::string university;',
+        '    std::string major;',
+        '    std::string focus[3];',
+        '};',
+        '',
+        'int main() {',
+        '    Profile abk = {',
+        '        "Ahmet Burak Kaynak",',
+        '        "Gazi Üniversitesi",',
+        '        "Bilgisayar Müh. (ÇAP: Elektrik-Elektronik Müh.)",',
+        '        {"Gömülü Sistemler", "Edge AI", "Makine Öğrenmesi"}',
+        '    };',
+        '',
+        '    std::cout << ">> SİSTEM BAŞLATILIYOR..." << std::endl;',
+        '    std::cout << ">> PROFİL: " << abk.name << " | " << abk.university << std::endl;',
+        '    for (const auto& area : abk.focus) {',
+        '        std::cout << ">> MODÜL: " << area << std::endl;',
+        '    }',
+        '    return 0;',
+        '}'
+    ];
 
-    let lineNumsEl, codeContentEl;
-
-    // Show initial interactive prompt to satisfy browser autoplay requirements
-    introCodeArea.innerHTML = `
-        <div class="boot-prompt" style="color: var(--accent-cyan); font-family: var(--font-mono); cursor: pointer; text-align: center; padding-top: 5rem; font-size: 1.1rem; text-shadow: 0 0 10px rgba(56,189,248,0.5); animation: pulse 1.5s infinite; font-weight: 700;">
-            &gt;&gt; CLICK ANYWHERE TO INITIALIZE BOOT SEQUENCE &lt;&lt;
-        </div>
-    `;
-
-    // Single-pass Tokenizer for C++ Syntax Highlighting
-    // Prevents nested regex replacement corruption when finishing code rendering
-    function renderHighlightedCode(rawText) {
-        // Escape HTML special characters
-        const escaped = rawText
+    // Single-pass syntax tokenizer for VS Code Dark+
+    function renderCodeLine(line, isLastLine) {
+        if (!line) return '&nbsp;';
+        
+        const escaped = line
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
 
-        // Single pass token matcher
-        const tokenRegex = /(\/\*[\s\S]*?\*\/|#include\s+&lt;[^&]+&gt;|"(?:\\.|[^"\\])*"|\b(?:struct|const|return|for|int|size_t)\b|\b(?:std::string|std::vector|std::ostream|Profile)\b)/g;
+        const tokenRegex = /(\/\/.*$|#include\s+&lt;[^&]+&gt;|"(?:\\.|[^"\\])*"|\b(?:struct|const|auto|return|for|int)\b|\b(?:std::string|std::vector|std::cout|std::endl|DeveloperProfile)\b|\b(?:main)\b)/g;
 
-        const html = escaped.replace(tokenRegex, (match) => {
-            if (match.startsWith('/*')) {
+        const highlighted = escaped.replace(tokenRegex, (match) => {
+            if (match.startsWith('//')) {
                 return `<span class="com">${match}</span>`;
             } else if (match.startsWith('#include')) {
                 return `<span class="inc">${match}</span>`;
             } else if (match.startsWith('"')) {
                 return `<span class="str">${match}</span>`;
-            } else if (/^(struct|const|return|for|int|size_t)$/.test(match)) {
+            } else if (/^(struct|const|auto|return|for|int)$/.test(match)) {
                 return `<span class="kwd">${match}</span>`;
+            } else if (match === 'main') {
+                return `<span class="fn">${match}</span>`;
             } else {
                 return `<span class="typ">${match}</span>`;
             }
         });
 
-        return html + '<span class="cursor" style="color:#fff;">_</span>';
+        return isLastLine ? highlighted + ' <span class="cursor-blink"></span>' : highlighted;
     }
 
-    let charIndex = 0;
-    const chunkSize = 3; // Type 3 characters at a time for hyper-fast feel
-    const typingSpeed = 5; // 5ms delay
+    // Update status bar Ln Col dynamically
+    const lnColEl = document.getElementById('vscodeLnCol');
+    if (lnColEl) lnColEl.textContent = `Ln ${cppCodeLines.length}, Col 2`;
 
-    function typeCode() {
-        if (charIndex < cppCode.length) {
-            charIndex = Math.min(charIndex + chunkSize, cppCode.length);
-            const currentSubText = cppCode.substring(0, charIndex);
-            
-            // Calculate line count
-            const lineCount = (currentSubText.match(/\n/g) || []).length + 1;
-            let linesStr = '';
-            for (let l = 1; l <= lineCount; l++) {
-                linesStr += l + '<br>';
-            }
-            lineNumsEl.innerHTML = linesStr;
-
-            // Highlight code dynamically while typing
-            codeContentEl.innerHTML = renderHighlightedCode(currentSubText);
-
-            playKeyboardTypeSound();
-            setTimeout(typeCode, typingSpeed);
-        } else {
-            // Typing complete: apply full syntax highlighting on the complete, valid code
-            codeContentEl.innerHTML = renderHighlightedCode(cppCode);
-
-            // Start mouse move & camera track after short pause
-            setTimeout(startCursorMovement, 300);
+    // Pre-populate VS Code code area with line numbers
+    if (introCodeArea) {
+        let lineNumsHtml = '';
+        let codeLinesHtml = '';
+        for (let i = 0; i < cppCodeLines.length; i++) {
+            const lineNum = i + 1;
+            lineNumsHtml += `${lineNum}<br>`;
+            const isLast = (i === cppCodeLines.length - 1);
+            codeLinesHtml += `<div>${renderCodeLine(cppCodeLines[i], isLast)}</div>`;
         }
+
+        introCodeArea.innerHTML = `
+            <div class="code-wrapper">
+                <div class="line-numbers">${lineNumsHtml}</div>
+                <div class="code-content">${codeLinesHtml}</div>
+            </div>
+        `;
     }
 
-    const startBootSequence = () => {
-        // Unlock Web Audio Context on user gesture
+    // Skip intro helper
+    function skipIntro() {
+        clearInterval(clockInterval);
+        sessionStorage.setItem('introPlayed', 'true');
+        introScreen.style.transition = 'opacity 0.25s ease';
+        introScreen.style.opacity = '0';
+        setTimeout(() => {
+            introScreen.remove();
+            if (blackout) blackout.remove();
+            document.body.style.overflow = '';
+            initTypewriter();
+        }, 250);
+    }
+
+    if (skipBtn) {
+        skipBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            skipIntro();
+        });
+    }
+
+    // Windows 11 Titlebar Close Button
+    const winCloseBtn = document.querySelector('.win-control-btn.win-close');
+    if (winCloseBtn) {
+        winCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            skipIntro();
+        });
+    }
+
+    // Desktop icons click to select & double click to focus
+    const desktopIcons = document.querySelectorAll('.desktop-icon');
+    desktopIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            desktopIcons.forEach(i => i.classList.remove('selected'));
+            icon.classList.add('selected');
+        });
+        icon.addEventListener('dblclick', () => {
+            if (vscodeWindow) {
+                vscodeWindow.classList.add('open');
+            }
+        });
+    });
+
+    if (desktopEnv) {
+        desktopEnv.addEventListener('click', (e) => {
+            if (!e.target.closest('.desktop-icon')) {
+                desktopIcons.forEach(i => i.classList.remove('selected'));
+            }
+        });
+    }
+
+    // Unlock & Launch Sequence
+    let sequenceStarted = false;
+
+    function unlockAndStart() {
+        if (sequenceStarted) return;
+        sequenceStarted = true;
+
+        // Unlock audio context and play Windows startup success chime
         getAudioContext();
         playSuccessSound();
 
-        // Build code editor structure
-        introCodeArea.innerHTML = `
-            <div class="code-wrapper">
-                <div class="line-numbers" id="lineNums">1</div>
-                <div class="code-content" id="codeContent"></div>
-            </div>
-        `;
+        // Slide up / fade out lockscreen
+        if (winLockScreen) {
+            winLockScreen.classList.add('unlocked');
+        }
 
-        lineNumsEl = document.getElementById('lineNums');
-        codeContentEl = document.getElementById('codeContent');
+        // Open VS Code window with scale(.96 -> 1) animation
+        setTimeout(() => {
+            if (vscodeWindow) {
+                vscodeWindow.classList.add('open');
+            }
+        }, 200);
 
-        document.removeEventListener('click', startBootSequence);
-        document.removeEventListener('keydown', startBootSequence);
+        // Start mouse movement after short pause (~600ms)
+        setTimeout(startCursorMovement, 600);
+    }
 
-        // Start typing after brief initial pause
-        setTimeout(typeCode, 400);
-    };
+    if (winLockScreen) {
+        winLockScreen.addEventListener('click', unlockAndStart);
+    }
+    
+    function onKeyDown(e) {
+        if (!sequenceStarted && introScreen.parentElement) {
+            document.removeEventListener('keydown', onKeyDown);
+            unlockAndStart();
+        }
+    }
+    document.addEventListener('keydown', onKeyDown);
 
-    document.addEventListener('click', startBootSequence);
-    document.addEventListener('keydown', startBootSequence);
-
+    // Camera track and cursor animation to Run button
     function startCursorMovement() {
         if (!runBtn || !cursor || !desktopEnv) return;
 
-        // Parent desktop bounds
         const desktopRect = desktopEnv.getBoundingClientRect();
-
-        // Target coordinates (Run button center) relative to desktopEnv
         const btnRect = runBtn.getBoundingClientRect();
         const tx = btnRect.left - desktopRect.left + (btnRect.width / 2);
         const ty = btnRect.top - desktopRect.top + (btnRect.height / 2);
 
-        // Start coordinates (bottom-right quadrant of desktop)
-        const startX = desktopRect.width * 0.65;
-        const startY = desktopRect.height * 0.75;
+        const startX = desktopRect.width * 0.62;
+        const startY = desktopRect.height * 0.72;
 
-        // Desktop center
         const centerX = desktopRect.width / 2;
         const centerY = desktopRect.height / 2;
 
-        // Total camera shift to bring (tx, ty) to (centerX, centerY)
-        const targetDx = centerX - tx;
-        const targetDy = centerY - ty;
-
-        const duration = 2000; // 2.0s animation
+        const duration = 1400; // 1.4s cursor glide
         const startTime = performance.now();
 
         function animate(currentTime) {
@@ -998,23 +1144,18 @@ int main() {
                 ? 4 * progress * progress * progress 
                 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-            // Interpolate cursor position from startX,startY to target tx,ty
             const cx = startX + (tx - startX) * ease;
             const cy = startY + (ty - startY) * ease;
 
-            // Interpolate scale dynamically based on device width (1.7x for mobile, 2.1x for desktop)
-            const maxZoom = window.innerWidth < 768 ? 1.7 : 2.1;
+            const maxZoom = window.innerWidth < 768 ? 1.5 : 1.9;
             const scale = 1.0 + (maxZoom - 1.0) * ease;
 
-            // Update cursor element position inside desktopEnv
             cursor.style.left = cx + 'px';
             cursor.style.top = cy + 'px';
 
-            // Dynamic Camera Focus: Track the cursor's (cx, cy) position as it moves to (tx, ty)
             const rawDx = (centerX - cx) * ease;
             const rawDy = (centerY - cy) * ease;
 
-            // Clamp camera shifts so desktop edges never enter the viewport (no black border leakage)
             const maxShiftX = (scale - 1.0) * (desktopRect.width / 2);
             const maxShiftY = (scale - 1.0) * (desktopRect.height / 2);
 
@@ -1026,26 +1167,23 @@ int main() {
             if (progress < 1) {
                 requestAnimationFrame(animate);
             } else {
-                // Arrived at the button!
+                // Click the run button
                 playClickSound();
 
-                // Press animation on play button
-                runBtn.style.transform = 'scale(0.88)';
-                runBtn.style.background = 'rgba(56, 189, 248, 0.4)';
+                runBtn.style.transform = 'scale(0.9)';
+                runBtn.style.background = 'rgba(56, 189, 248, 0.45)';
 
-                // Trigger blackout overlay
+                // Blackout transition
                 if (blackout) blackout.classList.add('active');
 
-                // Cleanup intro and show portfolio
                 setTimeout(() => {
+                    clearInterval(clockInterval);
                     introScreen.remove();
                     if (blackout) blackout.remove();
-                    document.body.style.overflow = ''; // unlock scroll
+                    document.body.style.overflow = '';
                     sessionStorage.setItem('introPlayed', 'true');
-                    
-                    // Trigger typewriter on main portfolio IDE
                     initTypewriter();
-                }, 1400);
+                }, 900);
             }
         }
 
@@ -1475,7 +1613,18 @@ function initLogbookDashboard() {
 
         logs.forEach(log => {
             const isTr = currentLang === 'tr';
-            const details = isTr ? log.details_tr : log.details_en;
+            let details = isTr ? (log.details_tr || []) : (log.details_en || log.details_tr || []);
+            if (!isTr && Array.isArray(details)) {
+                details = details.map(d => {
+                    if (typeof d === 'string' && d.includes('ALES') && d.includes('denemesi')) {
+                        return 'Practiced for tomorrow\'s exam one last time by solving an ALES (Academic Personnel and Postgraduate Education Entrance Exam) practice test.';
+                    }
+                    if (typeof d === 'string' && d.includes('Denemede yaptığım sayısal puan')) {
+                        return d.replace('Denemede yaptığım sayısal puan:', 'Quantitative score achieved in the practice test:');
+                    }
+                    return d;
+                });
+            }
             
             const dateObj = new Date(log.date);
             const dateStr = isTr 
@@ -1668,7 +1817,7 @@ function initLogbookDashboard() {
             saveStep1.style.display = 'none';
             saveStep2.style.display = 'block';
             
-            const detailsInput = document.getElementById('logDetails');
+            const detailsInput = document.getElementById('logDetailsTr') || document.getElementById('logDetails');
             if (detailsInput) detailsInput.focus();
         });
     }
@@ -1764,15 +1913,20 @@ function initLogbookDashboard() {
         logForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const details = document.getElementById('logDetails').value.split('\n').filter(line => line.trim() !== '');
+            const detailsTrEl = document.getElementById('logDetailsTr');
+            const detailsEnEl = document.getElementById('logDetailsEn');
+            const legacyDetailsEl = document.getElementById('logDetails');
+            
+            const detailsTr = detailsTrEl ? detailsTrEl.value.split('\n').filter(line => line.trim() !== '') : (legacyDetailsEl ? legacyDetailsEl.value.split('\n').filter(line => line.trim() !== '') : []);
+            const detailsEn = detailsEnEl ? detailsEnEl.value.split('\n').filter(line => line.trim() !== '') : [];
             const duration = Math.max(0.1, parseFloat((stopwatchSeconds / 3600).toFixed(1)));
 
             const newLog = {
                 id: Date.now(),
                 date: new Date().toISOString().split('T')[0],
                 duration: duration,
-                details_tr: details,
-                details_en: details
+                details_tr: detailsTr.length > 0 ? detailsTr : detailsEn,
+                details_en: detailsEn.length > 0 ? detailsEn : detailsTr
             };
 
             logs.push(newLog);

@@ -1,4 +1,8 @@
-/* Introduction Screen Overlay */
+/* ==========================================================================
+   Windows 11 Desktop & VS Code Dark+ Simulation Stylesheet
+   ========================================================================== */
+
+/* Main Fullscreen Intro Overlay */
 #intro-screen {
     position: fixed;
     top: 0;
@@ -11,31 +15,164 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    perspective: 1000px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    perspective: 1200px;
+    font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-/* Simulated Windows Desktop */
+/* --------------------------------------------------------------------------
+   Windows 11 Lock Screen
+   -------------------------------------------------------------------------- */
+.win-lockscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10vh 24px 6vh;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: radial-gradient(circle at 50% 35%, rgba(14, 165, 233, 0.22) 0%, transparent 60%),
+                radial-gradient(circle at 65% 55%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(2, 6, 23, 0.7) 0%, rgba(2, 6, 23, 0.95) 100%);
+    backdrop-filter: blur(28px) saturate(140%);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.win-lockscreen.unlocked {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lockscreen-clock-container {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 4vh;
+}
+
+.lockscreen-time {
+    font-size: clamp(4.5rem, 9vw, 7.5rem);
+    font-weight: 600;
+    letter-spacing: -2px;
+    line-height: 1;
+    font-family: 'Segoe UI Variable Display', 'Segoe UI', sans-serif;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.lockscreen-date {
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    font-weight: 400;
+    color: #e2e8f0;
+    margin-top: 14px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.lockscreen-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    animation: lockscreenBounce 2s infinite ease-in-out;
+}
+
+.lockscreen-chevron {
+    stroke: #38bdf8;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+@keyframes lockscreenBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.85; }
+    50% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   Skip Intro Button (Top or Bottom-Right accessible)
+   -------------------------------------------------------------------------- */
+.skip-intro-btn {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.skip-intro-btn:hover {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Windows 11 Desktop Environment (Bloom Wallpaper)
+   -------------------------------------------------------------------------- */
 .desktop-environment {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 75% 25%, #1e293b 0%, #020617 100%);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    /* Windows 11 Bloom aesthetic: Overlapping layered radial gradients */
+    background-color: #020617;
+    background-image: 
+        radial-gradient(circle at 50% 40%, rgba(30, 58, 138, 0.5) 0%, transparent 60%),
+        radial-gradient(circle at 68% 50%, rgba(14, 165, 233, 0.32) 0%, transparent 48%),
+        radial-gradient(circle at 32% 45%, rgba(99, 102, 241, 0.35) 0%, transparent 52%),
+        radial-gradient(circle at 50% 65%, rgba(56, 189, 248, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, #060b18 0%, #010409 100%);
     transform-style: preserve-3d;
     transform-origin: center center;
 }
 
-/* Windows Desktop Icons Grid */
+/* Subtle PCB Circuit Trace Pattern (5-8% opacity) */
+.pcb-pattern {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Windows 11 Desktop Icons (Fluent 3D Grid)
+   -------------------------------------------------------------------------- */
 .desktop-icons {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 24px;
+    left: 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
     z-index: 2;
 }
 
@@ -43,35 +180,60 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80px;
-    padding: 8px;
+    justify-content: center;
+    width: 84px;
+    height: 94px;
+    padding: 6px 4px;
     border-radius: 6px;
     cursor: default;
-    transition: background 0.2s;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .desktop-icon:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-icon:focus,
+.desktop-icon.selected {
+    background: rgba(0, 120, 212, 0.25);
+    border-color: rgba(0, 120, 212, 0.45);
+    outline: none;
+}
+
+.desktop-icon svg {
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+    flex-shrink: 0;
 }
 
 .desktop-icon span {
-    color: #e2e8f0;
-    font-size: 11px;
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 400;
     margin-top: 6px;
-    text-align: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    word-break: break-word;
+    line-height: 1.25;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Windows Taskbar at the bottom */
+/* --------------------------------------------------------------------------
+   Windows 11 Centered Taskbar
+   -------------------------------------------------------------------------- */
 .desktop-taskbar {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 44px;
-    background: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(16px);
+    height: 48px;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
@@ -83,103 +245,212 @@
     font-size: 12px;
 }
 
-.taskbar-left {
-    display: flex;
-    align-items: center;
+.taskbar-widget-space {
+    width: 120px;
+    height: 100%;
 }
 
-.taskbar-start {
-    width: 32px;
-    height: 32px;
+.taskbar-center-icons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.taskbar-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
-    border-radius: 4px;
-    transition: background 0.2s;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s, transform 0.1s;
+    color: inherit;
+    padding: 0;
 }
 
-.taskbar-start:hover {
+.taskbar-btn:hover {
     background: rgba(255, 255, 255, 0.08);
 }
 
-.taskbar-icons {
-    display: flex;
-    gap: 8px;
+.taskbar-btn:active {
+    transform: scale(0.92);
 }
 
-.taskbar-icon {
-    width: 34px;
-    height: 34px;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.taskbar-icon.active {
+.taskbar-btn.active {
     background: rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid #38bdf8;
 }
 
+.taskbar-active-pill {
+    position: absolute;
+    bottom: 3px;
+    width: 16px;
+    height: 3px;
+    background: #007acc;
+    border-radius: 2px;
+}
+
+/* System Tray (Right) */
 .taskbar-tray {
     display: flex;
     align-items: center;
     gap: 12px;
+    height: 100%;
 }
 
-.taskbar-time {
+.tray-overflow {
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.tray-overflow:hover { background: rgba(255, 255, 255, 0.08); }
+
+.tray-lang {
+    font-size: 11px;
+    font-weight: 600;
+    color: #cbd5e1;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.tray-lang:hover { background: rgba(255, 255, 255, 0.08); }
+
+.tray-system-cluster {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.tray-system-cluster:hover { background: rgba(255, 255, 255, 0.08); }
+
+.taskbar-datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 11.5px;
+    line-height: 1.25;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
     color: #e2e8f0;
-    font-weight: 500;
+    font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+    transition: background 0.15s;
 }
+.taskbar-datetime:hover { background: rgba(255, 255, 255, 0.08); }
 
-/* Simulated VS Code Window */
+.taskbar-time { font-weight: 600; }
+.taskbar-date { font-size: 11px; color: #94a3b8; }
+
+/* --------------------------------------------------------------------------
+   Simulated VS Code Window (Windows 11 + VS Code Dark+)
+   -------------------------------------------------------------------------- */
 .vscode-window {
     width: 90%;
-    max-width: 1150px;
+    max-width: 1140px;
     height: 82%;
     max-height: 720px;
     background: #1e1e1e;
     border-radius: 8px;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0 32px 70px -15px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(255, 255, 255, 0.07);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
     z-index: 5;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
 
-/* VS Code Title Bar */
+.vscode-window.open {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* VS Code Titlebar (Windows 11 Frame) */
 .vscode-titlebar {
-    height: 35px;
-    background: #323233;
+    height: 36px;
+    background: #1e1e1e;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
-    border-bottom: 1px solid #252526;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     user-select: none;
+    padding-left: 12px;
 }
 
-.vscode-controls {
+.vscode-title-left {
     display: flex;
+    align-items: center;
     gap: 8px;
+    min-width: 0;
 }
 
-.vscode-control {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+.vscode-app-icon {
+    flex-shrink: 0;
 }
-.vscode-control.close { background: #ff5f56; }
-.vscode-control.min { background: #ffbd2e; }
-.vscode-control.max { background: #27c93f; }
 
-.vscode-title {
+.vscode-title-text {
     color: #cccccc;
     font-size: 12px;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vscode-search-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2b2b2b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 3px 18px;
+    color: #999999;
+    font-size: 11.5px;
+    min-width: 220px;
+    justify-content: center;
+}
+
+/* Windows 11 Standard Window Controls (Right Top) */
+.win-window-controls {
+    display: flex;
+    height: 100%;
+}
+
+.win-control-btn {
+    width: 46px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    padding: 0;
+}
+
+.win-control-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.win-control-btn.win-close:hover {
+    background: #e81123;
+    color: #ffffff;
 }
 
 /* VS Code Main Layout */
@@ -189,44 +460,73 @@
     min-height: 0;
 }
 
-/* Sidebar Mockup */
+/* Activity Bar (Leftmost icons) */
 .vscode-sidebar {
     width: 48px;
-    background: #333333;
+    background: #181818;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+
+.sidebar-top, .sidebar-bottom {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
-    gap: 18px;
-    border-right: 1px solid #252526;
+    gap: 16px;
+    width: 100%;
 }
 
 .sidebar-icon {
+    width: 48px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #858585;
     cursor: pointer;
-    transition: color 0.2s;
+    position: relative;
+    transition: color 0.15s;
+}
+
+.sidebar-icon:hover {
+    color: #ffffff;
 }
 
 .sidebar-icon.active {
     color: #ffffff;
-    border-left: 2px solid #007acc;
-    padding-left: 2px;
 }
 
-/* Explorer Bar Mockup */
+.sidebar-icon.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #007acc;
+    border-radius: 0 2px 2px 0;
+}
+
+/* Explorer Bar */
 .vscode-explorer {
-    width: 210px;
+    width: 215px;
     background: #252526;
-    border-right: 1px solid #3c3c3c;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     padding: 10px 0;
     font-size: 12px;
-    color: #bbbbbb;
+    color: #cccccc;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
     .vscode-explorer {
         display: none;
     }
@@ -234,11 +534,11 @@
 
 .explorer-header {
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
-    padding: 0 12px;
-    letter-spacing: 0.5px;
-    color: #858585;
+    padding: 0 14px;
+    letter-spacing: 0.6px;
+    color: #969696;
     font-size: 11px;
 }
 
@@ -254,6 +554,7 @@
     padding: 4px 14px;
     cursor: pointer;
     font-size: 12px;
+    transition: background 0.12s;
 }
 
 .tree-item:hover {
@@ -268,20 +569,42 @@
 .arrow {
     font-size: 9px;
     color: #858585;
+    width: 10px;
 }
 
-.cpp-icon {
+.folder-icon { font-size: 12px; }
+
+/* File Icon Badges */
+.icon-cpp {
     font-size: 10px;
-    font-weight: bold;
-    color: #61afef;
+    font-weight: 700;
+    color: #007acc;
+    background: rgba(0, 122, 204, 0.15);
+    padding: 1px 4px;
+    border-radius: 3px;
     font-family: monospace;
 }
 
-.file-icon {
-    font-size: 12px;
+.icon-json {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #fbc02d;
+    font-family: monospace;
 }
 
-/* Editor Area */
+.icon-cmake {
+    font-size: 11px;
+    color: #f57c00;
+}
+
+.icon-md {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #0284c7;
+    font-family: monospace;
+}
+
+/* Editor Container */
 .vscode-editor-container {
     flex: 1;
     display: flex;
@@ -293,23 +616,24 @@
 /* Editor Tabs */
 .vscode-tabs {
     height: 35px;
-    background: #2d2d2d;
+    background: #252526;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #252526;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .vscode-tab {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0 15px;
+    padding: 0 16px;
     height: 100%;
     background: #2d2d2d;
     color: #969696;
     font-size: 12px;
-    border-right: 1px solid #252526;
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
     position: relative;
+    cursor: pointer;
 }
 
 .vscode-tab.active {
@@ -327,11 +651,18 @@
     background: #007acc;
 }
 
+.tab-close {
+    font-size: 10px;
+    color: #858585;
+    margin-left: 4px;
+}
+.tab-close:hover { color: #ffffff; }
+
 /* Breadcrumbs bar */
 .vscode-breadcrumbs {
     height: 22px;
     background: #1e1e1e;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     display: flex;
     align-items: center;
     padding: 0 16px;
@@ -341,11 +672,9 @@
     font-family: var(--font-mono);
 }
 
-.breadcrumb-fn {
-    color: #dcdcaa;
-}
+.breadcrumb-fn { color: #dcdcaa; }
 
-/* Action bar inside editor header (play button) */
+/* Editor Action Bar (Run Play Button) */
 .editor-actions {
     margin-left: auto;
     display: flex;
@@ -355,31 +684,40 @@
 
 .editor-play-btn {
     background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.35);
     color: #38bdf8;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
+    padding: 4px 11px;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editor-play-btn:hover {
-    background: rgba(56, 189, 248, 0.25);
+    background: rgba(56, 189, 248, 0.28);
     color: #7dd3fc;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
 }
 
-/* Editor Code Area with Line Numbers */
+/* Editor Body & Minimap */
+.vscode-editor-body {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+    position: relative;
+    background: #1e1e1e;
+}
+
 .vscode-code-area {
     flex: 1;
-    padding: 12px 0;
+    padding: 10px 0;
     font-family: "Fira Code", Consolas, Monaco, monospace;
     font-size: 13.5px;
-    line-height: 1.6;
+    line-height: 1.55;
     color: #d4d4d4;
     overflow-y: auto;
     position: relative;
@@ -391,13 +729,14 @@
 }
 
 .line-numbers {
-    width: 45px;
+    width: 44px;
     padding-right: 12px;
     text-align: right;
     color: #858585;
     user-select: none;
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 12.5px;
+    line-height: 1.55;
+    flex-shrink: 0;
 }
 
 .code-content {
@@ -406,25 +745,70 @@
     tab-size: 4;
 }
 
-/* Syntax Highlighting Colors */
-.kwd { color: #569cd6; font-weight: 500; } /* keywords: struct, int, return, for */
-.typ { color: #4ec9b0; } /* types: std::string, std::vector, Profile */
-.str { color: #ce9178; } /* strings: "Gazi University" */
-.com { color: #6a9955; italic: true; } /* comments */
-.fn  { color: #dcdcaa; } /* functions: main, operator<< */
-.num { color: #b5cea8; } /* numbers */
-.inc { color: #c586c0; } /* includes: #include */
-
-/* Simulated Mouse Cursor */
-#fake-cursor {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    z-index: 100;
+/* Realistic Minimap on Right */
+.vscode-minimap {
+    width: 72px;
+    background: #1e1e1e;
+    border-left: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.65;
     pointer-events: none;
-    top: 80%;
-    left: 50%;
-    transform: translate(-5px, -5px);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 950px) {
+    .vscode-minimap { display: none; }
+}
+
+.minimap-viewport {
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    right: 2px;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+}
+
+.minimap-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.minimap-lines span {
+    display: block;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 1px;
+}
+
+/* VS Code Dark+ Syntax Highlighting Colors */
+.kwd { color: #569cd6; font-weight: 500; } /* keywords */
+.typ { color: #4ec9b0; } /* types */
+.str { color: #ce9178; } /* strings */
+.com { color: #6a9955; font-style: italic; } /* comments */
+.fn  { color: #dcdcaa; } /* functions */
+.num { color: #b5cea8; } /* numbers */
+.inc { color: #c586c0; } /* includes */
+
+/* Blinking Terminal/Code Cursor on Line 28 */
+.cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: #38bdf8;
+    vertical-align: -2px;
+    animation: cursorBlink 1s step-start infinite;
+}
+
+@keyframes cursorBlink {
+    50% { opacity: 0; }
 }
 
 /* Status Bar */
@@ -435,16 +819,38 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
+    padding: 0 10px;
     font-size: 11px;
+    font-family: 'Segoe UI', sans-serif;
+    flex-shrink: 0;
 }
 
 .status-left, .status-right {
     display: flex;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
 }
 
-/* Fade out animation overlay */
+.status-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+}
+
+/* Simulated Mouse Cursor */
+#fake-cursor {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    z-index: 100;
+    pointer-events: none;
+    top: 75%;
+    left: 55%;
+    transform: translate(-5px, -5px);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Blackout Overlay for Transitions */
 #intro-blackout {
     position: fixed;
     top: 0;
@@ -462,82 +868,21 @@
     opacity: 1;
 }
 
-/* Mobile Responsiveness for Intro Screen & VS Code Mockup */
+/* --------------------------------------------------------------------------
+   Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    #intro-screen {
+        display: none !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsiveness for Intro Screen
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-    .vscode-window {
-        width: 96%;
-        height: 88%;
-        border-radius: 6px;
-    }
-    
-    .desktop-icons {
-        display: none; /* Hide background icons on small screens */
-    }
-
-    .vscode-sidebar {
-        width: 36px;
-        padding-top: 8px;
-        gap: 14px;
-    }
-    
-    .sidebar-icon svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .vscode-code-area {
-        font-size: 11px;
-        padding: 8px 0;
-    }
-
-    .line-numbers {
-        width: 28px;
-        padding-right: 6px;
-        font-size: 10.5px;
-    }
-
-    .vscode-breadcrumbs {
-        font-size: 9.5px;
-        height: 18px;
-        padding: 0 8px;
-    }
-
-    .editor-play-btn {
-        padding: 3px 6px;
-        font-size: 10px;
-    }
-    
-    .taskbar-tray span:not(.taskbar-time) {
-        display: none; /* Hide ENG text on mobile */
+    /* Per requirement: If screen width < 768px, skip desktop intro */
+    #intro-screen {
+        display: none !important;
     }
 }
-
-@media (max-width: 480px) {
-    .vscode-window {
-        width: 98%;
-        height: 92%;
-    }
-    
-    .vscode-statusbar .status-right {
-        display: none; /* Hide status bar right details on tiny screens */
-    }
-    
-    .vscode-title {
-        font-size: 10px;
-    }
-}
-
-/* Desktop Wallpaper Watermark */
-.desktop-watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.15));
-}
-

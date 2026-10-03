@@ -30,95 +30,214 @@
     <link rel="stylesheet" href="intro.css">
 </head>
 <body>
-    <!-- Intro Windows / VS Code Simulation -->
+    <!-- Intro Windows 11 Desktop & VS Code Simulation -->
     <div id="intro-screen">
+        <!-- Windows 11 Lock Screen -->
+        <div class="win-lockscreen" id="winLockScreen">
+            <div class="lockscreen-clock-container">
+                <div class="lockscreen-time" id="lockTime">12:00</div>
+                <div class="lockscreen-date" id="lockDate">29 Eylül Pazartesi</div>
+            </div>
+            <div class="lockscreen-prompt">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="lockscreen-chevron">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span>Giriş yapmak için tıklayın</span>
+            </div>
+        </div>
+
+        <!-- Skip Intro Button -->
+        <button class="skip-intro-btn" id="skipIntroBtn" title="Animasyonu Geç">Girişi atla &rarr;</button>
+
         <div class="desktop-environment" id="desktopEnv">
-            <!-- Desktop Wallpaper Watermark Logo -->
-            <div class="desktop-watermark">
-                <svg width="220" height="220" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.12; color: #38bdf8;">
-                    <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="#38bdf8" stroke-width="3" fill="rgba(56, 189, 248, 0.01)"/>
-                    <line x1="30" y1="65" x2="50" y2="25" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
-                    <line x1="50" y1="25" x2="70" y2="65" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
-                    <line x1="38" y1="50" x2="62" y2="50" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
-                    <circle cx="50" cy="25" r="4.5" fill="#ffffff" stroke="#38bdf8" stroke-width="1"/>
+            <!-- PCB Circuit Traces Wallpaper Overlay (5-8% opacity) -->
+            <div class="pcb-pattern" aria-hidden="true">
+                <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#38bdf8" stroke-width="1.2">
+                    <g opacity="0.07">
+                        <circle cx="150" cy="180" r="4" fill="#38bdf8"/>
+                        <path d="M150 180 H 260 L 310 230 H 420 L 460 270 V 380"/>
+                        <circle cx="460" cy="380" r="3.5" fill="#38bdf8"/>
+                        
+                        <circle cx="950" cy="140" r="4" fill="#38bdf8"/>
+                        <path d="M950 140 H 840 L 790 190 H 680 L 640 230 V 320 L 590 370 H 510"/>
+                        <circle cx="510" cy="370" r="3.5" fill="#38bdf8"/>
+
+                        <circle cx="200" cy="620" r="4" fill="#38bdf8"/>
+                        <path d="M200 620 H 340 L 390 570 H 520 L 560 530 V 460"/>
+                        <circle cx="560" cy="460" r="3.5" fill="#38bdf8"/>
+
+                        <circle cx="1020" cy="640" r="4" fill="#38bdf8"/>
+                        <path d="M1020 640 H 880 L 830 590 H 710 L 670 550 V 480"/>
+                        <circle cx="670" cy="480" r="3.5" fill="#38bdf8"/>
+
+                        <!-- IC Chip schematic footprint -->
+                        <rect x="560" y="380" width="80" height="80" rx="4" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 2"/>
+                        <line x1="560" y1="395" x2="540" y2="395"/><line x1="560" y1="410" x2="540" y2="410"/><line x1="560" y1="425" x2="540" y2="425"/><line x1="560" y1="440" x2="540" y2="440"/>
+                        <line x1="640" y1="395" x2="660" y2="395"/><line x1="640" y1="410" x2="660" y2="410"/><line x1="640" y1="425" x2="660" y2="425"/><line x1="640" y1="440" x2="660" y2="440"/>
+                    </g>
                 </svg>
             </div>
 
-            <!-- Windows Desktop Icons -->
-            <div class="desktop-icons">
-                <div class="desktop-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <!-- Windows 11 Desktop Icons (Fluent 3D / Filled Style) -->
+            <div class="desktop-icons" id="desktopIcons">
+                <div class="desktop-icon" tabindex="0" title="Bu Bilgisayar">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                        <rect x="6" y="8" width="36" height="24" rx="3" fill="url(#pcGrad)" stroke="#1e293b" stroke-width="1"/>
+                        <rect x="9" y="11" width="30" height="18" rx="1.5" fill="#0078d4"/>
+                        <path d="M12 26 L22 17 L29 23 L36 15" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M21 32 L19 40 H29 L27 32 Z" fill="#94a3b8"/>
+                        <rect x="15" y="40" width="18" height="2.5" rx="1" fill="#cbd5e1"/>
+                        <defs>
+                            <linearGradient id="pcGrad" x1="6" y1="8" x2="42" y2="32" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#334155"/><stop offset="1" stop-color="#0f172a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                     <span>This PC</span>
                 </div>
-                <div class="desktop-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+                <div class="desktop-icon" tabindex="0" title="Geri Dönüşüm Kutusu">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                        <path d="M13 15 L16 41 C16.3 42.5 17.5 43.5 19 43.5 H29 C30.5 43.5 31.7 42.5 32 41 L35 15 Z" fill="url(#binGrad)"/>
+                        <ellipse cx="24" cy="15" rx="11" ry="3.5" fill="#00b7c3"/>
+                        <path d="M15 15 C15 13 19 11.5 24 11.5 C29 11.5 33 13 33 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                        <!-- Recycle symbol -->
+                        <path d="M24 23 L26 27 H22 Z M20 34 L22 30 L25 32 Z M28 34 L26 30 L23 32 Z" fill="#ffffff" opacity="0.85"/>
+                        <defs>
+                            <linearGradient id="binGrad" x1="13" y1="15" x2="35" y2="43.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00b7c3" stop-opacity="0.85"/><stop offset="1" stop-color="#0078d4" stop-opacity="0.95"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                     <span>Recycle Bin</span>
                 </div>
-                <div class="desktop-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                    <span>abkaynak_workspace</span>
+
+                <div class="desktop-icon" tabindex="0" title="abkaynak_workspace" id="iconWorkspace">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                        <path d="M6 14 C6 12 7.5 10.5 9.5 10.5 H19 L23 15 H38.5 C40.5 15 42 16.5 42 18.5 V37 C42 39 40.5 40.5 38.5 40.5 H9.5 C7.5 40.5 6 39 6 37 Z" fill="#f59e0b"/>
+                        <rect x="10" y="16" width="28" height="18" rx="2" fill="#e2e8f0"/>
+                        <line x1="14" y1="21" x2="26" y2="21" stroke="#0078d4" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="14" y1="25" x2="32" y2="25" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="14" y1="29" x2="22" y2="29" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M6 19 C6 17.5 7.2 16.5 8.7 16.5 H39.3 C40.8 16.5 42 17.5 42 19 V37 C42 39 40.5 40.5 38.5 40.5 H9.5 C7.5 40.5 6 39 6 37 Z" fill="url(#folderGrad)"/>
+                        <defs>
+                            <linearGradient id="folderGrad" x1="6" y1="16.5" x2="42" y2="40.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>abkaynak_<br>workspace</span>
                 </div>
-                <div class="desktop-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+
+                <div class="desktop-icon" tabindex="0" title="Terminal">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                        <rect x="6" y="8" width="36" height="32" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                        <rect x="6" y="8" width="36" height="8" rx="6" fill="#1e293b"/>
+                        <circle cx="12" cy="12" r="1.8" fill="#ef4444"/>
+                        <circle cx="17" cy="12" r="1.8" fill="#eab308"/>
+                        <circle cx="22" cy="12" r="1.8" fill="#22c55e"/>
+                        <path d="M14 22 L20 27 L14 32" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="24" y1="32" x2="33" y2="32" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
                     <span>Terminal</span>
                 </div>
             </div>
 
-            <!-- Simulated VS Code App Window -->
-            <div class="vscode-window" id="vscodeWindow">
-                <!-- Titlebar -->
+            <!-- Simulated VS Code App Window (Windows 11 + Dark+) -->
+            <div class="vscode-window" id="vscodeWindow" role="region" aria-label="Visual Studio Code">
+                <!-- Windows 11 Titlebar -->
                 <div class="vscode-titlebar">
-                    <div class="vscode-controls">
-                        <span class="vscode-control close"></span>
-                        <span class="vscode-control min"></span>
-                        <span class="vscode-control max"></span>
+                    <div class="vscode-title-left">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" class="vscode-app-icon"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
+                        <span class="vscode-title-text">abkaynak.cpp - abkaynak_workspace - Visual Studio Code</span>
                     </div>
-                    <div class="vscode-title">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 6px;"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
-                        abkaynak.cpp - Visual Studio Code
+
+                    <!-- Search/Command Palette Pill in Titlebar (VS Code Modern) -->
+                    <div class="vscode-search-pill">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <span>abkaynak_workspace</span>
                     </div>
-                    <div style="width: 50px;"></div>
+
+                    <!-- Windows 11 Standard Window Controls (Right) -->
+                    <div class="win-window-controls">
+                        <button class="win-control-btn win-min" title="Simge Durumuna Küçült" aria-label="Minimize">
+                            <svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
+                        </button>
+                        <button class="win-control-btn win-max" title="Ekranı Kapla" aria-label="Maximize">
+                            <svg width="10" height="10" viewBox="0 0 10 10"><rect width="9" height="9" x="0.5" y="0.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+                        </button>
+                        <button class="win-control-btn win-close" title="Kapat" aria-label="Close">
+                            <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
+                        </button>
+                    </div>
                 </div>
                 
                 <!-- Main VS Code layout -->
                 <div class="vscode-main">
-                    <!-- Sidebar -->
-                    <div class="vscode-sidebar">
-                        <div class="sidebar-icon active" title="Explorer">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                    <!-- Real Activity Bar -->
+                    <div class="vscode-sidebar" aria-label="Activity Bar">
+                        <div class="sidebar-top">
+                            <div class="sidebar-icon active" title="Explorer (Ctrl+Shift+E)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                            </div>
+                            <div class="sidebar-icon" title="Search (Ctrl+Shift+F)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+                            </div>
+                            <div class="sidebar-icon" title="Source Control (Ctrl+Shift+G)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="10" r="3"/><path d="M6 9v6M9 6h4a5 5 0 0 1 5 4"/></svg>
+                            </div>
+                            <div class="sidebar-icon" title="Run and Debug (Ctrl+Shift+D)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="6 4 18 12 6 20 6 4"/><circle cx="12" cy="12" r="1.5"/></svg>
+                            </div>
+                            <div class="sidebar-icon" title="Extensions (Ctrl+Shift+X)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            </div>
                         </div>
-                        <div class="sidebar-icon" title="Search">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        </div>
-                        <div class="sidebar-icon" title="Source Control">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div class="sidebar-bottom">
+                            <div class="sidebar-icon" title="Accounts">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+                            </div>
+                            <div class="sidebar-icon" title="Manage / Settings">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Explorer Panel -->
+                    <!-- Explorer Panel with Proper Nested Indents -->
                     <div class="vscode-explorer">
                         <div class="explorer-header">Explorer: WORKSPACE</div>
                         <div class="explorer-tree">
-                            <div class="tree-item folder">
-                                <span class="arrow">▼</span> <span>.vscode</span>
+                            <div class="tree-item folder-item" style="padding-left: 12px;">
+                                <span class="arrow">▾</span> <span class="folder-icon">📁</span> <span class="folder-name">.vscode</span>
                             </div>
-                            <div class="tree-item folder">
-                                <span class="arrow">▼</span> <span>src</span>
+                            <div class="tree-item file-item" style="padding-left: 28px;">
+                                <span class="icon-json">{}</span> <span>settings.json</span>
                             </div>
-                            <div class="tree-item file active">
-                                <svg width="14" height="14" viewBox="0 0 128 128"><path d="M117.5 34L65.5 4a6 6 0 0 0-7 0L6.5 34a6 6 0 0 0-3 5v60a6 6 0 0 0 3 5l52 30a6 6 0 0 0 7 0l52-30a6 6 0 0 0 3-5V39a6 6 0 0 0-3-5z" fill="#00599C"/><path d="M78 50h-7.5a16 16 0 1 0 0 28H78a3 3 0 0 0 0-6h-7.5a10 10 0 1 1 0-20H78a3 3 0 0 0 0-6zm15 8h-4v-4a3 3 0 0 0-6 0v4h-4a3 3 0 0 0 0 6h4v4a3 3 0 0 0 6 0v-4h4a3 3 0 0 0 0-6zm20 0h-4v-4a3 3 0 0 0-6 0v4h-4a3 3 0 0 0 0 6h4v4a3 3 0 0 0 6 0v-4h4a3 3 0 0 0 0-6z" fill="#FFFFFF"/></svg>
-                                <span>abkaynak.cpp</span>
+                            <div class="tree-item file-item" style="padding-left: 28px;">
+                                <span class="icon-json">{}</span> <span>launch.json</span>
                             </div>
-                            <div class="tree-item folder">
-                                <span class="arrow">►</span> <span>include</span>
+
+                            <div class="tree-item folder-item" style="padding-left: 12px;">
+                                <span class="arrow">▾</span> <span class="folder-icon">📁</span> <span class="folder-name">src</span>
                             </div>
-                            <div class="tree-item file">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                <span>CMakeLists.txt</span>
+                            <div class="tree-item file-item active" style="padding-left: 28px;">
+                                <span class="icon-cpp">C++</span> <span class="file-name">abkaynak.cpp</span>
                             </div>
-                            <div class="tree-item file">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                <span>README.md</span>
+                            <div class="tree-item file-item" style="padding-left: 28px;">
+                                <span class="icon-cpp">C++</span> <span>gpio_driver.cpp</span>
+                            </div>
+                            <div class="tree-item file-item" style="padding-left: 28px;">
+                                <span class="icon-cpp">C++</span> <span>adc_sensor.cpp</span>
+                            </div>
+
+                            <div class="tree-item folder-item" style="padding-left: 12px;">
+                                <span class="arrow">▸</span> <span class="folder-icon">📁</span> <span class="folder-name">include</span>
+                            </div>
+                            <div class="tree-item file-item" style="padding-left: 16px;">
+                                <span class="icon-cmake">▲</span> <span>CMakeLists.txt</span>
+                            </div>
+                            <div class="tree-item file-item" style="padding-left: 16px;">
+                                <span class="icon-md">M↓</span> <span>README.md</span>
                             </div>
                         </div>
                     </div>
@@ -128,14 +247,23 @@
                         <!-- Tabs header -->
                         <div class="vscode-tabs">
                             <div class="vscode-tab active">
-                                <svg width="14" height="14" viewBox="0 0 128 128"><path d="M117.5 34L65.5 4a6 6 0 0 0-7 0L6.5 34a6 6 0 0 0-3 5v60a6 6 0 0 0 3 5l52 30a6 6 0 0 0 7 0l52-30a6 6 0 0 0 3-5V39a6 6 0 0 0-3-5z" fill="#00599C"/><path d="M78 50h-7.5a16 16 0 1 0 0 28H78a3 3 0 0 0 0-6h-7.5a10 10 0 1 1 0-20H78a3 3 0 0 0 0-6zm15 8h-4v-4a3 3 0 0 0-6 0v4h-4a3 3 0 0 0 0 6h4v4a3 3 0 0 0 6 0v-4h4a3 3 0 0 0 0-6zm20 0h-4v-4a3 3 0 0 0-6 0v4h-4a3 3 0 0 0 0 6h4v4a3 3 0 0 0 6 0v-4h4a3 3 0 0 0 0-6z" fill="#FFFFFF"/></svg>
+                                <span class="icon-cpp" style="font-size: 11px;">C++</span>
                                 <span>abkaynak.cpp</span>
+                                <span class="tab-close">✕</span>
+                            </div>
+                            <div class="vscode-tab">
+                                <span class="icon-cpp" style="font-size: 11px; opacity: 0.7;">H</span>
+                                <span>gpio_driver.h</span>
+                            </div>
+                            <div class="vscode-tab">
+                                <span class="icon-cmake" style="font-size: 10px; opacity: 0.7;">▲</span>
+                                <span>CMakeLists.txt</span>
                             </div>
                             
                             <!-- Run Code icon button (Play) -->
                             <div class="editor-actions">
                                 <button class="editor-play-btn" id="introRunBtn" title="Run Code (Ctrl+Alt+N)">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                                     <span>Run</span>
                                 </button>
                             </div>
@@ -143,53 +271,110 @@
 
                         <!-- Breadcrumbs bar -->
                         <div class="vscode-breadcrumbs">
-                            <span>src</span> &gt; <span>abkaynak.cpp</span> &gt; <span class="breadcrumb-fn">main()</span>
+                            <span>abkaynak_workspace</span> &gt; <span>src</span> &gt; <span>abkaynak.cpp</span> &gt; <span class="breadcrumb-fn">main()</span>
                         </div>
                         
-                        <!-- Editor Code Area -->
-                        <div class="vscode-code-area" id="introCodeArea"></div>
+                        <!-- Editor Code Area & Minimap Container -->
+                        <div class="vscode-editor-body">
+                            <div class="vscode-code-area" id="introCodeArea">
+                                <!-- Pre-populated with realistic embedded C++ code with 25 lines -->
+                            </div>
+                            <!-- Real VS Code Minimap Mockup on Right -->
+                            <div class="vscode-minimap" aria-hidden="true">
+                                <div class="minimap-viewport"></div>
+                                <div class="minimap-lines">
+                                    <span style="width: 45%;"></span><span style="width: 38%;"></span><span style="width: 0;"></span>
+                                    <span style="width: 40%; background: #569cd6;"></span><span style="width: 48%;"></span><span style="width: 54%;"></span>
+                                    <span style="width: 50%;"></span><span style="width: 56%;"></span><span style="width: 15%;"></span>
+                                    <span style="width: 0;"></span><span style="width: 30%; background: #569cd6;"></span><span style="width: 36%;"></span>
+                                    <span style="width: 52%; background: #ce9178;"></span><span style="width: 48%; background: #ce9178;"></span>
+                                    <span style="width: 72%; background: #ce9178;"></span><span style="width: 65%; background: #ce9178;"></span>
+                                    <span style="width: 18%;"></span><span style="width: 0;"></span>
+                                    <span style="width: 68%;"></span><span style="width: 74%;"></span>
+                                    <span style="width: 44%; background: #569cd6;"></span><span style="width: 58%;"></span>
+                                    <span style="width: 15%;"></span><span style="width: 28%; background: #569cd6;"></span>
+                                    <span style="width: 12%;"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Status bar -->
+                <!-- Windows/VS Code Status bar -->
                 <div class="vscode-statusbar">
                     <div class="status-left">
-                        <span class="status-branch">main*</span>
-                        <span>0 🛈 0 ⚠</span>
+                        <span class="status-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="10" r="3"/><path d="M6 9v6M9 6h4a5 5 0 0 1 5 4"/></svg>main*</span>
+                        <span class="status-item" title="Synchronize"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg></span>
+                        <span class="status-item">0 🛈 0 ⚠</span>
                     </div>
                     <div class="status-right">
-                        <span>Ln 28, Col 1</span>
-                        <span>UTF-8</span>
-                        <span>C++ (GCC)</span>
+                        <span class="status-item" id="vscodeLnCol">Ln 25, Col 2</span>
+                        <span class="status-item">Spaces: 4</span>
+                        <span class="status-item">UTF-8</span>
+                        <span class="status-item">LF</span>
+                        <span class="status-item">C++ (GCC)</span>
+                        <span class="status-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
                     </div>
                 </div>
             </div>
             
             <!-- Simulated Mouse Cursor -->
             <div id="fake-cursor">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.5 3V20.25L10.02 14.73L17.25 14.73L4.5 3Z" fill="white" stroke="black" stroke-width="1.5"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4.5 3V20.25L10.02 14.73L17.25 14.73L4.5 3Z" fill="white" stroke="black" stroke-width="1.5"/></svg>
             </div>
             
-            <!-- Taskbar at bottom -->
+            <!-- Centered Windows 11 Taskbar -->
             <div class="desktop-taskbar">
-                <div class="taskbar-left">
-                    <div class="taskbar-start" title="Start">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#38bdf8"><rect x="2" y="2" width="9" height="9"/><rect x="13" y="2" width="9" height="9"/><rect x="2" y="13" width="9" height="9"/><rect x="13" y="13" width="9" height="9"/></svg>
-                    </div>
-                    <div class="taskbar-icons">
-                        <div class="taskbar-icon active" title="Visual Studio Code">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
-                        </div>
-                        <div class="taskbar-icon" title="Terminal">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                        </div>
-                    </div>
+                <div class="taskbar-widget-space" aria-hidden="true">
+                    <!-- Left empty for Windows 11 centered balance -->
                 </div>
+
+                <div class="taskbar-center-icons">
+                    <button class="taskbar-btn" title="Başlat" aria-label="Start">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0078d4">
+                            <rect x="2" y="2" width="9.2" height="9.2" rx="1"/>
+                            <rect x="12.8" y="2" width="9.2" height="9.2" rx="1"/>
+                            <rect x="2" y="12.8" width="9.2" height="9.2" rx="1"/>
+                            <rect x="12.8" y="12.8" width="9.2" height="9.2" rx="1"/>
+                        </svg>
+                    </button>
+                    <button class="taskbar-btn" title="Ara" aria-label="Search">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+                    </button>
+                    <button class="taskbar-btn" title="Görev Görünümü" aria-label="Task View">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><rect x="3" y="5" width="13" height="14" rx="2"/><rect x="8" y="3" width="13" height="14" rx="2" stroke-dasharray="2 2"/></svg>
+                    </button>
+                    <button class="taskbar-btn" title="Dosya Gezgini" aria-label="File Explorer">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 6C3 4.89 3.89 4 5 4H10L12 7H19C20.1 7 21 7.89 21 9V18C21 19.1 20.1 20 19 20H5C3.89 20 3 19.1 3 18V6Z" fill="#f59e0b"/>
+                            <path d="M3 10H21V18C21 19.1 20.1 20 19 20H5C3.89 20 3 19.1 3 18V10Z" fill="#fbbf24"/>
+                        </svg>
+                    </button>
+                    <button class="taskbar-btn active" title="Visual Studio Code" aria-label="Visual Studio Code">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
+                        <span class="taskbar-active-pill"></span>
+                    </button>
+                    <button class="taskbar-btn" title="Terminal" aria-label="Terminal">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="3" width="20" height="18" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                            <path d="M6 10L10 13L6 16" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="12" y1="16" x2="17" y2="16" stroke="#e2e8f0" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Windows 11 System Tray (Right) -->
                 <div class="taskbar-tray">
-                    <span>ENG</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                    <span class="taskbar-time">05:53</span>
+                    <span class="tray-overflow" title="Gizli simgeleri göster">⌃</span>
+                    <span class="tray-lang" title="Türkçe - TR Klavye">TUR</span>
+                    <div class="tray-system-cluster" title="İnternet, Ses, Pil">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </div>
+                    <div class="taskbar-datetime" title="Tarih ve Saat">
+                        <span class="taskbar-time" id="tbTime">06:05</span>
+                        <span class="taskbar-date" id="tbDate">29.09.2026</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -220,7 +405,6 @@
                     <li><a href="#home" class="nav-link active" data-tr="nav-home">Ana Sayfa</a></li>
                     <li><a href="#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
                     <li><a href="achievements.html" class="nav-link" data-tr="nav-achievements">Başarılarım</a></li>
-                    <li><a href="logbook.html" class="nav-link" data-tr="nav-logbook">Mühendislik Defteri</a></li>
                     <li><a href="#contact" class="nav-link" data-tr="nav-contact">İletişime Geç</a></li>
                 </ul>
             </nav>
@@ -370,6 +554,8 @@
                                 <span class="stat-tag" data-tr="stat-int-1">Gömülü Sistemler</span>
                                 <span class="stat-tag" data-tr="stat-int-2">Edge AI</span>
                                 <span class="stat-tag" data-tr="stat-int-3">Makine Öğrenmesi</span>
+                                <span class="stat-tag" data-tr="stat-int-4">Siber Güvenlik</span>
+                                <span class="stat-tag" data-tr="stat-int-5">Bilgisayar Ağları</span>
                             </div>
                         </div>
                     </div>
