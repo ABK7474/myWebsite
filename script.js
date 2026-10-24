@@ -110,6 +110,20 @@ const translations = {
         'form-success': 'Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağım!',
         'form-error': 'Bir hata oluştu. Lütfen tekrar deneyin veya doğrudan e-posta atın.',
 
+        // Assistant
+        'chat-open': 'Asistana sor',
+        'chat-title': 'ABK Asistan',
+        'chat-sub': 'Gemini ile çalışan yapay zeka · hata yapabilir',
+        'chat-close': 'Kapat',
+        'chat-welcome': 'Merhaba! Ben Ahmet Burak hakkındaki soruları cevaplayan yapay zeka asistanıyım. Ne öğrenmek istersin?',
+        'chat-placeholder': 'Bir soru yaz...',
+        'chat-send': 'Gönder',
+        'chat-q1': 'Hangi alanlarda çalışıyor?',
+        'chat-q2': 'Staj fırsatlarına açık mı?',
+        'chat-q3': 'Başarıları neler?',
+        'chat-error': 'Şu an cevap veremiyorum. Lütfen biraz sonra tekrar dene ya da e-posta gönder.',
+        'chat-limit': 'Çok fazla mesaj gönderildi, biraz bekleyip tekrar dene.',
+
         // Code card
         'term-compiling': '$ gcc profile.c -o profile && ./profile',
         'term-code': `#include <stdio.h>
@@ -249,6 +263,20 @@ DURUM:  Hazır.`
         'form-success': 'Your message has been sent successfully. I will get back to you soon!',
         'form-error': 'An error occurred. Please try again or email directly.',
 
+        // Assistant
+        'chat-open': 'Ask the assistant',
+        'chat-title': 'ABK Assistant',
+        'chat-sub': 'AI powered by Gemini · may make mistakes',
+        'chat-close': 'Close',
+        'chat-welcome': 'Hi! I\'m an AI assistant that answers questions about Ahmet Burak. What would you like to know?',
+        'chat-placeholder': 'Type a question...',
+        'chat-send': 'Send',
+        'chat-q1': 'What does he work on?',
+        'chat-q2': 'Is he open to internships?',
+        'chat-q3': 'What are his achievements?',
+        'chat-error': 'I can\'t answer right now. Please try again later or send an email.',
+        'chat-limit': 'Too many messages, please wait a bit and try again.',
+
         // Code card
         'term-compiling': '$ gcc profile.c -o profile && ./profile',
         'term-code': `#include <stdio.h>
@@ -296,6 +324,7 @@ try { currentLang = localStorage.getItem('preferredLanguage') === 'en' ? 'en' : 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+    initChatWidget();
     updateLanguage(currentLang);
     document.getElementById('langToggle')?.addEventListener('click', toggleLanguage);
 
@@ -353,6 +382,7 @@ function updateLanguage(lang) {
     }
 
     renderCode();
+    renderChatWelcome();
 }
 
 // ==========================================================================
@@ -605,4 +635,143 @@ function initContactForm() {
             label.textContent = t('form-submit');
         }
     });
+}
+
+// ==========================================================================
+// AI assistant (Gemini via /api/chat)
+// ==========================================================================
+const chatHistory = [];
+let chatBusy = false;
+
+function initChatWidget() {
+    const root = document.createElement('div');
+    root.className = 'chat';
+    root.innerHTML = `
+        <div class="chat-panel" id="chatPanel" role="dialog" aria-labelledby="chatTitle" hidden>
+            <div class="chat-head">
+                <div class="chat-avatar" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 100 100" fill="none"><path d="M30 72 L50 26 L70 72 M38 56 H62" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="chat-head-text">
+                    <strong id="chatTitle" data-tr="chat-title"></strong>
+                    <span data-tr="chat-sub"></span>
+                </div>
+                <button class="icon-btn" id="chatClose" data-tr-aria="chat-close">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="chat-log" id="chatLog" aria-live="polite"></div>
+            <div class="chat-suggestions" id="chatSuggestions">
+                <button class="chip" data-tr="chat-q1"></button>
+                <button class="chip" data-tr="chat-q2"></button>
+                <button class="chip" data-tr="chat-q3"></button>
+            </div>
+            <form class="chat-form" id="chatForm">
+                <input id="chatInput" type="text" maxlength="1000" autocomplete="off" data-tr-placeholder="chat-placeholder" data-tr-aria="chat-placeholder" required>
+                <button type="submit" class="chat-send" id="chatSend" data-tr-aria="chat-send">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </button>
+            </form>
+        </div>
+        <button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chatPanel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+            <span data-tr="chat-open"></span>
+        </button>`;
+    document.body.appendChild(root);
+
+    const panel = root.querySelector('#chatPanel');
+    const fab = root.querySelector('#chatFab');
+    const input = root.querySelector('#chatInput');
+
+    const setOpen = open => {
+        panel.hidden = !open;
+        root.classList.toggle('open', open);
+        fab.setAttribute('aria-expanded', String(open));
+        if (open) input.focus();
+        else fab.focus();
+    };
+    fab.addEventListener('click', () => setOpen(panel.hidden));
+    root.querySelector('#chatClose').addEventListener('click', () => setOpen(false));
+    panel.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+    root.querySelector('#chatForm').addEventListener('submit', e => {
+        e.preventDefault();
+        sendChatMessage(input.value);
+    });
+    root.querySelectorAll('#chatSuggestions .chip').forEach(chip => {
+        chip.addEventListener('click', () => sendChatMessage(chip.textContent));
+    });
+}
+
+function renderChatWelcome() {
+    document.querySelectorAll('[data-tr-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.trAria)));
+    const log = document.getElementById('chatLog');
+    if (!log || chatHistory.length) return;
+    log.innerHTML = '';
+    appendChatBubble('model', t('chat-welcome'));
+}
+
+function appendChatBubble(role, text) {
+    const log = document.getElementById('chatLog');
+    const bubble = document.createElement('div');
+    bubble.className = `chat-msg chat-msg-${role}`;
+    bubble.textContent = text;
+    log.appendChild(bubble);
+    log.scrollTop = log.scrollHeight;
+    return bubble;
+}
+
+async function sendChatMessage(rawText) {
+    const text = rawText.trim();
+    if (!text || chatBusy) return;
+
+    const input = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('chatSend');
+    const log = document.getElementById('chatLog');
+    document.getElementById('chatSuggestions').hidden = true;
+
+    chatBusy = true;
+    sendBtn.disabled = true;
+    input.value = '';
+
+    appendChatBubble('user', text);
+    chatHistory.push({ role: 'user', text });
+
+    const reply = appendChatBubble('model', '');
+    reply.classList.add('is-typing');
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: chatHistory })
+        });
+        if (!response.ok || !response.body) {
+            throw new Error(response.status === 429 ? 'limit' : 'error');
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let answer = '';
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            answer += decoder.decode(value, { stream: true });
+            reply.classList.remove('is-typing');
+            reply.textContent = answer;
+            log.scrollTop = log.scrollHeight;
+        }
+        if (!answer.trim()) throw new Error('error');
+        chatHistory.push({ role: 'model', text: answer });
+    } catch (err) {
+        // Drop the unanswered question so the history keeps alternating turns
+        chatHistory.pop();
+        reply.classList.remove('is-typing');
+        reply.classList.add('chat-msg-error');
+        reply.textContent = t(err.message === 'limit' ? 'chat-limit' : 'chat-error');
+    } finally {
+        chatBusy = false;
+        sendBtn.disabled = false;
+        input.focus();
+    }
 }
