@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ahmet Burak Kaynak — Akademik ve Teknik Başarılar, Dereceler, Proje Kilometre Taşları">
-    <meta name="theme-color" content="#0b0f19">
-    <title data-tr="ach-doc-title">Başarılarım — Ahmet Burak Kaynak</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f19'/><text x='50%' y='65%' font-family='Fira Code, monospace' font-weight='bold' font-size='42' fill='%2338bdf8' text-anchor='middle'>ABK</text></svg>">
-    
-    <!-- Google Fonts -->
+    <meta name="description" content="Ahmet Burak Kaynak — yıl yıl başarılar, akademik dereceler ve gelecek hedefleri.">
+    <meta name="theme-color" content="#08090c" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <title>Başarılarım — Ahmet Burak Kaynak</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2308090c'/><path d='M30 70 L50 28 L70 70 M38 54 H62' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+
+    <script>
+        (function () {
+            document.documentElement.classList.add('js');
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Main CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <!-- Navigation Bar -->
+<body data-page="achievements">
+    <a class="skip-link" href="#main-content" data-tr="skip">İçeriğe geç</a>
+
+    <div class="page-bg" aria-hidden="true">
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+    </div>
+
     <header class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="../index.html" class="logo" aria-label="Ana Sayfa">
-                <span class="logo-accent">&lt;</span>ABK<span class="logo-accent"> /&gt;</span>
+        <div class="nav-inner">
+            <a href="../" class="logo" aria-label="Ana Sayfa">
+                <svg width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                    <path d="M30 72 L50 26 L70 72 M38 56 H62" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>ABK</span>
             </a>
 
-            <nav class="nav-wrapper">
+            <nav aria-label="Ana menü">
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="../index.html#home" class="nav-link" data-tr="nav-home">Ana Sayfa</a></li>
-                    <li><a href="../index.html#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
-                    <li><a href="../achievements.html" class="nav-link active" data-tr="nav-achievements">Başarılarım</a></li>
-                    <li><a href="../logbook.html" class="nav-link" data-tr="nav-logbook">Mühendislik Defteri</a></li>
-                    <li><a href="../index.html#contact" class="nav-link" data-tr="nav-contact">İletişime Geç</a></li>
+                    <li><a href="../" class="nav-link" data-tr="nav-home">Ana Sayfa</a></li>
+                    <li><a href="../#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
+                    <li><a href="./" class="nav-link active" aria-current="page" data-tr="nav-achievements">Başarılarım</a></li>
+                    <li><a href="../#contact" class="nav-link" data-tr="nav-contact">İletişim</a></li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
-                <button class="lang-toggle" id="langToggle" aria-label="Dil Değiştir">
+                <button class="icon-btn" id="langToggle" aria-label="Dil değiştir">
                     <span class="lang-code">EN</span>
                 </button>
-                <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat">
-                    <span class="bar"></span>
+                <button class="icon-btn" id="themeToggle" aria-label="Tema değiştir">
+                    <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                </button>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="navMenu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
@@ -49,151 +68,122 @@
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- Background Glow -->
-        <div class="bg-gradient-glow" aria-hidden="true"></div>
-
-        <!-- Section Header -->
-        <section class="section" style="padding-top: 140px; padding-bottom: 2rem;">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag" data-tr="ach-tag">DERECELER & KİLOMETRE TAŞLARI</span>
-                    <h1 class="section-title" data-tr="ach-title">Yıl Yıl Başarılarım & Gelecek Hedeflerim</h1>
-                    <p class="section-subtitle" data-tr="ach-subtitle">YKS derecemden lisans akademisine, çift anadal (ÇAP) hedeflerimden mezuniyet vizyonuma zaman akışı.</p>
+    <main id="main-content" class="page-main">
+        <section class="section section-first">
+            <div class="container container-narrow">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-tr="ach-tag">Dereceler & Kilometre Taşları</span>
+                    <h1 class="section-title" data-tr="ach-title">Yıl yıl başarılarım ve gelecek hedeflerim</h1>
+                    <p class="section-sub" data-tr="ach-subtitle">YKS derecemden lisans akademisine, çift anadal (ÇAP) hedeflerimden mezuniyet vizyonuma zaman akışı.</p>
                 </div>
 
-                <!-- Timeline Component -->
-                <div class="timeline-container">
-                    <!-- 2024: Solid/Completed -->
-                    <div class="timeline-item completed reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2024</span>
-                                <span class="timeline-status-tag completed" data-tr="ach-status-completed">TAMAMLANDI</span>
+                <ol class="timeline">
+                    <li class="tl-item is-done reveal">
+                        <div class="tl-year">2024</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-completed">Tamamlandı</span>
+                            <h2 class="tl-title" data-tr="ach-2024-title">YKS Başarısı & Üniversite Seçimi</h2>
+                            <p class="tl-desc" data-tr="ach-2024-desc">Yükseköğretim Kurumları Sınavı (YKS) Sayısal alanında Türkiye 10.771.'si olarak Gazi Üniversitesi Bilgisayar Mühendisliği bölümüne 4. sıradan kabul kazandım.</p>
+                            <div class="chips">
+                                <span class="chip chip-accent">YKS 10.771</span>
+                                <span class="chip" data-tr="ach-2024-b2">Bölüm 4.'sü Giriş</span>
+                                <span class="chip" data-tr="ach-2024-b3">Gazi Bilgisayar Müh.</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2024-title">YKS Başarısı & Üniversite Seçimi</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2024-desc">Yükseköğretim Kurumları Sınavı (YKS) Sayısal alanında Türkiye 10.771.'si olarak Gazi Üniversitesi Bilgisayar Mühendisliği bölümüne 4. sıradan kabul kazandım.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" style="color: #38bdf8; border-color: rgba(56,189,248,0.3);">YKS 10.771</span>
-                                <span class="skill-badge" style="color: #f59e0b; border-color: rgba(245,158,11,0.3);" data-tr="ach-2024-b2">Bölüm 4.'sü Giriş</span>
-                                <span class="skill-badge" data-tr="ach-2024-b3">Gazi Bilgisayar Müh.</span>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    </li>
 
-                    <!-- 2025: Solid/Completed (Hazırlık) -->
-                    <div class="timeline-item completed reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2025</span>
-                                <span class="timeline-status-tag completed" data-tr="ach-status-completed">TAMAMLANDI</span>
+                    <li class="tl-item is-done reveal">
+                        <div class="tl-year">2025</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-completed">Tamamlandı</span>
+                            <h2 class="tl-title" data-tr="ach-2025-title">Hazırlık Sınıfı — B2 İngilizce Eğitimi & Muafiyet</h2>
+                            <p class="tl-desc" data-tr="ach-2025-desc">Gazi Üniversitesi Yabancı Diller Yüksekokulu B2 seviye hazırlık sınıfını 87/100 genel başarı puanı ile bitirdim ve yıl sonu final sınavından muafiyet hakkı elde ettim.</p>
+                            <div class="chips">
+                                <span class="chip chip-accent">B2 English (87/100)</span>
+                                <span class="chip" data-tr="ach-2025-b2">Finalsiz Muafiyet</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2025-title">Hazırlık Sınıfı — B2 İngilizce Eğitimi & Muafiyet</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2025-desc">Gazi Üniversitesi Yabancı Diller Yüksekokulu B2 seviye hazırlık sınıfını 87/100 genel başarı puanı ile bitirdim ve yıl sonu final sınavından muafiyet hakkı elde ettim.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" style="color: #34d399; border-color: rgba(52,211,153,0.3);">B2 English (87/100)</span>
-                                <span class="skill-badge" data-tr="ach-2025-b2">Finalsiz Muafiyet</span>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    </li>
 
-                    <!-- 2026: Solid/Completed (1. Sınıf Akademik Odak & C, C++, Java) -->
-                    <div class="timeline-item completed reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2026</span>
-                                <span class="timeline-status-tag completed" data-tr="ach-status-completed">TAMAMLANDI</span>
+                    <li class="tl-item is-done reveal">
+                        <div class="tl-year">2026</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-completed">Tamamlandı</span>
+                            <h2 class="tl-title" data-tr="ach-2026-title">1. Sınıf — C, C++ ve Java Eğitimi & Akademik Odak</h2>
+                            <p class="tl-desc" data-tr="ach-2026-desc">Bilgisayar Mühendisliği 1. sınıfımda tamamen akademiye ve temel yazılım disiplinine odaklandım. C, C++ ve Java dillerinin syntax yapısını, bellek yönetimini ve Nesne Yönelimli Programlama (OOP) prensiplerini derinlemesine öğrenerek kendimi geliştirdim.</p>
+                            <div class="chips">
+                                <span class="chip chip-accent">C / C++</span>
+                                <span class="chip">Java & OOP</span>
+                                <span class="chip" data-tr="ach-2026-b3">Akademik Odak</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2026-title">1. Sınıf — C, C++ ve Java Eğitimi & Akademik Odak</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2026-desc">Bilgisayar Mühendisliği 1. sınıfımda tamamen akademiye ve temel yazılım disiplinine odaklandım. C, C++ ve Java dillerinin syntax yapısını, bellek yönetimini ve Nesne Yönelimli Programlama (OOP) prensiplerini derinlemesine öğrenerek kendimi geliştirdim.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" style="color: #38bdf8; border-color: rgba(56,189,248,0.3);">C / C++ Mastery</span>
-                                <span class="skill-badge">Java & OOP</span>
-                                <span class="skill-badge" data-tr="ach-2026-b3">Akademik Odak</span>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    </li>
 
-                    <!-- 2027: Semi-Transparent / Future Goal (2. Sınıf) -->
-                    <div class="timeline-item future reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2027</span>
-                                <span class="timeline-status-tag future" data-tr="ach-status-future">GELECEK HEDEFİ</span>
+                    <li class="tl-item is-active reveal">
+                        <div class="tl-year">2027</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-active">Devam Ediyor</span>
+                            <h2 class="tl-title" data-tr="ach-2027-title">2. Sınıf — Elektrik-Elektronik ÇAP & TEKNOFEST / Hackathon</h2>
+                            <p class="tl-desc" data-tr="ach-2027-desc">2. sınıf lisans eğitimimle birlikte Elektrik-Elektronik Mühendisliği Çift Anadal (ÇAP) programına başlayacağım. Gömülü sistemler ve yazılım alanlarında TEKNOFEST ve ulusal/uluslararası hackathon yarışmalarında aktif yer alıp dereceler hedefliyorum.</p>
+                            <div class="chips">
+                                <span class="chip" data-tr="ach-2027-b1">EEM ÇAP Başlangıcı</span>
+                                <span class="chip">TEKNOFEST & Hackathon</span>
+                                <span class="chip" data-tr="ach-2027-b3">Gömülü Sistemler</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2027-title">2. Sınıf — Elektrik-Elektronik ÇAP & TEKNOFEST / Hackathon</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2027-desc">2. sınıf lisans eğitimimle birlikte Elektrik-Elektronik Mühendisliği Çift Anadal (ÇAP) programına başlayacağım. Gömülü sistemler ve yazılım alanlarında TEKNOFEST ve ulusal/uluslararası hackathon yarışmalarında aktif yer alıp dereceler hedefliyorum.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" data-tr="ach-2027-b1">EEM ÇAP Başlangıcı</span>
-                                <span class="skill-badge">TEKNOFEST & Hackathon</span>
-                                <span class="skill-badge" data-tr="ach-2027-b3">Gömülü Sistemler</span>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    </li>
 
-                    <!-- 2028: Semi-Transparent / Future Goal (3. Sınıf) -->
-                    <div class="timeline-item future reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2028</span>
-                                <span class="timeline-status-tag future" data-tr="ach-status-future">GELECEK HEDEFİ</span>
+                    <li class="tl-item is-future reveal">
+                        <div class="tl-year">2028</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-future">Hedef</span>
+                            <h2 class="tl-title" data-tr="ach-2028-title">3. Sınıf — Savunma Sanayii Aday Mühendislik & Stajlar</h2>
+                            <p class="tl-desc" data-tr="ach-2028-desc">Çift anadal ders yoğunluğumu sürdürürken; gömülü sistemler, kenar yapay zeka (Edge AI) ve mikrodenetleyici mimarileri üzerine önde gelen savunma sanayii ve donanım firmalarında aday mühendislik programlarına katılacak ve yaz stajı deneyimleri edineceğim.</p>
+                            <div class="chips">
+                                <span class="chip" data-tr="ach-2028-b1">Aday Mühendislik</span>
+                                <span class="chip" data-tr="ach-2028-b2">Savunma Sanayii Stajı</span>
+                                <span class="chip">Edge AI</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2028-title">3. Sınıf — Savunma Sanayii Aday Mühendislik & Stajlar</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2028-desc">Çift anadal ders yoğunluğumu sürdürürken; gömülü sistemler, kenar yapay zeka (Edge AI) ve mikrodenetleyici mimarileri üzerine önde gelen savunma sanayii ve donanım firmalarında aday mühendislik programlarına katılacak ve yaz stajı deneyimleri edineceğim.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" data-tr="ach-2028-b1">Aday Mühendislik</span>
-                                <span class="skill-badge" data-tr="ach-2028-b2">Savunma Sanayii Stajı</span>
-                                <span class="skill-badge">Edge AI</span>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    </li>
 
-                    <!-- 2029: Semi-Transparent / Future Goal (4. Sınıf) -->
-                    <div class="timeline-item future reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge-group">
-                                <span class="timeline-year">2029</span>
-                                <span class="timeline-status-tag future" data-tr="ach-status-future">GELECEK HEDEFİ</span>
+                    <li class="tl-item is-future reveal">
+                        <div class="tl-year">2029</div>
+                        <div class="tl-marker" aria-hidden="true"></div>
+                        <article class="card tl-card">
+                            <span class="tl-status" data-tr="ach-status-future">Hedef</span>
+                            <h2 class="tl-title" data-tr="ach-2029-title">4. Sınıf — Bilgisayar Müh. Bölüm Birinciliği & EEM ÇAP Mezuniyeti</h2>
+                            <p class="tl-desc" data-tr="ach-2029-desc">Gazi Üniversitesi Bilgisayar Mühendisliği lisans eğitimimi Bölüm Birincisi olarak tamamlayacağım. Elektrik-Elektronik Mühendisliği ÇAP bitirme projelerimi başarıyla sunarak çifte mühendislik diploması ile mezun olacağım.</p>
+                            <div class="chips">
+                                <span class="chip" data-tr="ach-2029-b1">Bölüm Birincisi Mezuniyet</span>
+                                <span class="chip" data-tr="ach-2029-b2">EEM ÇAP Mezuniyeti</span>
+                                <span class="chip" data-tr="ach-2029-b3">Çifte Mühendislik Derecesi</span>
                             </div>
-                            <h3 class="timeline-title-text" data-tr="ach-2029-title">4. Sınıf — Bilgisayar Müh. Bölüm Birinciliği & EEM ÇAP Mezuniyeti</h3>
-                            <p class="timeline-desc-text" data-tr="ach-2029-desc">Gazi Üniversitesi Bilgisayar Mühendisliği lisans eğitimimi Bölüm Birincisi olarak tamamlayacağım. Elektrik-Elektronik Mühendisliği ÇAP bitirme projelerimi başarıyla sunarak çifte mühendislik diploması ile mezun olacağım.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge" style="color: #a78bfa; border-color: rgba(167,139,250,0.3);" data-tr="ach-2029-b1">Bölüm Birincisi Mezuniyet</span>
-                                <span class="skill-badge" data-tr="ach-2029-b2">EEM ÇAP Mezuniyet</span>
-                                <span class="skill-badge" data-tr="ach-2029-b3">Çifte Mühendislik Derecesi</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        </article>
+                    </li>
+                </ol>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-left">
-                <a href="../" class="logo">
-                    <span class="logo-accent">&lt;</span>ABK<span class="logo-accent"> /&gt;</span>
-                </a>
-                <p class="footer-tagline" data-tr="footer-tagline">Gazi Üniversitesi • Bilgisayar Mühendisliği Öğrencisi</p>
-            </div>
-            <div class="footer-right">
-                <p>&copy; <span id="currentYear"></span> Ahmet Burak Kaynak. <span data-tr="footer-rights">Tüm hakları saklıdır.</span></p>
+        <div class="container footer-inner">
+            <p>&copy; <span id="currentYear">2026</span> Ahmet Burak Kaynak. <span data-tr="footer-rights">Tüm hakları saklıdır.</span></p>
+            <div class="footer-links">
+                <a href="https://github.com/ahmetburakresmi" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:ahmetburakresmi@gmail.com" data-tr="footer-email">E-posta</a>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Notification Container -->
-    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <!-- Scripts -->
     <script src="../script.js"></script>
 </body>
 </html>

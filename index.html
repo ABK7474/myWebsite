@@ -1,424 +1,75 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ahmet Burak Kaynak — Gazi Üniversitesi Bilgisayar Mühendisliği Öğrencisi Kişisel Portfolyo">
-    <meta name="theme-color" content="#0b0f19">
+    <meta name="description" content="Ahmet Burak Kaynak — Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi. Gömülü sistemler ve Edge AI odaklı kişisel portfolyo.">
+    <meta name="theme-color" content="#08090c" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
     <title>Ahmet Burak Kaynak — Bilgisayar Mühendisi Adayı</title>
-    
-    <!-- Favicon (SVG Data URI) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f19'/><text x='50%' y='65%' font-family='Fira Code, monospace' font-weight='bold' font-size='42' fill='%2338bdf8' text-anchor='middle'>ABK</text></svg>">
-    
-    <!-- Open Graph / Meta for Social Sharing -->
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2308090c'/><path d='M30 70 L50 28 L70 70 M38 54 H62' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://abkaynak.com">
     <meta property="og:title" content="Ahmet Burak Kaynak — Bilgisayar Mühendisliği Öğrencisi">
     <meta property="og:description" content="Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisi. Gömülü Sistemler ve Edge AI odaklı portfolyo.">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Ahmet Burak Kaynak — Portfolio">
-    <meta property="twitter:description" content="Gömülü Sistemler ve Edge AI odaklı kişisel web sitesi.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ahmet Burak Kaynak — Portfolio">
+    <meta name="twitter:description" content="Gömülü Sistemler ve Edge AI odaklı kişisel web sitesi.">
 
-    <!-- Google Fonts -->
+    <!-- Set theme before paint to avoid a flash -->
+    <script>
+        (function () {
+            document.documentElement.classList.add('js');
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Main CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Intro Animation CSS -->
-    <link rel="stylesheet" href="intro.css">
 </head>
 <body>
-    <!-- Intro Windows 11 Desktop & VS Code Simulation -->
-    <div id="intro-screen">
-        <!-- Windows 11 Lock Screen -->
-        <div class="win-lockscreen" id="winLockScreen">
-            <div class="lockscreen-clock-container">
-                <div class="lockscreen-time" id="lockTime">12:00</div>
-                <div class="lockscreen-date" id="lockDate">29 Eylül Pazartesi</div>
-            </div>
-            <div class="lockscreen-prompt">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="lockscreen-chevron">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                </svg>
-                <span>Giriş yapmak için tıklayın</span>
-            </div>
-        </div>
+    <a class="skip-link" href="#main-content" data-tr="skip">İçeriğe geç</a>
 
-        <!-- Skip Intro Button -->
-        <button class="skip-intro-btn" id="skipIntroBtn" title="Animasyonu Geç">Girişi atla &rarr;</button>
-
-        <div class="desktop-environment" id="desktopEnv">
-            <!-- PCB Circuit Traces Wallpaper Overlay (5-8% opacity) -->
-            <div class="pcb-pattern" aria-hidden="true">
-                <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#38bdf8" stroke-width="1.2">
-                    <g opacity="0.07">
-                        <circle cx="150" cy="180" r="4" fill="#38bdf8"/>
-                        <path d="M150 180 H 260 L 310 230 H 420 L 460 270 V 380"/>
-                        <circle cx="460" cy="380" r="3.5" fill="#38bdf8"/>
-                        
-                        <circle cx="950" cy="140" r="4" fill="#38bdf8"/>
-                        <path d="M950 140 H 840 L 790 190 H 680 L 640 230 V 320 L 590 370 H 510"/>
-                        <circle cx="510" cy="370" r="3.5" fill="#38bdf8"/>
-
-                        <circle cx="200" cy="620" r="4" fill="#38bdf8"/>
-                        <path d="M200 620 H 340 L 390 570 H 520 L 560 530 V 460"/>
-                        <circle cx="560" cy="460" r="3.5" fill="#38bdf8"/>
-
-                        <circle cx="1020" cy="640" r="4" fill="#38bdf8"/>
-                        <path d="M1020 640 H 880 L 830 590 H 710 L 670 550 V 480"/>
-                        <circle cx="670" cy="480" r="3.5" fill="#38bdf8"/>
-
-                        <!-- IC Chip schematic footprint -->
-                        <rect x="560" y="380" width="80" height="80" rx="4" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 2"/>
-                        <line x1="560" y1="395" x2="540" y2="395"/><line x1="560" y1="410" x2="540" y2="410"/><line x1="560" y1="425" x2="540" y2="425"/><line x1="560" y1="440" x2="540" y2="440"/>
-                        <line x1="640" y1="395" x2="660" y2="395"/><line x1="640" y1="410" x2="660" y2="410"/><line x1="640" y1="425" x2="660" y2="425"/><line x1="640" y1="440" x2="660" y2="440"/>
-                    </g>
-                </svg>
-            </div>
-
-            <!-- Windows 11 Desktop Icons (Fluent 3D / Filled Style) -->
-            <div class="desktop-icons" id="desktopIcons">
-                <div class="desktop-icon" tabindex="0" title="Bu Bilgisayar">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                        <rect x="6" y="8" width="36" height="24" rx="3" fill="url(#pcGrad)" stroke="#1e293b" stroke-width="1"/>
-                        <rect x="9" y="11" width="30" height="18" rx="1.5" fill="#0078d4"/>
-                        <path d="M12 26 L22 17 L29 23 L36 15" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M21 32 L19 40 H29 L27 32 Z" fill="#94a3b8"/>
-                        <rect x="15" y="40" width="18" height="2.5" rx="1" fill="#cbd5e1"/>
-                        <defs>
-                            <linearGradient id="pcGrad" x1="6" y1="8" x2="42" y2="32" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#334155"/><stop offset="1" stop-color="#0f172a"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span>This PC</span>
-                </div>
-
-                <div class="desktop-icon" tabindex="0" title="Geri Dönüşüm Kutusu">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                        <path d="M13 15 L16 41 C16.3 42.5 17.5 43.5 19 43.5 H29 C30.5 43.5 31.7 42.5 32 41 L35 15 Z" fill="url(#binGrad)"/>
-                        <ellipse cx="24" cy="15" rx="11" ry="3.5" fill="#00b7c3"/>
-                        <path d="M15 15 C15 13 19 11.5 24 11.5 C29 11.5 33 13 33 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-                        <!-- Recycle symbol -->
-                        <path d="M24 23 L26 27 H22 Z M20 34 L22 30 L25 32 Z M28 34 L26 30 L23 32 Z" fill="#ffffff" opacity="0.85"/>
-                        <defs>
-                            <linearGradient id="binGrad" x1="13" y1="15" x2="35" y2="43.5" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#00b7c3" stop-opacity="0.85"/><stop offset="1" stop-color="#0078d4" stop-opacity="0.95"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span>Recycle Bin</span>
-                </div>
-
-                <div class="desktop-icon" tabindex="0" title="abkaynak_workspace" id="iconWorkspace">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                        <path d="M6 14 C6 12 7.5 10.5 9.5 10.5 H19 L23 15 H38.5 C40.5 15 42 16.5 42 18.5 V37 C42 39 40.5 40.5 38.5 40.5 H9.5 C7.5 40.5 6 39 6 37 Z" fill="#f59e0b"/>
-                        <rect x="10" y="16" width="28" height="18" rx="2" fill="#e2e8f0"/>
-                        <line x1="14" y1="21" x2="26" y2="21" stroke="#0078d4" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="14" y1="25" x2="32" y2="25" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
-                        <line x1="14" y1="29" x2="22" y2="29" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M6 19 C6 17.5 7.2 16.5 8.7 16.5 H39.3 C40.8 16.5 42 17.5 42 19 V37 C42 39 40.5 40.5 38.5 40.5 H9.5 C7.5 40.5 6 39 6 37 Z" fill="url(#folderGrad)"/>
-                        <defs>
-                            <linearGradient id="folderGrad" x1="6" y1="16.5" x2="42" y2="40.5" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span>abkaynak_<br>workspace</span>
-                </div>
-
-                <div class="desktop-icon" tabindex="0" title="Terminal">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                        <rect x="6" y="8" width="36" height="32" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-                        <rect x="6" y="8" width="36" height="8" rx="6" fill="#1e293b"/>
-                        <circle cx="12" cy="12" r="1.8" fill="#ef4444"/>
-                        <circle cx="17" cy="12" r="1.8" fill="#eab308"/>
-                        <circle cx="22" cy="12" r="1.8" fill="#22c55e"/>
-                        <path d="M14 22 L20 27 L14 32" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <line x1="24" y1="32" x2="33" y2="32" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/>
-                    </svg>
-                    <span>Terminal</span>
-                </div>
-            </div>
-
-            <!-- Simulated VS Code App Window (Windows 11 + Dark+) -->
-            <div class="vscode-window" id="vscodeWindow" role="region" aria-label="Visual Studio Code">
-                <!-- Windows 11 Titlebar -->
-                <div class="vscode-titlebar">
-                    <div class="vscode-title-left">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" class="vscode-app-icon"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
-                        <span class="vscode-title-text">abkaynak.cpp - abkaynak_workspace - Visual Studio Code</span>
-                    </div>
-
-                    <!-- Search/Command Palette Pill in Titlebar (VS Code Modern) -->
-                    <div class="vscode-search-pill">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <span>abkaynak_workspace</span>
-                    </div>
-
-                    <!-- Windows 11 Standard Window Controls (Right) -->
-                    <div class="win-window-controls">
-                        <button class="win-control-btn win-min" title="Simge Durumuna Küçült" aria-label="Minimize">
-                            <svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
-                        </button>
-                        <button class="win-control-btn win-max" title="Ekranı Kapla" aria-label="Maximize">
-                            <svg width="10" height="10" viewBox="0 0 10 10"><rect width="9" height="9" x="0.5" y="0.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
-                        </button>
-                        <button class="win-control-btn win-close" title="Kapat" aria-label="Close">
-                            <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Main VS Code layout -->
-                <div class="vscode-main">
-                    <!-- Real Activity Bar -->
-                    <div class="vscode-sidebar" aria-label="Activity Bar">
-                        <div class="sidebar-top">
-                            <div class="sidebar-icon active" title="Explorer (Ctrl+Shift+E)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-                            </div>
-                            <div class="sidebar-icon" title="Search (Ctrl+Shift+F)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
-                            </div>
-                            <div class="sidebar-icon" title="Source Control (Ctrl+Shift+G)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="10" r="3"/><path d="M6 9v6M9 6h4a5 5 0 0 1 5 4"/></svg>
-                            </div>
-                            <div class="sidebar-icon" title="Run and Debug (Ctrl+Shift+D)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="6 4 18 12 6 20 6 4"/><circle cx="12" cy="12" r="1.5"/></svg>
-                            </div>
-                            <div class="sidebar-icon" title="Extensions (Ctrl+Shift+X)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                            </div>
-                        </div>
-                        <div class="sidebar-bottom">
-                            <div class="sidebar-icon" title="Accounts">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-                            </div>
-                            <div class="sidebar-icon" title="Manage / Settings">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Explorer Panel with Proper Nested Indents -->
-                    <div class="vscode-explorer">
-                        <div class="explorer-header">Explorer: WORKSPACE</div>
-                        <div class="explorer-tree">
-                            <div class="tree-item folder-item" style="padding-left: 12px;">
-                                <span class="arrow">▾</span> <span class="folder-icon">📁</span> <span class="folder-name">.vscode</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 28px;">
-                                <span class="icon-json">{}</span> <span>settings.json</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 28px;">
-                                <span class="icon-json">{}</span> <span>launch.json</span>
-                            </div>
-
-                            <div class="tree-item folder-item" style="padding-left: 12px;">
-                                <span class="arrow">▾</span> <span class="folder-icon">📁</span> <span class="folder-name">src</span>
-                            </div>
-                            <div class="tree-item file-item active" style="padding-left: 28px;">
-                                <span class="icon-cpp">C++</span> <span class="file-name">abkaynak.cpp</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 28px;">
-                                <span class="icon-cpp">C++</span> <span>gpio_driver.cpp</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 28px;">
-                                <span class="icon-cpp">C++</span> <span>adc_sensor.cpp</span>
-                            </div>
-
-                            <div class="tree-item folder-item" style="padding-left: 12px;">
-                                <span class="arrow">▸</span> <span class="folder-icon">📁</span> <span class="folder-name">include</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 16px;">
-                                <span class="icon-cmake">▲</span> <span>CMakeLists.txt</span>
-                            </div>
-                            <div class="tree-item file-item" style="padding-left: 16px;">
-                                <span class="icon-md">M↓</span> <span>README.md</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Editor container -->
-                    <div class="vscode-editor-container">
-                        <!-- Tabs header -->
-                        <div class="vscode-tabs">
-                            <div class="vscode-tab active">
-                                <span class="icon-cpp" style="font-size: 11px;">C++</span>
-                                <span>abkaynak.cpp</span>
-                                <span class="tab-close">✕</span>
-                            </div>
-                            <div class="vscode-tab">
-                                <span class="icon-cpp" style="font-size: 11px; opacity: 0.7;">H</span>
-                                <span>gpio_driver.h</span>
-                            </div>
-                            <div class="vscode-tab">
-                                <span class="icon-cmake" style="font-size: 10px; opacity: 0.7;">▲</span>
-                                <span>CMakeLists.txt</span>
-                            </div>
-                            
-                            <!-- Run Code icon button (Play) -->
-                            <div class="editor-actions">
-                                <button class="editor-play-btn" id="introRunBtn" title="Run Code (Ctrl+Alt+N)">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                                    <span>Run</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Breadcrumbs bar -->
-                        <div class="vscode-breadcrumbs">
-                            <span>abkaynak_workspace</span> &gt; <span>src</span> &gt; <span>abkaynak.cpp</span> &gt; <span class="breadcrumb-fn">main()</span>
-                        </div>
-                        
-                        <!-- Editor Code Area & Minimap Container -->
-                        <div class="vscode-editor-body">
-                            <div class="vscode-code-area" id="introCodeArea">
-                                <!-- Pre-populated with realistic embedded C++ code with 25 lines -->
-                            </div>
-                            <!-- Real VS Code Minimap Mockup on Right -->
-                            <div class="vscode-minimap" aria-hidden="true">
-                                <div class="minimap-viewport"></div>
-                                <div class="minimap-lines">
-                                    <span style="width: 45%;"></span><span style="width: 38%;"></span><span style="width: 0;"></span>
-                                    <span style="width: 40%; background: #569cd6;"></span><span style="width: 48%;"></span><span style="width: 54%;"></span>
-                                    <span style="width: 50%;"></span><span style="width: 56%;"></span><span style="width: 15%;"></span>
-                                    <span style="width: 0;"></span><span style="width: 30%; background: #569cd6;"></span><span style="width: 36%;"></span>
-                                    <span style="width: 52%; background: #ce9178;"></span><span style="width: 48%; background: #ce9178;"></span>
-                                    <span style="width: 72%; background: #ce9178;"></span><span style="width: 65%; background: #ce9178;"></span>
-                                    <span style="width: 18%;"></span><span style="width: 0;"></span>
-                                    <span style="width: 68%;"></span><span style="width: 74%;"></span>
-                                    <span style="width: 44%; background: #569cd6;"></span><span style="width: 58%;"></span>
-                                    <span style="width: 15%;"></span><span style="width: 28%; background: #569cd6;"></span>
-                                    <span style="width: 12%;"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Windows/VS Code Status bar -->
-                <div class="vscode-statusbar">
-                    <div class="status-left">
-                        <span class="status-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="10" r="3"/><path d="M6 9v6M9 6h4a5 5 0 0 1 5 4"/></svg>main*</span>
-                        <span class="status-item" title="Synchronize"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg></span>
-                        <span class="status-item">0 🛈 0 ⚠</span>
-                    </div>
-                    <div class="status-right">
-                        <span class="status-item" id="vscodeLnCol">Ln 25, Col 2</span>
-                        <span class="status-item">Spaces: 4</span>
-                        <span class="status-item">UTF-8</span>
-                        <span class="status-item">LF</span>
-                        <span class="status-item">C++ (GCC)</span>
-                        <span class="status-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Simulated Mouse Cursor -->
-            <div id="fake-cursor">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4.5 3V20.25L10.02 14.73L17.25 14.73L4.5 3Z" fill="white" stroke="black" stroke-width="1.5"/></svg>
-            </div>
-            
-            <!-- Centered Windows 11 Taskbar -->
-            <div class="desktop-taskbar">
-                <div class="taskbar-widget-space" aria-hidden="true">
-                    <!-- Left empty for Windows 11 centered balance -->
-                </div>
-
-                <div class="taskbar-center-icons">
-                    <button class="taskbar-btn" title="Başlat" aria-label="Start">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0078d4">
-                            <rect x="2" y="2" width="9.2" height="9.2" rx="1"/>
-                            <rect x="12.8" y="2" width="9.2" height="9.2" rx="1"/>
-                            <rect x="2" y="12.8" width="9.2" height="9.2" rx="1"/>
-                            <rect x="12.8" y="12.8" width="9.2" height="9.2" rx="1"/>
-                        </svg>
-                    </button>
-                    <button class="taskbar-btn" title="Ara" aria-label="Search">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
-                    </button>
-                    <button class="taskbar-btn" title="Görev Görünümü" aria-label="Task View">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><rect x="3" y="5" width="13" height="14" rx="2"/><rect x="8" y="3" width="13" height="14" rx="2" stroke-dasharray="2 2"/></svg>
-                    </button>
-                    <button class="taskbar-btn" title="Dosya Gezgini" aria-label="File Explorer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 6C3 4.89 3.89 4 5 4H10L12 7H19C20.1 7 21 7.89 21 9V18C21 19.1 20.1 20 19 20H5C3.89 20 3 19.1 3 18V6Z" fill="#f59e0b"/>
-                            <path d="M3 10H21V18C21 19.1 20.1 20 19 20H5C3.89 20 3 19.1 3 18V10Z" fill="#fbbf24"/>
-                        </svg>
-                    </button>
-                    <button class="taskbar-btn active" title="Visual Studio Code" aria-label="Visual Studio Code">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.5 0.5L9.2 8.1L4.3 4.4L1 5.9V18.1L4.3 19.6L9.2 15.9L17.5 23.5L23 20.8V3.2L17.5 0.5ZM17.5 17.6L11.5 12L17.5 6.4V17.6Z" fill="#007ACC"/></svg>
-                        <span class="taskbar-active-pill"></span>
-                    </button>
-                    <button class="taskbar-btn" title="Terminal" aria-label="Terminal">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="3" width="20" height="18" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
-                            <path d="M6 10L10 13L6 16" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="12" y1="16" x2="17" y2="16" stroke="#e2e8f0" stroke-width="2"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Windows 11 System Tray (Right) -->
-                <div class="taskbar-tray">
-                    <span class="tray-overflow" title="Gizli simgeleri göster">⌃</span>
-                    <span class="tray-lang" title="Türkçe - TR Klavye">TUR</span>
-                    <div class="tray-system-cluster" title="İnternet, Ses, Pil">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                    </div>
-                    <div class="taskbar-datetime" title="Tarih ve Saat">
-                        <span class="taskbar-time" id="tbTime">06:05</span>
-                        <span class="taskbar-date" id="tbDate">29.09.2026</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="page-bg" aria-hidden="true">
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
     </div>
 
-    <!-- Blackout Overlay for Transitions -->
-    <div id="intro-blackout"></div>
-
-    <!-- Background Animated Mesh / Glow -->
-    <div class="bg-gradient-glow" aria-hidden="true"></div>
-
-    <!-- Navigation Bar -->
     <header class="navbar" id="navbar">
-        <div class="container nav-container">
+        <div class="nav-inner">
             <a href="#home" class="logo" aria-label="Ana Sayfa">
-                <svg class="brand-logo-svg" width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" style="vertical-align: middle;">
-                    <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="#38bdf8" stroke-width="7" fill="rgba(56, 189, 248, 0.03)"/>
-                    <line x1="30" y1="65" x2="50" y2="25" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                    <line x1="50" y1="25" x2="70" y2="65" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                    <line x1="38" y1="50" x2="62" y2="50" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="50" cy="25" r="5" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                <svg width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                    <path d="M30 72 L50 26 L70 72 M38 56 H62" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span style="font-weight: 800; font-family: var(--font-mono); color: #fff; margin-left: 8px; letter-spacing: 0.5px;">ABK</span>
+                <span>ABK</span>
             </a>
 
-            <nav class="nav-wrapper">
+            <nav aria-label="Ana menü">
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home" class="nav-link active" data-tr="nav-home">Ana Sayfa</a></li>
                     <li><a href="#about" class="nav-link" data-tr="nav-about">Hakkımda</a></li>
-                    <li><a href="achievements.html" class="nav-link" data-tr="nav-achievements">Başarılarım</a></li>
-                    <li><a href="#contact" class="nav-link" data-tr="nav-contact">İletişime Geç</a></li>
+                    <li><a href="achievements/" class="nav-link" data-tr="nav-achievements">Başarılarım</a></li>
+                    <li><a href="#contact" class="nav-link" data-tr="nav-contact">İletişim</a></li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Tema Değiştir">
-                    <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                    <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </button>
-                <button class="lang-toggle" id="langToggle" aria-label="Dil Değiştir">
+                <button class="icon-btn" id="langToggle" aria-label="Dil değiştir">
                     <span class="lang-code">EN</span>
                 </button>
-                <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat">
-                    <span class="bar"></span>
+                <button class="icon-btn" id="themeToggle" aria-label="Tema değiştir">
+                    <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                </button>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="navMenu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
@@ -427,202 +78,199 @@
     </header>
 
     <main id="main-content">
-        <!-- Matrix Background -->
-        <canvas id="matrixCanvas" class="matrix-bg"></canvas>
-
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="container hero-container">
-                <div class="hero-badge reveal">
-                    <span class="status-dot"></span>
-                    <span data-tr="hero-badge">Gazi Üniversitesi • 2. Sınıf Bilgisayar Mühendisliği</span>
-                </div>
-                
-                <h1 class="hero-title reveal">
-                    <span data-tr="hero-greeting">Merhaba, ben</span> 
-                    <span class="gradient-text">Ahmet Burak Kaynak</span>
-                </h1>
-                
-                <p class="hero-subtitle reveal">
-                    <span data-tr="hero-subtitle">Gömülü sistemler, Edge AI ve düşük seviyeli yazılım geliştirme üzerine çalışan bilgisayar mühendisliği öğrencisi.</span>
-                </p>
-                
-                <div class="ide-container reveal">
-                    <!-- Left: Editor Pane -->
-                    <div class="terminal-wrapper editor-pane">
-                        <div class="terminal-header">
-                            <div class="terminal-buttons">
-                                <span class="term-btn close"></span>
-                                <span class="term-btn minimize"></span>
-                                <span class="term-btn expand"></span>
-                            </div>
-                            <div class="terminal-title">profile.c</div>
-                            <div class="terminal-actions">
-                                <button id="runCodeBtn" class="run-btn" title="Run Code">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                                    <span>Run</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="terminal-body">
-                            <pre><code class="language-c" id="typewriter"></code><span class="cursor" id="typewriterCursor">_</span></pre>
-                        </div>
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="pill reveal">
+                        <span class="status-dot"></span>
+                        <span data-tr="hero-badge">Gazi Üniversitesi • 2. Sınıf Bilgisayar Mühendisliği</span>
                     </div>
 
-                    <!-- Right: Output Pane -->
-                    <div class="terminal-wrapper output-pane" id="terminalOutputWrapper" style="display: none;">
-                        <div class="terminal-header">
-                            <div class="terminal-title" style="text-align: left; padding-left: 0.5rem;">Output</div>
-                        </div>
-                        <div class="terminal-output" id="terminalOutput"></div>
+                    <h1 class="hero-title reveal">
+                        <span class="hero-greeting" data-tr="hero-greeting">Merhaba, ben</span>
+                        <span class="gradient-text">Ahmet Burak Kaynak</span>
+                    </h1>
+
+                    <p class="hero-subtitle reveal" data-tr="hero-subtitle">Gömülü sistemler, Edge AI ve düşük seviyeli yazılım geliştirme üzerine çalışan bilgisayar mühendisliği öğrencisi.</p>
+
+                    <div class="hero-actions reveal">
+                        <a href="achievements/" class="btn btn-primary">
+                            <span data-tr="hero-btn-achievements">Başarılarımı İncele</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                        <a href="#contact" class="btn btn-ghost" data-tr="hero-btn-contact">İletişime Geç</a>
+                    </div>
+
+                    <div class="social-row reveal">
+                        <a href="https://github.com/ahmetburakresmi" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="mailto:ahmetburakresmi@gmail.com" class="social-link" aria-label="E-posta">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        </a>
                     </div>
                 </div>
 
-                <div class="hero-actions reveal">
-                    <a href="achievements.html" class="btn btn-primary">
-                        <span data-tr="hero-btn-achievements">Başarılarımı İncele</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <span data-tr="hero-btn-contact">İletişime Geç</span>
-                    </a>
-                </div>
-
-                <div class="social-bar reveal">
-                    <a href="https://github.com/ahmetburakresmi" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                        </svg>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="mailto:ahmetburakresmi@gmail.com" class="social-link" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
-                        <span>Email</span>
-                    </a>
+                <!-- Code card -->
+                <div class="code-card reveal" aria-label="profile.c">
+                    <div class="code-card-head">
+                        <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <div class="code-tabs" role="tablist">
+                            <button class="code-tab active" role="tab" aria-selected="true" data-view="code">profile.c</button>
+                            <button class="code-tab" role="tab" aria-selected="false" data-view="output" data-tr="term-tab-output">çıktı</button>
+                        </div>
+                        <button class="run-btn" id="runCodeBtn" aria-label="Çalıştır">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg>
+                            <span>Run</span>
+                        </button>
+                    </div>
+                    <pre class="code-body" id="codeView"><code id="codeContent"></code></pre>
+                    <pre class="code-body code-output" id="outputView" hidden><code id="outputContent"></code></pre>
                 </div>
             </div>
-            
-            <a href="#about" class="scroll-indicator" aria-label="Aşağı Kaydır">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M12 6v12"/></svg>
-            </a>
         </section>
 
-        <!-- About Section -->
+        <!-- About / Bento -->
         <section id="about" class="section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag" data-tr="about-tag">HAKKIMDA</span>
-                    <h2 class="section-title" data-tr="about-title">Hakkımda</h2>
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-tr="about-tag">Hakkımda</span>
+                    <h2 class="section-title" data-tr="about-heading">Donanım ile yazılımın kesiştiği yerde.</h2>
                 </div>
 
-                <div class="about-grid">
-                    <div class="about-text-card reveal">
-                        <p class="lead-text" data-tr="about-p1">
-                            Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisiyim. Çalışmalarımı ağırlıklı olarak Gömülü Sistemler (Embedded Systems) ve Edge AI (Kenar Yapay Zeka) teknolojileri üzerinde yoğunlaştırıyorum.
-                        </p>
-                        <p data-tr="about-p2">
-                            Donanım ve yazılımın kesiştiği noktalarda; C, C++, Java ve Python dillerini kullanarak Nesne Yönelimli Programlama (OOP), Veri Yapıları ve Algoritma Optimizasyonu üzerine pratikler yapıyorum.
-                        </p>
-                        <p data-tr="about-p3">
-                            Hedefim, kısıtlı kaynaklara sahip mikrodenetleyici ve uç cihazlarda yüksek performansla çalışan akıllı sistem çözümleri geliştirmektir.
-                        </p>
-                    </div>
+                <div class="bento">
+                    <article class="card card-about reveal">
+                        <p class="lead" data-tr="about-p1">Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisiyim. Çalışmalarımı ağırlıklı olarak Gömülü Sistemler (Embedded Systems) ve Edge AI (Kenar Yapay Zeka) teknolojileri üzerinde yoğunlaştırıyorum.</p>
+                        <p data-tr="about-p2">Donanım ve yazılımın kesiştiği noktalarda; C, C++, Java ve Python dillerini kullanarak Nesne Yönelimli Programlama (OOP), Veri Yapıları ve Algoritma Optimizasyonu üzerine pratikler yapıyorum.</p>
+                        <p data-tr="about-p3">Hedefim, kısıtlı kaynaklara sahip mikrodenetleyici ve uç cihazlarda yüksek performansla çalışan akıllı sistem çözümleri geliştirmektir.</p>
+                    </article>
 
-                    <div class="stats-column">
-                        <div class="stat-card reveal">
-                            <span class="stat-label" data-tr="stat-year-label">SINIF</span>
-                            <div class="stat-value-text" data-tr="stat-year-val">2. Sınıf</div>
-                        </div>
+                    <article class="card card-stat reveal">
+                        <span class="card-label" data-tr="stat-year-label">Sınıf</span>
+                        <span class="stat-value" data-tr="stat-year-val">2. Sınıf</span>
+                        <span class="card-sub" data-tr="stat-year-sub">Bilgisayar Mühendisliği</span>
+                    </article>
 
-                        <div class="stat-card reveal">
-                            <span class="stat-label" data-tr="stat-cap-label">ÇİFT ANADAL (ÇAP)</span>
-                            <div class="stat-value-text" data-tr="stat-cap-val">Elektrik-Elektronik Müh.</div>
-                        </div>
+                    <article class="card card-stat reveal">
+                        <span class="card-label" data-tr="stat-cap-label">Çift Anadal (ÇAP)</span>
+                        <span class="stat-value stat-value-sm" data-tr="stat-cap-val">Elektrik-Elektronik Müh.</span>
+                        <span class="card-sub">Gazi Üniversitesi</span>
+                    </article>
 
-                        <div class="stat-card reveal">
-                            <span class="stat-label" data-tr="stat-interests-label">İLGİ ALANLARI</span>
-                            <div class="stat-tags">
-                                <span class="stat-tag" data-tr="stat-int-1">Gömülü Sistemler</span>
-                                <span class="stat-tag" data-tr="stat-int-2">Edge AI</span>
-                                <span class="stat-tag" data-tr="stat-int-3">Makine Öğrenmesi</span>
-                                <span class="stat-tag" data-tr="stat-int-4">Siber Güvenlik</span>
-                                <span class="stat-tag" data-tr="stat-int-5">Bilgisayar Ağları</span>
-                            </div>
+                    <article class="card card-highlights reveal">
+                        <span class="card-label" data-tr="hl-label">Öne Çıkanlar</span>
+                        <ul class="highlights">
+                            <li>
+                                <span class="hl-num">10.771</span>
+                                <span class="hl-text" data-tr="hl-yks">YKS Sayısal Türkiye sıralaması</span>
+                            </li>
+                            <li>
+                                <span class="hl-num" data-tr="hl-rank-num">4.</span>
+                                <span class="hl-text" data-tr="hl-rank">sıradan bölüme giriş</span>
+                            </li>
+                            <li>
+                                <span class="hl-num">87<small>/100</small></span>
+                                <span class="hl-text" data-tr="hl-b2">B2 İngilizce hazırlık, finalsiz muafiyet</span>
+                            </li>
+                        </ul>
+                        <a href="achievements/" class="card-link">
+                            <span data-tr="hl-link">Tüm zaman çizelgesi</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="card card-stack reveal">
+                        <span class="card-label" data-tr="stack-label">Diller</span>
+                        <div class="chips">
+                            <span class="chip chip-mono">C</span>
+                            <span class="chip chip-mono">C++</span>
+                            <span class="chip chip-mono">Java</span>
+                            <span class="chip chip-mono">Python</span>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="card card-interests reveal">
+                        <span class="card-label" data-tr="stat-interests-label">İlgi Alanları</span>
+                        <div class="chips">
+                            <span class="chip" data-tr="stat-int-1">Gömülü Sistemler</span>
+                            <span class="chip" data-tr="stat-int-2">Edge AI</span>
+                            <span class="chip" data-tr="stat-int-3">Makine Öğrenmesi</span>
+                            <span class="chip" data-tr="stat-int-4">Siber Güvenlik</span>
+                            <span class="chip" data-tr="stat-int-5">Bilgisayar Ağları</span>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact -->
         <section id="contact" class="section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag" data-tr="contact-tag">İLETİŞİM</span>
-                    <h2 class="section-title" data-tr="contact-title">İletişime Geçin</h2>
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-tr="contact-tag">İletişim</span>
+                    <h2 class="section-title" data-tr="contact-title">Birlikte bir şeyler üretelim.</h2>
                 </div>
 
-                <div class="contact-layout">
-                    <div class="contact-info-card reveal">
-                        <h3 data-tr="contact-heading">Bana Ulaşın</h3>
-                        <p data-tr="contact-text">
-                            Gömülü sistemler, projeler veya staj/iş fırsatları hakkında mesaj gönderebilir veya doğrudan e-posta atabilirsiniz.
-                        </p>
+                <div class="contact-grid">
+                    <div class="card contact-info reveal">
+                        <p data-tr="contact-text">Gömülü sistemler, projeler veya staj/iş fırsatları hakkında mesaj gönderebilir veya doğrudan e-posta atabilirsiniz.</p>
 
-                        <div class="contact-details-list">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                </div>
-                                <div class="contact-text-wrap">
-                                    <span class="contact-label" data-tr="contact-email-label">Email</span>
+                        <ul class="contact-list">
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                                </span>
+                                <div>
+                                    <span class="card-label" data-tr="contact-email-label">E-Posta</span>
                                     <button class="copy-btn" data-copy="ahmetburakresmi@gmail.com" data-tr-title="copy-title" title="Kopyala">
                                         <span>ahmetburakresmi@gmail.com</span>
-                                        <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                                     </button>
                                 </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </li>
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
+                                <div>
+                                    <span class="card-label" data-tr="contact-location">Konum</span>
+                                    <span class="contact-value" data-tr="contact-location-val">Ankara, Türkiye</span>
                                 </div>
-                                <div class="contact-text-wrap">
-                                    <span class="contact-label" data-tr="contact-location">Konum</span>
-                                    <p class="contact-value" data-tr="contact-location-val">Ankara, Türkiye</p>
+                            </li>
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                                </span>
+                                <div>
+                                    <span class="card-label">LinkedIn</span>
+                                    <a class="contact-value link" href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer">ahmet-burak-kaynak-abk</a>
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/maqdqery" method="POST">
-                        <div class="form-group">
-                            <label for="name" data-tr="form-name-label">Adınız Soyadınız</label>
-                            <input type="text" id="name" name="name" data-tr-placeholder="form-name" placeholder="Ahmet Yılmaz" required>
+                    <form class="card contact-form reveal" id="contactForm" action="https://formspree.io/f/maqdqery" method="POST">
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="name" data-tr="form-name-label">Adınız Soyadınız</label>
+                                <input type="text" id="name" name="name" autocomplete="name" data-tr-placeholder="form-name" placeholder="Ahmet Yılmaz" required>
+                            </div>
+                            <div class="field">
+                                <label for="email" data-tr="form-email-label">E-Posta Adresiniz</label>
+                                <input type="email" id="email" name="email" autocomplete="email" data-tr-placeholder="form-email-placeholder" placeholder="ahmet@example.com" required>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email" data-tr="form-email-label">E-Posta Adresiniz</label>
-                            <input type="email" id="email" name="email" data-tr-placeholder="form-email-placeholder" placeholder="ahmet@example.com" required>
-                        </div>
-
-                        <div class="form-group">
+                        <div class="field">
                             <label for="message" data-tr="form-msg-label">Mesajınız</label>
                             <textarea id="message" name="message" rows="5" data-tr-placeholder="form-message" placeholder="Mesajınızı buraya yazabilirsiniz..." required></textarea>
                         </div>
-
-                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
                             <span data-tr="form-submit">Mesaj Gönder</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
                         </button>
                     </form>
                 </div>
@@ -630,34 +278,19 @@
         </section>
     </main>
 
-    <!-- Toast Notification Container -->
-    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-left">
-                <a href="#home" class="logo-sm">
-                    <svg class="brand-logo-svg" width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" style="vertical-align: middle;">
-                        <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="#38bdf8" stroke-width="7" fill="rgba(56, 189, 248, 0.03)"/>
-                        <line x1="30" y1="65" x2="50" y2="25" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                        <line x1="50" y1="25" x2="70" y2="65" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                        <circle cx="50" cy="25" r="5" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
-                    </svg>
-                    <span style="font-weight: 800; font-family: var(--font-mono); color: #fff;">ABK</span>
-                </a>
-                <p>&copy; <span id="currentYear">2026</span> Ahmet Burak Kaynak. <span data-tr="footer-rights">Tüm hakları saklıdır.</span></p>
-            </div>
-            
+        <div class="container footer-inner">
+            <p>&copy; <span id="currentYear">2026</span> Ahmet Burak Kaynak. <span data-tr="footer-rights">Tüm hakları saklıdır.</span></p>
             <div class="footer-links">
                 <a href="https://github.com/ahmetburakresmi" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="mailto:ahmetburakresmi@gmail.com">Email</a>
+                <a href="mailto:ahmetburakresmi@gmail.com" data-tr="footer-email">E-posta</a>
             </div>
         </div>
     </footer>
 
-    <!-- Main JavaScript File -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
