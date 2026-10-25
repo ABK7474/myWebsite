@@ -98,11 +98,18 @@ module.exports = async function handler(req, res) {
     }
 
     if (!upstream.ok || !upstream.body) {
-        console.error('Gemini error', upstream.status, await upstream.text().catch(() => ''));
-        // Upstream status only (e.g. 429 = quota, 400 = bad request); details stay in the logs
+        const detail = await upstream.text().catch(() => '');
+        console.error('Gemini error', upstream.status, detail);
         // Gemini quota exhausted: tell the visitor to wait rather than showing a generic error
         if (upstream.status === 429) return res.status(429).json({ error: 'rate_limited', upstreamStatus: 429 });
-        return res.status(502).json({ error: 'upstream_error', upstreamStatus: upstream.status });
+        // Upstream status plus Google's short reason code (e.g. API_KEY_INVALID) for debugging;
+        // neither contains the key, and the full message stays in the logs
+        let reason = null;
+        try {
+            const err = JSON.parse(detail).error;
+            reason = err.details?.find(d => d.reason)?.reason || err.status || null;
+        } catch (e) {}
+        return res.status(502).json({ error: 'upstream_error', upstreamStatus: upstream.status, reason });
     }
 
     res.writeHead(200, {
