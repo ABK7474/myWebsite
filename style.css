@@ -5,30 +5,30 @@
     --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-    --bg: #08090c;
-    --bg-elev: #0e1015;
+    --bg: #070a08;
+    --bg-elev: #0c110e;
     --surface: rgba(255, 255, 255, 0.025);
     --surface-hover: rgba(255, 255, 255, 0.045);
     --border: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.16);
-    --text: #ededef;
-    --text-muted: #9b9ca5;
-    --text-faint: #6b6c75;
-    --accent: #38bdf8;
-    --accent-2: #a78bfa;
-    --accent-soft: rgba(56, 189, 248, 0.12);
-    --success: #34d399;
-    --grid-line: rgba(255, 255, 255, 0.045);
-    --glow: rgba(56, 189, 248, 0.16);
+    --text: #e8ece9;
+    --text-muted: #96a39b;
+    --text-faint: #66736b;
+    --accent: #4ade80;
+    --accent-2: #e0a458;
+    --accent-soft: rgba(74, 222, 128, 0.1);
+    --success: #4ade80;
+    --grid-line: rgba(255, 255, 255, 0.07);
+    --glow: rgba(74, 222, 128, 0.13);
+
+    --pcb-trace: rgba(224, 164, 88, 0.38);
+    --pcb-pad: #c98d48;
+    --pcb-chip: #101512;
+    --pcb-chip-edge: rgba(255, 255, 255, 0.1);
+    --pcb-pin: #8a9a90;
+    --pcb-silk: rgba(232, 236, 233, 0.32);
     --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -24px rgba(0, 0, 0, 0.6);
 
-    --code-bg: #0b0d12;
-    --code-text: #d4d4d8;
-    --code-kwd: #c792ea;
-    --code-typ: #7dd3fc;
-    --code-str: #a5e3a1;
-    --code-fn: #fcd34d;
-    --code-com: #5c6370;
 
     --radius: 18px;
     --radius-sm: 10px;
@@ -38,24 +38,30 @@
 }
 
 :root[data-theme="light"] {
-    --bg: #fafafa;
+    --bg: #f5f4ef;
     --bg-elev: #ffffff;
     --surface: #ffffff;
-    --surface-hover: #f6f6f7;
+    --surface-hover: #f0efe9;
     --border: rgba(10, 10, 20, 0.08);
     --border-strong: rgba(10, 10, 20, 0.16);
-    --text: #0b0c10;
-    --text-muted: #55575f;
-    --text-faint: #8a8b93;
-    --accent: #0284c7;
-    --accent-2: #7c3aed;
-    --accent-soft: rgba(2, 132, 199, 0.09);
-    --success: #059669;
-    --grid-line: rgba(10, 10, 20, 0.05);
-    --glow: rgba(2, 132, 199, 0.12);
+    --text: #0f1411;
+    --text-muted: #4d5a52;
+    --text-faint: #7f8a83;
+    --accent: #15803d;
+    --accent-2: #b45309;
+    --accent-soft: rgba(21, 128, 61, 0.09);
+    --success: #16a34a;
+    --grid-line: rgba(15, 20, 17, 0.1);
+    --glow: rgba(21, 128, 61, 0.1);
+
+    --pcb-trace: rgba(180, 83, 9, 0.35);
+    --pcb-pad: #b8742e;
+    --pcb-chip: #17201a;
+    --pcb-chip-edge: rgba(0, 0, 0, 0.2);
+    --pcb-pin: #9aa59e;
+    --pcb-silk: rgba(15, 20, 17, 0.4);
     --shadow: 0 1px 2px rgba(10, 10, 20, 0.04), 0 12px 32px -20px rgba(10, 10, 20, 0.18);
 
-    --code-bg: #0b0d12;
     color-scheme: light;
 }
 
@@ -83,7 +89,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 img, svg { display: block; }
 ul, ol { list-style: none; }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--bg); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
@@ -102,10 +108,8 @@ ul, ol { list-style: none; }
 .page-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .bg-grid {
     position: absolute; inset: 0;
-    background-image:
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 56px 56px;
+    background-image: radial-gradient(circle, var(--grid-line) 1.2px, transparent 1.6px);
+    background-size: 24px 24px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
 }
@@ -243,7 +247,7 @@ ul, ol { list-style: none; }
 }
 .hero-greeting { display: block; font-size: 0.5em; font-weight: 500; letter-spacing: -0.02em; color: var(--text-muted); margin-bottom: 6px; }
 .gradient-text {
-    background: linear-gradient(120deg, var(--text) 20%, var(--accent) 65%, var(--accent-2));
+    background: linear-gradient(110deg, var(--text) 15%, var(--accent-2) 55%, var(--accent));
     -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero-subtitle { max-width: 34rem; font-size: 1.125rem; color: var(--text-muted); }
@@ -259,59 +263,37 @@ ul, ol { list-style: none; }
 }
 .social-link:hover { color: var(--text); border-color: var(--border); background: var(--surface-hover); }
 
-/* Code card */
-.code-card {
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius);
-    background: var(--code-bg);
-    box-shadow: 0 30px 80px -30px var(--glow), var(--shadow);
-    overflow: hidden;
-    color: var(--code-text);
+/* PCB / microcontroller visual */
+.pcb { position: relative; width: 100%; max-width: 480px; aspect-ratio: 1; justify-self: center; }
+.pcb-svg { width: 100%; height: 100%; overflow: visible; }
+.pcb-traces path { stroke: var(--pcb-trace); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pcb-signals path {
+    stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 8 92; stroke-dashoffset: 100;
+    filter: drop-shadow(0 0 4px var(--accent));
+    animation: signal var(--t, 2.6s) linear var(--d, 0s) infinite;
 }
-.code-card-head {
-    display: flex; align-items: center; gap: 14px;
-    padding: 10px 12px 10px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    background: rgba(255, 255, 255, 0.02);
-}
-.dots { display: flex; gap: 6px; }
-.dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); }
-.code-tabs { display: flex; gap: 2px; flex: 1; }
-.code-tab {
-    padding: 4px 10px; border-radius: 6px;
-    font-family: var(--font-mono); font-size: 12px; color: #71717a;
-    transition: color 0.2s ease, background-color 0.2s ease;
-}
-.code-tab:hover { color: #d4d4d8; }
-.code-tab.active { color: #fafafa; background: rgba(255, 255, 255, 0.07); }
-.run-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 12px; border-radius: 999px;
-    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-    color: #0b0d12; background: #38bdf8;
-    transition: opacity 0.2s ease, transform 0.2s var(--ease);
-}
-.run-btn:hover { opacity: 0.88; }
-.run-btn:active { transform: scale(0.96); }
-.run-btn:disabled { opacity: 0.5; cursor: progress; }
+@keyframes signal { to { stroke-dashoffset: 0; } }
+.pcb-pads circle { fill: var(--bg); stroke: var(--pcb-pad); stroke-width: 4; }
+.pcb-parts rect { fill: var(--pcb-chip); stroke: var(--pcb-pad); stroke-width: 1.5; }
+.pcb-silk text { fill: var(--pcb-silk); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; }
+.pcb-pins rect { fill: var(--pcb-pin); }
+.pcb-chip { fill: var(--pcb-chip); stroke: var(--pcb-chip-edge); stroke-width: 1.5; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45)); }
+.pcb-pin1 { fill: rgba(255, 255, 255, 0.18); }
 
-.code-body {
-    margin: 0; padding: 20px 22px;
-    height: 400px; overflow: auto;
-    font-family: var(--font-mono); font-size: 13px; line-height: 1.7;
-    tab-size: 4; white-space: pre;
-    scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) transparent;
+/* Die window in the middle of the chip: photo or initials */
+.pcb-die {
+    position: absolute; left: 35.4%; top: 35.4%; width: 29.2%; height: 29.2%;
+    display: grid; place-items: center; overflow: hidden;
+    border-radius: 10px;
+    background:
+        radial-gradient(circle at 30% 25%, rgba(74, 222, 128, 0.16), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px),
+        #0a0f0c;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
-.code-body .kwd { color: var(--code-kwd); }
-.code-body .typ { color: var(--code-typ); }
-.code-body .str { color: var(--code-str); }
-.code-body .fn  { color: var(--code-fn); }
-.code-body .com { color: var(--code-com); font-style: italic; }
-.code-body .pre { color: #f78c6c; }
-.code-output { color: #86efac; }
-.code-output .prompt { color: #71717a; }
-.caret { display: inline-block; width: 7px; height: 1.1em; vertical-align: -0.2em; background: #86efac; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
+.pcb-die span { font-family: var(--font-mono); font-weight: 600; font-size: clamp(1.2rem, 3vw, 1.8rem); letter-spacing: 0.08em; color: #4ade80; text-shadow: 0 0 18px rgba(74, 222, 128, 0.6); }
+.pcb-die img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ==========================================================================
    Sections
@@ -354,6 +336,29 @@ ul, ol { list-style: none; }
 .card-link:hover svg { transform: translate(2px, -2px); }
 .card-stack { grid-column: span 2; }
 .card-interests { grid-column: span 2; }
+.bento-has-now .card-interests { grid-column: span 4; }
+.card-now { grid-column: span 2; }
+.card-now .card-label { display: flex; align-items: center; gap: 10px; color: var(--accent); }
+.now-text { font-size: 1.0625rem; line-height: 1.5; letter-spacing: -0.01em; }
+
+/* Projects */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.project-card { display: flex; flex-direction: column; padding: 14px 14px 24px; }
+.project-card > :not(.project-media) { margin-left: 10px; margin-right: 10px; }
+.project-media {
+    display: grid; place-items: center; aspect-ratio: 16 / 9; margin-bottom: 20px; overflow: hidden;
+    border-radius: 12px; border: 1px solid var(--border);
+    background: radial-gradient(circle, var(--grid-line) 1.2px, transparent 1.6px) 0 0 / 16px 16px, var(--surface-hover);
+}
+.project-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.project-card:hover .project-media img { transform: scale(1.03); }
+.project-media-fallback { font-family: var(--font-mono); font-size: 2rem; font-weight: 600; color: var(--accent-2); letter-spacing: 0.08em; }
+.project-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.project-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 18px; flex: 1; }
+.project-links { display: flex; gap: 18px; margin-top: 20px; }
+.project-links a { display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 500; color: var(--accent); }
+.project-links a svg { transition: transform 0.2s var(--ease); }
+.project-links a:hover svg { transform: translate(2px, -2px); }
 
 /* Spotlight that follows the pointer on cards */
 .card::before {
@@ -543,6 +548,7 @@ ul, ol { list-style: none; }
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     .js .reveal { opacity: 1; transform: none; filter: none; }
+    .pcb-signals { display: none; }
 }
 
 /* ==========================================================================
@@ -550,11 +556,11 @@ ul, ol { list-style: none; }
    ========================================================================== */
 @media (max-width: 960px) {
     .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-    .code-body { height: 340px; }
+    .pcb { max-width: 400px; }
     .bento { grid-template-columns: repeat(2, 1fr); }
     .card-about, .card-highlights, .card-interests { grid-column: span 2; }
     .card-about { grid-row: auto; }
-    .card-stack { grid-column: span 2; }
+    .card-stack, .card-now, .bento-has-now .card-interests { grid-column: span 2; }
     .contact-grid { grid-template-columns: 1fr; }
 }
 
@@ -580,7 +586,7 @@ ul, ol { list-style: none; }
     .highlights li { flex-direction: row; align-items: baseline; gap: 12px; }
     .hl-num { min-width: 92px; }
     .form-row { grid-template-columns: 1fr; }
-    .code-body { font-size: 12px; padding: 16px; height: 320px; }
+    .projects-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
 
     .timeline::before { left: 5px; }
@@ -592,5 +598,5 @@ ul, ol { list-style: none; }
 
 @media (max-width: 420px) {
     .bento { grid-template-columns: 1fr; }
-    .card-about, .card-highlights, .card-interests, .card-stack, .card-stat { grid-column: span 1; }
+    .card-about, .card-highlights, .card-interests, .card-stack, .card-stat, .card-now, .bento-has-now .card-interests { grid-column: span 1; }
 }

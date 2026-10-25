@@ -16,6 +16,7 @@ const translations = {
         // Navigation
         'nav-home': 'Ana Sayfa',
         'nav-about': 'Hakkımda',
+        'nav-projects': 'Projeler',
         'nav-achievements': 'Başarılarım',
         'nav-contact': 'İletişim',
 
@@ -25,7 +26,7 @@ const translations = {
         'hero-subtitle': 'Gömülü sistemler, Edge AI ve düşük seviyeli yazılım geliştirme üzerine çalışan bilgisayar mühendisliği öğrencisi.',
         'hero-btn-achievements': 'Başarılarımı İncele',
         'hero-btn-contact': 'İletişime Geç',
-        'term-tab-output': 'çıktı',
+        'hero-btn-cv': 'CV İndir',
 
         // About
         'about-tag': 'Hakkımda',
@@ -51,6 +52,13 @@ const translations = {
         'hl-rank': 'sıradan bölüme giriş',
         'hl-b2': 'B2 İngilizce hazırlık, finalsiz muafiyet',
         'hl-link': 'Tüm zaman çizelgesi',
+        'now-label': 'Şu An',
+
+        // Projects
+        'projects-tag': 'Projeler',
+        'projects-title': 'Üzerinde çalıştıklarım.',
+        'project-code': 'Kaynak kod',
+        'project-demo': 'Demo',
 
         // Achievements Page
         'ach-doc-title': 'Başarılarım — Ahmet Burak Kaynak',
@@ -124,44 +132,6 @@ const translations = {
         'chat-error': 'Şu an cevap veremiyorum. Lütfen biraz sonra tekrar dene ya da e-posta gönder.',
         'chat-limit': 'Çok fazla mesaj gönderildi, biraz bekleyip tekrar dene.',
 
-        // Code card
-        'term-compiling': '$ gcc profile.c -o profile && ./profile',
-        'term-code': `#include <stdio.h>
-
-typedef struct {
-    const char *name;
-    const char *university;
-    const char *major;
-    const char *focus[3];
-} Profile;
-
-int main(void) {
-    Profile abk = {
-        .name       = "Ahmet Burak Kaynak",
-        .university = "Gazi Üniversitesi",
-        .major      = "Bilgisayar Müh. (ÇAP: EEM)",
-        .focus      = {
-            "Gömülü Sistemler",
-            "Edge AI",
-            "Makine Öğrenmesi"
-        }
-    };
-
-    printf("PROFİL: %s | %s\\n", abk.name, abk.university);
-    printf("BÖLÜM:  %s\\n", abk.major);
-    for (int i = 0; i < 3; i++) {
-        printf("MODÜL[%d]: %s\\n", i, abk.focus[i]);
-    }
-    printf("DURUM:  Hazır.\\n");
-
-    return 0;
-}`,
-        'term-output': `PROFİL: Ahmet Burak Kaynak | Gazi Üniversitesi
-BÖLÜM:  Bilgisayar Müh. (ÇAP: EEM)
-MODÜL[0]: Gömülü Sistemler
-MODÜL[1]: Edge AI
-MODÜL[2]: Makine Öğrenmesi
-DURUM:  Hazır.`
     },
     en: {
         'skip': 'Skip to content',
@@ -169,6 +139,7 @@ DURUM:  Hazır.`
         // Navigation
         'nav-home': 'Home',
         'nav-about': 'About',
+        'nav-projects': 'Projects',
         'nav-achievements': 'Achievements',
         'nav-contact': 'Contact',
 
@@ -178,7 +149,7 @@ DURUM:  Hazır.`
         'hero-subtitle': 'Computer Engineering student working on embedded systems, edge AI, and low-level software development.',
         'hero-btn-achievements': 'View Achievements',
         'hero-btn-contact': 'Get In Touch',
-        'term-tab-output': 'output',
+        'hero-btn-cv': 'Download CV',
 
         // About
         'about-tag': 'About',
@@ -204,6 +175,13 @@ DURUM:  Hazır.`
         'hl-rank': 'rank entry into the department',
         'hl-b2': 'B2 English prep, final exam exemption',
         'hl-link': 'Full timeline',
+        'now-label': 'Currently',
+
+        // Projects
+        'projects-tag': 'Projects',
+        'projects-title': 'Things I\'ve been building.',
+        'project-code': 'Source code',
+        'project-demo': 'Demo',
 
         // Achievements Page
         'ach-doc-title': 'Achievements — Ahmet Burak Kaynak',
@@ -277,44 +255,6 @@ DURUM:  Hazır.`
         'chat-error': 'I can\'t answer right now. Please try again later or send an email.',
         'chat-limit': 'Too many messages, please wait a bit and try again.',
 
-        // Code card
-        'term-compiling': '$ gcc profile.c -o profile && ./profile',
-        'term-code': `#include <stdio.h>
-
-typedef struct {
-    const char *name;
-    const char *university;
-    const char *major;
-    const char *focus[3];
-} Profile;
-
-int main(void) {
-    Profile abk = {
-        .name       = "Ahmet Burak Kaynak",
-        .university = "Gazi University",
-        .major      = "Computer Eng. (Double Major: EEE)",
-        .focus      = {
-            "Embedded Systems",
-            "Edge AI",
-            "Machine Learning"
-        }
-    };
-
-    printf("PROFILE: %s | %s\\n", abk.name, abk.university);
-    printf("MAJOR:   %s\\n", abk.major);
-    for (int i = 0; i < 3; i++) {
-        printf("MODULE[%d]: %s\\n", i, abk.focus[i]);
-    }
-    printf("STATUS:  Ready.\\n");
-
-    return 0;
-}`,
-        'term-output': `PROFILE: Ahmet Burak Kaynak | Gazi University
-MAJOR:   Computer Eng. (Double Major: EEE)
-MODULE[0]: Embedded Systems
-MODULE[1]: Edge AI
-MODULE[2]: Machine Learning
-STATUS:  Ready.`
     }
 };
 
@@ -332,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollReveal();
     initCardSpotlight();
-    initCodeCard();
     initCopyButtons();
     initContactForm();
 
@@ -381,7 +320,7 @@ function updateLanguage(lang) {
             : 'Ahmet Burak Kaynak — Computer Engineering Student';
     }
 
-    renderCode();
+    renderSiteData();
     renderChatWelcome();
 }
 
@@ -468,108 +407,81 @@ function initScrollReveal() {
     reveals.forEach(el => observer.observe(el));
 }
 
-// Pointer-following highlight on cards
+// Pointer-following highlight on cards (delegated, so rendered project cards get it too)
 function initCardSpotlight() {
     if (!window.matchMedia('(hover: hover)').matches) return;
-    document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('pointermove', e => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--my', `${e.clientY - rect.top}px`);
-        });
-    });
+    document.addEventListener('pointermove', e => {
+        const card = e.target.closest?.('.card');
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    }, { passive: true });
 }
 
 // ==========================================================================
-// Code card (profile.c)
+// Content from data.js (photo, CV, "Currently" card, projects)
 // ==========================================================================
-let outputTimer = null;
+const siteData = typeof SITE_DATA !== 'undefined' ? SITE_DATA : { photo: null, cv: null, now: null, projects: [] };
 
 function escapeHtml(text) {
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function highlightC(source) {
-    const tokenRegex = /(\/\/.*$)|(#include)\s+(<[^>]+>)|("(?:\\.|[^"\\])*")|\b(typedef|struct|const|int|char|return|for|void)\b|\b(Profile)\b|\b(main|printf)\b/gm;
-    let html = '';
-    let last = 0;
-    source.replace(tokenRegex, (match, com, inc, header, str, kwd, typ, fn, offset) => {
-        html += escapeHtml(source.slice(last, offset));
-        if (com) html += `<span class="com">${escapeHtml(com)}</span>`;
-        else if (inc) html += `<span class="pre">${inc}</span> <span class="str">${escapeHtml(header)}</span>`;
-        else if (str) html += `<span class="str">${escapeHtml(str)}</span>`;
-        else if (kwd) html += `<span class="kwd">${kwd}</span>`;
-        else if (typ) html += `<span class="typ">${typ}</span>`;
-        else if (fn) html += `<span class="fn">${fn}</span>`;
-        last = offset + match.length;
-        return match;
-    });
-    return html + escapeHtml(source.slice(last));
+// data.js paths are relative to the site root; pages in subfolders need a prefix
+function siteUrl(path) {
+    if (/^(https?:|mailto:|\/)/.test(path)) return path;
+    return (document.body.dataset.page === 'achievements' ? '../' : '') + path;
 }
 
-function renderCode() {
-    const codeEl = document.getElementById('codeContent');
-    if (!codeEl) return;
-    codeEl.innerHTML = highlightC(t('term-code'));
-    showCodeView('code');
-}
+function renderSiteData() {
+    const hasProjects = siteData.projects.length > 0;
+    document.querySelectorAll('[data-requires="projects"]').forEach(el => { el.hidden = !hasProjects; });
 
-function showCodeView(view) {
-    const codeView = document.getElementById('codeView');
-    const outputView = document.getElementById('outputView');
-    if (!codeView || !outputView) return;
-
-    codeView.hidden = view !== 'code';
-    outputView.hidden = view !== 'output';
-    document.querySelectorAll('.code-tab').forEach(tab => {
-        const active = tab.dataset.view === view;
-        tab.classList.toggle('active', active);
-        tab.setAttribute('aria-selected', String(active));
-    });
-
-    if (view === 'code') {
-        clearTimeout(outputTimer);
-        const runBtn = document.getElementById('runCodeBtn');
-        if (runBtn) runBtn.disabled = false;
+    const die = document.getElementById('pcbDie');
+    if (die && siteData.photo && !die.querySelector('img')) {
+        die.innerHTML = `<img src="${escapeHtml(siteUrl(siteData.photo))}" alt="Ahmet Burak Kaynak">`;
     }
+
+    const cvBtn = document.getElementById('cvBtn');
+    if (cvBtn && siteData.cv) {
+        cvBtn.href = siteUrl(siteData.cv);
+        cvBtn.hidden = false;
+    }
+
+    const nowCard = document.getElementById('nowCard');
+    if (nowCard && siteData.now) {
+        nowCard.hidden = false;
+        nowCard.closest('.bento').classList.add('bento-has-now');
+        document.getElementById('nowText').textContent = siteData.now[currentLang] || siteData.now.tr;
+    }
+
+    const section = document.getElementById('projects');
+    const grid = document.getElementById('projectsGrid');
+    if (!section || !grid) return;
+    section.hidden = !hasProjects;
+    grid.innerHTML = siteData.projects.map(renderProjectCard).join('');
 }
 
-function runCode() {
-    const outputEl = document.getElementById('outputContent');
-    const runBtn = document.getElementById('runCodeBtn');
-    if (!outputEl) return;
+function renderProjectCard(project) {
+    const desc = project.desc[currentLang] || project.desc.tr;
+    const media = project.image
+        ? `<img src="${escapeHtml(siteUrl(project.image))}" alt="" loading="lazy">`
+        : `<span class="project-media-fallback">${escapeHtml(project.title.slice(0, 2).toUpperCase())}</span>`;
+    const arrow = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+    const links = [
+        project.github && `<a href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">${t('project-code')} ${arrow}</a>`,
+        project.demo && `<a href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">${t('project-demo')} ${arrow}</a>`
+    ].filter(Boolean).join('');
 
-    clearTimeout(outputTimer);
-    showCodeView('output');
-    runBtn.disabled = true;
-
-    const command = `<span class="prompt">${escapeHtml(t('term-compiling'))}</span>\n`;
-    const lines = t('term-output').split('\n');
-    let shown = 0;
-
-    const step = () => {
-        const body = lines.slice(0, shown).map(escapeHtml).join('\n');
-        const done = shown >= lines.length;
-        outputEl.innerHTML = command + body + (done ? '\n\n<span class="prompt">$</span> <span class="caret"></span>' : '');
-        if (done) {
-            runBtn.disabled = false;
-            return;
-        }
-        shown++;
-        outputTimer = setTimeout(step, prefersReducedMotion ? 0 : 140);
-    };
-    outputEl.innerHTML = command;
-    outputTimer = setTimeout(step, prefersReducedMotion ? 0 : 450);
-}
-
-function initCodeCard() {
-    document.getElementById('runCodeBtn')?.addEventListener('click', runCode);
-    document.querySelectorAll('.code-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            if (tab.dataset.view === 'output') runCode();
-            else showCodeView('code');
-        });
-    });
+    return `
+        <article class="card project-card visible reveal">
+            <div class="project-media">${media}</div>
+            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+            <p class="project-desc">${escapeHtml(desc)}</p>
+            <div class="chips">${(project.tags || []).map(tag => `<span class="chip chip-mono">${escapeHtml(tag)}</span>`).join('')}</div>
+            ${links ? `<div class="project-links">${links}</div>` : ''}
+        </article>`;
 }
 
 // ==========================================================================

@@ -1,5 +1,24 @@
 // Knowledge the assistant answers from. Update this file when your info changes;
 // no retraining needed, it is sent as the system instruction on every request.
+// Projects and the "Currently" note come from data.js, shared with the page.
+const SITE_DATA = require('../data.js');
+
+function describeSiteData() {
+    const lines = [];
+    if (SITE_DATA.now) lines.push(`ŞU AN ÜZERİNDE ÇALIŞTIĞI: ${SITE_DATA.now.tr}`);
+    if (SITE_DATA.projects.length) {
+        lines.push('PROJELER:');
+        for (const p of SITE_DATA.projects) {
+            const links = [p.github && `GitHub: ${p.github}`, p.demo && `Demo: ${p.demo}`].filter(Boolean).join(', ');
+            lines.push(`- ${p.title} (${p.tags.join(', ')}): ${p.desc.tr}${links ? ` [${links}]` : ''}`);
+        }
+    } else {
+        lines.push('PROJELER: Sitede henüz yayınlanmış proje yok; proje sorulursa GitHub profiline yönlendir.');
+    }
+    if (SITE_DATA.cv) lines.push('CV: Sitenin üst kısmındaki "CV" butonundan indirilebilir.');
+    return lines.join('\n');
+}
+
 const PROFILE = `
 KİŞİ: Ahmet Burak Kaynak (ABK)
 - Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisi, Ankara, Türkiye.
@@ -23,6 +42,8 @@ ZAMAN ÇİZELGESİ:
 - GitHub: https://github.com/ahmetburakresmi
 - Sitedeki iletişim formu: https://abkaynak.com/#contact
 - Staj/iş fırsatları, gömülü sistemler ve projeler hakkında iletişime açık.
+
+${describeSiteData()}
 `.trim();
 
 const SYSTEM_INSTRUCTION = `
