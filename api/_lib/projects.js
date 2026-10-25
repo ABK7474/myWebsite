@@ -91,7 +91,12 @@ async function curate(repos) {
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
         body: JSON.stringify({
             contents: [{ role: 'user', parts: [{ text: `${PROMPT}\n${JSON.stringify(repos)}` }] }],
-            generationConfig: { temperature: 0.2, responseMimeType: 'application/json', responseSchema: SCHEMA }
+            generationConfig: {
+                temperature: 0.2,
+                responseMimeType: 'application/json',
+                responseSchema: SCHEMA,
+                thinkingConfig: { thinkingLevel: 'low' }
+            }
         })
     });
     if (!res.ok) throw new Error(`Gemini ${res.status}: ${await res.text().catch(() => '')}`);

@@ -1,7 +1,8 @@
 // Vercel serverless function: proxies chat messages to the Gemini API so the
 // API key stays on the server. Streams the reply back as plain text.
 const { buildSystemInstruction } = require('./profile');
-const { getCuratedProjects, MODEL } = require('./_lib/projects');
+const { MODEL } = require('./_lib/projects');
+
 const MAX_MESSAGES = 12;          // conversation turns kept per request
 const MAX_MESSAGE_CHARS = 1000;   // per user message
 const RATE_LIMIT = 20;            // requests per IP per window
@@ -63,10 +64,12 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'bad_request' });
     }
 
-    // GitHub projects are optional context; chat still works if fetching them fails
+    // GitHub projects come from the CDN-cached /api/projects so chat never waits
+    // on curation; they're optional context, so a slow or failed fetch is skipped.
     let githubProjects = [];
     try {
-        githubProjects = await getCuratedProjects();
+        const r = await fetch(`https://${req.headers.host}/api/projects`, { signal: AbortSignal.timeout(3000) });
+        if (r.ok) githubProjects = (await r.json()).projects || [];
     } catch (err) {
         console.error('projects unavailable for chat', err.message);
     }
@@ -81,7 +84,12 @@ module.exports = async function handler(req, res) {
                 body: JSON.stringify({
                     systemInstruction: { parts: [{ text: buildSystemInstruction(githubProjects) }] },
                     contents,
-                    generationConfig: { temperature: 0.4, maxOutputTokens: 600 }
+                    generationConfig: {
+                        temperature: 0.4,
+                        // Includes thinking tokens on Gemini 3.x
+                        maxOutputTokens: 2048,
+                        thinkingConfig: { thinkingLevel: 'low' }
+                    }
                 })
             }
         );
