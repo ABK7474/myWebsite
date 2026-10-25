@@ -15,8 +15,8 @@ const SITE_DATA = {
     cv: 'Ahmet_Burak_Kaynak_CV.pdf',
 
     now: {
-        tr: 'TEKNOFEST İHA takımında gömülü donanım ve Edge AI tarafında görev alıyorum.',
-        en: 'Working on embedded hardware and edge AI in a TEKNOFEST UAV team.'
+        tr: 'TEKNOFEST İHA takımında NVIDIA Jetson üzerinde, gömülü Linux ve görüntü işleme kullanarak gömülü yapay zekâ çalışmaları yürütüyorum.',
+        en: 'In a TEKNOFEST UAV team, running machine learning on an NVIDIA Jetson with embedded Linux and computer vision.'
     },
 
     githubUsers: ['ABK7474'],

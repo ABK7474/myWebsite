@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
   Source of Ahmet_Burak_Kaynak_CV.pdf. Not deployed (see .vercelignore).
+  Single column with plain section headings so ATS parsers read it in order.
   Rebuild after editing:
     google-chrome --headless=new --no-pdf-header-footer \
       --print-to-pdf=../Ahmet_Burak_Kaynak_CV.pdf cv.html
@@ -13,144 +14,113 @@
 <style>
     @page { size: A4; margin: 0; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy: #2f4a6f; --navy-soft: #4a6a94; --ink: #1f2933; --muted: #5b6673; --rule: #c9d3e0; }
-    html, body { width: 210mm; height: 297mm; }
-    body { font-family: 'Lato', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page { display: grid; grid-template-columns: 70mm 1fr; height: 297mm; }
+    :root { --navy: #2f4a6f; --ink: #1f2933; --muted: #5b6673; --rule: #c9d3e0; }
+    body { font-family: 'Lato', sans-serif; font-size: 9.4pt; line-height: 1.38; color: var(--ink); padding: 12mm 15mm 8mm; }
+    a { color: inherit; text-decoration: none; }
 
-    /* Sidebar */
-    .side { background: var(--navy); color: #fff; padding: 11mm 8mm 10mm 9mm; }
-    .photo { width: 38mm; height: 38mm; margin: 0 auto 5mm; border-radius: 50%; border: 1.2mm solid #fff; overflow: hidden; }
-    .photo img { width: 100%; height: 100%; object-fit: cover; }
-    .name { text-align: center; font-size: 15.5pt; font-weight: 900; line-height: 1.15; }
-    .role { text-align: center; color: #b9c8dc; font-size: 9.5pt; margin: 2mm 0 6mm; line-height: 1.35; }
-    .side h2 { font-size: 10.5pt; font-weight: 900; letter-spacing: 0.03em; padding-bottom: 1mm; border-bottom: 0.3mm solid #8fa6c4; margin: 5mm 0 2.2mm; }
-    .side dt { font-size: 7.5pt; color: #b9c8dc; margin-top: 1.6mm; }
-    .side dd { font-size: 9pt; line-height: 1.35; overflow-wrap: anywhere; }
-    .side dd.small { font-size: 8.2pt; }
-    .side p { font-size: 9pt; line-height: 1.4; }
+    header { display: flex; align-items: center; gap: 7mm; padding-bottom: 4mm; border-bottom: 0.5mm solid var(--navy); }
+    header .info { flex: 1; }
+    h1 { font-size: 21pt; font-weight: 900; color: var(--navy); line-height: 1.1; }
+    .title { font-size: 11pt; color: var(--muted); margin: 1mm 0 2.5mm; }
+    .contact { font-size: 9pt; color: var(--ink); }
+    .contact span + span::before { content: "  |  "; color: var(--rule); white-space: pre; }
+    .photo { width: 27mm; height: 27mm; border-radius: 50%; object-fit: cover; flex: none; }
 
-    /* Main */
-    .main { padding: 11mm 10mm 10mm 10mm; }
-    .main h2 { color: var(--navy); font-size: 12.5pt; font-weight: 900; letter-spacing: 0.02em; padding-bottom: 1mm; border-bottom: 0.3mm solid var(--rule); margin: 0 0 2.6mm; }
-    .main section + section { margin-top: 5mm; }
-    .entry + .entry { margin-top: 3mm; }
+    h2 { font-size: 11pt; font-weight: 900; letter-spacing: 0.06em; color: var(--navy); margin: 4mm 0 1.8mm; padding-bottom: 0.8mm; border-bottom: 0.3mm solid var(--rule); }
+    .entry + .entry { margin-top: 2.4mm; }
     .row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
     .row strong { font-size: 10.5pt; }
-    .row .meta { font-size: 9pt; color: var(--muted); white-space: nowrap; }
-    .sub { color: var(--navy-soft); font-size: 9.5pt; }
-    ul { margin: 0.8mm 0 0 4.5mm; }
+    .meta { font-size: 9pt; color: var(--muted); white-space: nowrap; }
+    .sub { font-size: 9.5pt; color: var(--muted); font-style: italic; }
+    ul { margin: 1mm 0 0 4.5mm; }
     li { margin-top: 0.4mm; }
-    li::marker { color: var(--navy-soft); }
-    .link { color: var(--navy-soft); font-size: 8.5pt; margin-top: 0.6mm; }
-    a { color: inherit; text-decoration: none; }
+    .skills p + p { margin-top: 0.8mm; }
+    .skills b { font-weight: 700; }
 </style>
 </head>
 <body>
-<div class="page">
-    <aside class="side">
-        <div class="photo"><img src="photo.jpg" alt=""></div>
-        <div class="name">Ahmet Burak Kaynak</div>
-        <div class="role">Bilgisayar ve Elektrik-Elektronik<br>Mühendisliği Öğrencisi</div>
+    <header>
+        <div class="info">
+            <h1>Ahmet Burak Kaynak</h1>
+            <div class="title">Bilgisayar Mühendisliği Öğrencisi · Elektrik-Elektronik Mühendisliği Çift Anadal</div>
+            <div class="contact">
+                <span>0534 636 10 88</span><span><a href="mailto:ahmetburakresmi@gmail.com">ahmetburakresmi@gmail.com</a></span><span>Ankara, Türkiye</span>
+            </div>
+            <div class="contact">
+                <span><a href="https://abkaynak.com">abkaynak.com</a></span><span><a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/">linkedin.com/in/ahmet-burak-kaynak-abk</a></span><span><a href="https://github.com/ABK7474">github.com/ABK7474</a></span>
+            </div>
+        </div>
+        <img class="photo" src="photo.jpg" alt="">
+    </header>
 
-        <h2>İLETİŞİM</h2>
-        <dl>
-            <dt>E-posta</dt><dd><a href="mailto:ahmetburakresmi@gmail.com">ahmetburakresmi@gmail.com</a></dd>
-            <dt>Konum</dt><dd>Ankara, Türkiye</dd>
-            <dt>Web</dt><dd><a href="https://abkaynak.com">abkaynak.com</a></dd>
-            <dt>LinkedIn</dt><dd class="small"><a href="https://www.linkedin.com/in/ahmet-burak-kaynak-abk/">linkedin.com/in/ahmet-burak-kaynak-abk</a></dd>
-            <dt>GitHub</dt><dd><a href="https://github.com/ABK7474">github.com/ABK7474</a></dd>
-        </dl>
+    <section>
+        <h2>PROFİL</h2>
+        <p>Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisiyim ve Elektrik-Elektronik Mühendisliği'nde çift anadal yapıyorum. Gömülü sistemler ve uç cihazlarda yapay zekâ (Edge AI) alanlarına odaklanıyorum; TEKNOFEST İHA takımında NVIDIA Jetson üzerinde gömülü yapay zekâ ve görüntü işleme çalışmalarında görev alıyorum.</p>
+    </section>
 
+    <section>
+        <h2>EĞİTİM</h2>
+        <div class="entry">
+            <div class="row"><strong>Gazi Üniversitesi — Bilgisayar Mühendisliği (Lisans)</strong><span class="meta">2024 – 2029</span></div>
+            <div>GANO: 3,67 / 4,00</div>
+        </div>
+        <div class="entry">
+            <div class="row"><strong>Gazi Üniversitesi — Elektrik-Elektronik Mühendisliği (Çift Anadal)</strong><span class="meta">2026 – Devam ediyor</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>DENEYİM</h2>
+        <div class="entry">
+            <div class="row"><strong>TEKNOFEST İHA Takımı — Gömülü Sistemler ve Edge AI</strong><span class="meta">Devam ediyor</span></div>
+            <ul>
+                <li>NVIDIA Jetson platformunda, makine öğrenmesi tabanlı görüntü işleme modellerinin İHA üzerinde gömülü olarak çalıştırılmasına yönelik çalışmalar yürütüyorum.</li>
+                <li>Gömülü Linux ortamında modellerin kurulumu, yapılandırılması ve test edilmesi süreçlerinde görev alıyorum.</li>
+                <li>Takımın gömülü donanım bileşenleri ile yapay zekâ yazılımının birlikte çalışmasına katkı sağlıyorum.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>PROJELER</h2>
+        <div class="entry">
+            <div class="row"><strong>LifeSync — Fitness ve Beslenme Takip Uygulaması</strong><span class="meta">Java, Swing, SQLite, Maven</span></div>
+            <div class="sub">4 kişilik ekip projesi · <a href="https://github.com/ABK7474/LifeSync">github.com/ABK7474/LifeSync</a></div>
+            <ul>
+                <li>Sporcu ve antrenörler için beslenme, antrenman ve gelişim takibi sunan masaüstü uygulamasını ekipçe geliştirdik.</li>
+                <li>Antrenör ve sporcu rollerine göre ayrışan yetkilendirme, uygulama içi mesajlaşma ve toplu duyuru altyapısı oluşturuldu.</li>
+                <li>Gramaj bazlı otomatik kalori ve makro besin hesaplama, set/tekrar/ağırlık bazlı antrenman kaydı ve kişisel hedef takibi geliştirildi.</li>
+                <li>Veri modeli, servis ve arayüz katmanlarına ayrılmış mimaride OOP ve tasarım desenleri uygulandı; kalıcı veri SQLite (JDBC) ile, bellek içi verinin veritabanıyla senkronizasyonu servis katmanında yönetildi.</li>
+            </ul>
+        </div>
+        <div class="entry">
+            <div class="row"><strong>QuestionCreate — Yapay Zekâ Destekli Soru Üretici</strong><span class="meta">Python, CustomTkinter, Gemini API</span></div>
+            <div class="sub"><a href="https://github.com/ABK7474/QuestionCreate">github.com/ABK7474/QuestionCreate</a></div>
+            <ul>
+                <li>Kullanıcının girdiği konuya göre Google Gemini API ile 1–50 arası çoktan seçmeli veya açık uçlu soru üreten, zorluk seviyesi ayarlanabilen masaüstü uygulaması geliştirdim.</li>
+                <li>Sorular, Türkçe karakter ve matematik sembolü destekli PDF olarak cevap anahtarıyla birlikte dışa aktarılıyor.</li>
+                <li>API anahtarı yalnızca ilk kullanımda alınıp kısıtlı dosya izinleriyle (600) yerel yapılandırma dosyasında saklanıyor.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>BAŞARILAR</h2>
+        <div class="entry">
+            <div class="row"><strong>ALES 2026-2 — Sayısal 89 puan, Türkiye 863.'sü (ilk %1)</strong><span class="meta">Ağustos 2026</span></div>
+        </div>
+        <div class="entry">
+            <div class="row"><strong>YKS 2024 — Sayısal Türkiye 10.771.'si (ilk %0,5), bölüme 4. sıradan giriş</strong><span class="meta">Haziran 2024</span></div>
+        </div>
+    </section>
+
+    <section class="skills">
         <h2>BECERİLER</h2>
-        <dl>
-            <dt>Programlama</dt><dd>C, C++, Java, Python, Haskell</dd>
-            <dt>Sistem</dt><dd>Pointer kullanımı, dinamik bellek yönetimi</dd>
-            <dt>Yazılım</dt><dd>OOP, Tasarım Desenleri, GUI (Swing), Veritabanı</dd>
-            <dt>İlgi Alanları</dt><dd>Gömülü Sistemler, Edge AI, Makine Öğrenmesi</dd>
-            <dt>Araçlar</dt><dd>Git, GitHub</dd>
-        </dl>
-
-        <h2>DİLLER</h2>
-        <dl>
-            <dt>İngilizce</dt><dd>B2 düzeyi</dd>
-        </dl>
-
-        <h2>HOBİLER</h2>
-        <p>Piyano çalma, gitar çalma, klasik müzik dinleme, Rubik küp çözme, matematik problemleri çözme</p>
-    </aside>
-
-    <main class="main">
-        <section>
-            <h2>PROFİL</h2>
-            <p>Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisiyim ve Elektrik-Elektronik Mühendisliği bölümünde ÇAP yapıyorum. Gömülü sistemler ve Edge AI alanlarına odaklanıyorum; TEKNOFEST İHA takımında bu alanlarda görev alıyorum. Teknik bilgilerimi projeler ve takım çalışmalarıyla, özellikle yazılım ve donanımın kesiştiği alanlarda geliştirmeye çalışıyorum.</p>
-        </section>
-
-        <section>
-            <h2>EĞİTİM</h2>
-            <div class="entry">
-                <div class="row"><strong>Lisans, Bilgisayar Mühendisliği</strong><span class="meta">2024 – 2029</span></div>
-                <div class="sub">Gazi Üniversitesi | GANO: 3,67 / 4,00</div>
-            </div>
-            <div class="entry">
-                <div class="row"><strong>Çift Anadal, Elektrik-Elektronik Mühendisliği</strong><span class="meta">2026 – devam ediyor</span></div>
-                <div class="sub">Gazi Üniversitesi</div>
-            </div>
-            <div class="entry">
-                <div class="row"><strong>İngilizce Hazırlık (B2)</strong><span class="meta">2024 – 2025</span></div>
-                <div class="sub">Gazi Üniversitesi YDYO | 87 / 100, final sınavından muaf</div>
-            </div>
-        </section>
-
-        <section>
-            <h2>DENEYİM</h2>
-            <div class="entry">
-                <div class="row"><strong>TEKNOFEST İHA Takımı</strong><span class="meta">devam ediyor</span></div>
-                <div class="sub">Gömülü Donanım ve Edge AI</div>
-                <ul>
-                    <li>Takımın gömülü donanım ve Edge AI tarafında görev alıyorum.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>PROJELER</h2>
-            <div class="entry">
-                <div class="row"><strong>LifeSync &nbsp;|&nbsp; Fitness Takip Uygulaması</strong><span class="meta">Java, Swing</span></div>
-                <ul>
-                    <li>4 kişilik bir ekiple geliştirilen masaüstü fitness takip uygulaması.</li>
-                    <li>OOP prensipleri ve tasarım desenleri (Design Patterns) uygulandı.</li>
-                    <li>Swing ile GUI geliştirildi, veritabanı entegre edildi.</li>
-                </ul>
-                <div class="link"><a href="https://github.com/ABK7474/LifeSync">github.com/ABK7474/LifeSync</a></div>
-            </div>
-            <div class="entry">
-                <div class="row"><strong>QuestionCreate &nbsp;|&nbsp; Soru Üretici</strong><span class="meta">Python, Gemini API</span></div>
-                <ul>
-                    <li>Gemini ile konu bazlı soru üretip PDF oluşturan masaüstü uygulaması.</li>
-                </ul>
-                <div class="link"><a href="https://github.com/ABK7474/QuestionCreate">github.com/ABK7474/QuestionCreate</a></div>
-            </div>
-            <div class="entry">
-                <div class="row"><strong>Kişisel Portfolyo Sitesi</strong><span class="meta">abkaynak.com</span></div>
-                <ul>
-                    <li>İki dilli (TR/EN) kişisel site; Gemini API ile çalışan bir site asistanı ve GitHub projelerini yapay zekâyla seçip listeleyen sunucu fonksiyonları içeriyor.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>BAŞARILAR</h2>
-            <div class="entry">
-                <div class="row"><strong>ALES 2026-2</strong><span class="meta">Ağu 2026</span></div>
-                <div>Sayısal puan türü | Puan: 89 | Sıralama: 863 — Türkiye genelinde ilk %1 dilimi.</div>
-            </div>
-            <div class="entry">
-                <div class="row"><strong>YKS 2024</strong><span class="meta">Haz 2024</span></div>
-                <div>Sayısal puan türü | Sıralama: 10.771 — Türkiye genelinde ilk %0,5 dilimi. Bölüme 4. sıradan giriş.</div>
-            </div>
-        </section>
-    </main>
-</div>
+        <p><b>Programlama:</b> C, C++, Java, Python, Haskell</p>
+        <p><b>Gömülü Sistemler ve Yapay Zekâ:</b> NVIDIA Jetson, Gömülü Linux, Görüntü İşleme, Makine Öğrenmesi</p>
+        <p><b>Yazılım:</b> Nesne Yönelimli Programlama (OOP), Tasarım Desenleri, Java Swing, SQLite / JDBC, Maven, Bellek Yönetimi</p>
+        <p><b>Araçlar:</b> Git, GitHub, Linux</p>
+        <p><b>Diller:</b> Türkçe (ana dil), İngilizce (B2) &nbsp;·&nbsp; <b>Hobiler:</b> Piyano, gitar, klasik müzik, Rubik küp, matematik problemleri</p>
+    </section>
 </body>
 </html>
