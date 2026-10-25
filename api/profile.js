@@ -42,7 +42,7 @@ ZAMAN ÇİZELGESİ:
 İLETİŞİM:
 - E-posta: ahmetburakresmi@gmail.com
 - LinkedIn: https://www.linkedin.com/in/ahmet-burak-kaynak-abk/
-- GitHub: https://github.com/ahmetburakresmi
+- GitHub: https://github.com/ABK7474
 - Sitedeki iletişim formu: https://abkaynak.com/#contact
 - Staj/iş fırsatları, gömülü sistemler ve projeler hakkında iletişime açık.
 

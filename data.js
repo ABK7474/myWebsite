@@ -19,7 +19,7 @@ const SITE_DATA = {
         en: 'Working on embedded hardware and edge AI in a TEKNOFEST UAV team.'
     },
 
-    githubUsers: ['ABK7474', 'ahmetburakresmi'],
+    githubUsers: ['ABK7474'],
     githubExclude: ['myWebsite', 'Basic-shell'],
 
     projects: [
