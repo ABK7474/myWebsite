@@ -20,7 +20,7 @@ const SITE_DATA = {
     },
 
     githubUsers: ['ABK7474', 'ahmetburakresmi'],
-    githubExclude: ['myWebsite'],
+    githubExclude: ['myWebsite', 'Basic-shell'],
 
     projects: [
         // {
