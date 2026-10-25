@@ -100,6 +100,8 @@ module.exports = async function handler(req, res) {
     if (!upstream.ok || !upstream.body) {
         console.error('Gemini error', upstream.status, await upstream.text().catch(() => ''));
         // Upstream status only (e.g. 429 = quota, 400 = bad request); details stay in the logs
+        // Gemini quota exhausted: tell the visitor to wait rather than showing a generic error
+        if (upstream.status === 429) return res.status(429).json({ error: 'rate_limited', upstreamStatus: 429 });
         return res.status(502).json({ error: 'upstream_error', upstreamStatus: upstream.status });
     }
 
