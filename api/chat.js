@@ -1,8 +1,7 @@
 // Vercel serverless function: proxies chat messages to the Gemini API so the
 // API key stays on the server. Streams the reply back as plain text.
-const { SYSTEM_INSTRUCTION } = require('./profile');
-
-const MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
+const { buildSystemInstruction } = require('./profile');
+const { getCuratedProjects, MODEL } = require('./_lib/projects');
 const MAX_MESSAGES = 12;          // conversation turns kept per request
 const MAX_MESSAGE_CHARS = 1000;   // per user message
 const RATE_LIMIT = 20;            // requests per IP per window
@@ -64,6 +63,14 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'bad_request' });
     }
 
+    // GitHub projects are optional context; chat still works if fetching them fails
+    let githubProjects = [];
+    try {
+        githubProjects = await getCuratedProjects();
+    } catch (err) {
+        console.error('projects unavailable for chat', err.message);
+    }
+
     let upstream;
     try {
         upstream = await fetch(
@@ -72,7 +79,7 @@ module.exports = async function handler(req, res) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
                 body: JSON.stringify({
-                    systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+                    systemInstruction: { parts: [{ text: buildSystemInstruction(githubProjects) }] },
                     contents,
                     generationConfig: { temperature: 0.4, maxOutputTokens: 600 }
                 })

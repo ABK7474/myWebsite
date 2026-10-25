@@ -3,12 +3,13 @@
 // Projects and the "Currently" note come from data.js, shared with the page.
 const SITE_DATA = require('../data.js');
 
-function describeSiteData() {
+function describeSiteData(githubProjects) {
     const lines = [];
     if (SITE_DATA.now) lines.push(`ŞU AN ÜZERİNDE ÇALIŞTIĞI: ${SITE_DATA.now.tr}`);
-    if (SITE_DATA.projects.length) {
+    const projects = [...SITE_DATA.projects, ...githubProjects];
+    if (projects.length) {
         lines.push('PROJELER:');
-        for (const p of SITE_DATA.projects) {
+        for (const p of projects) {
             const links = [p.github && `GitHub: ${p.github}`, p.demo && `Demo: ${p.demo}`].filter(Boolean).join(', ');
             lines.push(`- ${p.title} (${p.tags.join(', ')}): ${p.desc.tr}${links ? ` [${links}]` : ''}`);
         }
@@ -19,20 +20,22 @@ function describeSiteData() {
     return lines.join('\n');
 }
 
-const PROFILE = `
+const buildProfile = githubProjects => `
 KİŞİ: Ahmet Burak Kaynak (ABK)
 - Gazi Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisi, Ankara, Türkiye.
 - Çift Anadal (ÇAP): Elektrik-Elektronik Mühendisliği.
 - Odak alanları: Gömülü Sistemler (Embedded Systems) ve Edge AI (kenar yapay zeka).
 - İlgi alanları: Gömülü Sistemler, Edge AI, Makine Öğrenmesi, Siber Güvenlik, Bilgisayar Ağları.
-- Diller: C, C++, Java, Python. OOP, veri yapıları ve algoritma optimizasyonu üzerine pratik yapıyor.
+- Programlama: C, C++, Java, Python, Haskell. OOP, tasarım desenleri, veri yapıları, bellek yönetimi; Git/GitHub.
+- Yabancı dil: İngilizce (B2).
 - Hedef: kısıtlı kaynaklı mikrodenetleyici ve uç cihazlarda yüksek performanslı akıllı sistemler geliştirmek.
 
 ZAMAN ÇİZELGESİ:
 - 2024 (tamamlandı): YKS Sayısal Türkiye 10.771.'si; Gazi Üniversitesi Bilgisayar Mühendisliği'ne bölüme 4. sıradan giriş.
 - 2025 (tamamlandı): Gazi Üniversitesi YDYO B2 İngilizce hazırlık, 87/100 ortalama, final sınavından muaf.
 - 2026 (tamamlandı): 1. sınıf; C, C++ ve Java, bellek yönetimi ve OOP üzerine yoğun akademik odak.
-- 2027 (devam ediyor): 2. sınıf; Elektrik-Elektronik ÇAP başlangıcı; TEKNOFEST ve hackathon hedefleri.
+- Ağustos 2026: ALES 2026-2 Sayısal 89 puan, Türkiye 863.'sü (ilk %1).
+- 2027 (devam ediyor): 2. sınıf; Elektrik-Elektronik ÇAP'a başladı; TEKNOFEST İHA takımında gömülü donanım ve Edge AI tarafında görevli; hackathon hedefleri.
 - 2028 (hedef): 3. sınıf; savunma sanayii ve donanım firmalarında aday mühendislik programları ve yaz stajları.
 - 2029 (hedef): 4. sınıf; bölüm birinciliğiyle mezuniyet ve EEM ÇAP ile çifte mühendislik diploması.
 
@@ -43,10 +46,10 @@ ZAMAN ÇİZELGESİ:
 - Sitedeki iletişim formu: https://abkaynak.com/#contact
 - Staj/iş fırsatları, gömülü sistemler ve projeler hakkında iletişime açık.
 
-${describeSiteData()}
+${describeSiteData(githubProjects)}
 `.trim();
 
-const SYSTEM_INSTRUCTION = `
+const buildSystemInstruction = (githubProjects = []) => `
 Sen abkaynak.com kişisel web sitesindeki yapay zeka asistanısın. Ziyaretçilerin Ahmet Burak Kaynak hakkındaki sorularını onun adına, ama onun kendisi olmadığını bilerek cevaplarsın ("Ahmet Burak ..." diye üçüncü şahıs kullan).
 
 Kurallar:
@@ -58,7 +61,7 @@ Kurallar:
 - Gelecek hedeflerini (2028, 2029) gerçekleşmiş gibi değil, hedef olarak anlat.
 
 BİLGİLER:
-${PROFILE}
+${buildProfile(githubProjects)}
 `.trim();
 
-module.exports = { SYSTEM_INSTRUCTION };
+module.exports = { buildSystemInstruction };

@@ -4,19 +4,23 @@
 // - photo:    path to your photo, e.g. 'images/profile.jpg' (null shows "ABK")
 // - cv:       path to your CV PDF, e.g. 'cv.pdf' (null hides the CV button)
 // - now:      the "Currently" card; set to null to hide it
-// - projects: newest first; the section is hidden while the list is empty
+// - projects: shown first, before the GitHub projects (optional)
+// - githubUsers / githubExclude: accounts the AI scans for projects worth
+//   showing (api/projects.js), and repos it should never pick
 //
 // Project fields: title, desc ({ tr, en }), tags [..], github, demo, image
 // (github/demo/image are optional; leave out or set to null).
 const SITE_DATA = {
     photo: null,
-    cv: null,
+    cv: 'Ahmet_Burak_Kaynak_CV.pdf',
 
-    now: null,
-    // now: {
-    //     tr: 'STM32 üzerinde FreeRTOS öğreniyorum ve ESP32 ile bir sensör ağı kuruyorum.',
-    //     en: 'Learning FreeRTOS on STM32 and building a sensor network with ESP32.'
-    // },
+    now: {
+        tr: 'TEKNOFEST İHA takımında gömülü donanım ve Edge AI tarafında görev alıyorum.',
+        en: 'Working on embedded hardware and edge AI in a TEKNOFEST UAV team.'
+    },
+
+    githubUsers: ['ABK7474', 'ahmetburakresmi'],
+    githubExclude: ['myWebsite'],
 
     projects: [
         // {

@@ -75,8 +75,10 @@ const translations = {
         'ach-2025-desc': 'Gazi Üniversitesi Yabancı Diller Yüksekokulu B2 seviye hazırlık sınıfını 87/100 genel başarı puanı ile bitirdim ve yıl sonu final sınavından muafiyet hakkı elde ettim.',
         'ach-2026-title': '1. Sınıf — C, C++ ve Java Eğitimi & Akademik Odak',
         'ach-2026-desc': 'Bilgisayar Mühendisliği 1. sınıfımda tamamen akademiye ve temel yazılım disiplinine odaklandım. C, C++ ve Java dillerinin syntax yapısını, bellek yönetimini ve Nesne Yönelimli Programlama (OOP) prensiplerini derinlemesine öğrenerek kendimi geliştirdim.',
-        'ach-2027-title': '2. Sınıf — Elektrik-Elektronik ÇAP & TEKNOFEST / Hackathon',
-        'ach-2027-desc': '2. sınıf lisans eğitimimle birlikte Elektrik-Elektronik Mühendisliği Çift Anadal (ÇAP) programına başlayacağım. Gömülü sistemler ve yazılım alanlarında TEKNOFEST ve ulusal/uluslararası hackathon yarışmalarında aktif yer alıp dereceler hedefliyorum.',
+        'ach-ales-title': 'ALES 2026-2 — Sayısal 89 Puan',
+        'ach-ales-desc': 'Ağustos 2026 ALES sınavında Sayısal puan türünde 89 puan alarak Türkiye genelinde 863. oldum ve ilk %1\'lik dilime girdim.',
+        'ach-2027-title': '2. Sınıf — Elektrik-Elektronik ÇAP & TEKNOFEST İHA',
+        'ach-2027-desc': '2. sınıfla birlikte Elektrik-Elektronik Mühendisliği Çift Anadal (ÇAP) programına başladım. TEKNOFEST İHA takımında gömülü donanım ve Edge AI tarafında görev alıyorum; ulusal ve uluslararası hackathonlarda da derece hedefliyorum.',
         'ach-2028-title': '3. Sınıf — Savunma Sanayii Aday Mühendislik & Stajlar',
         'ach-2028-desc': 'Çift anadal ders yoğunluğumu sürdürürken; gömülü sistemler, kenar yapay zeka (Edge AI) ve mikrodenetleyici mimarileri üzerine önde gelen savunma sanayii ve donanım firmalarında aday mühendislik programlarına katılacak ve yaz stajı deneyimleri edineceğim.',
         'ach-2029-title': '4. Sınıf — Bilgisayar Müh. Bölüm Birinciliği & EEM ÇAP Mezuniyeti',
@@ -86,7 +88,10 @@ const translations = {
         'ach-2024-b3': 'Gazi Bilgisayar Müh.',
         'ach-2025-b2': 'Finalsiz Muafiyet',
         'ach-2026-b3': 'Akademik Odak',
-        'ach-2027-b1': 'EEM ÇAP Başlangıcı',
+        'ach-2027-b1': 'EEM ÇAP',
+        'ach-2027-b2': 'TEKNOFEST İHA Takımı',
+        'ach-ales-b2': 'Türkiye 863.',
+        'ach-ales-b3': 'İlk %1',
         'ach-2027-b3': 'Gömülü Sistemler',
         'ach-2028-b1': 'Aday Mühendislik',
         'ach-2028-b2': 'Savunma Sanayii Stajı',
@@ -198,8 +203,10 @@ const translations = {
         'ach-2025-desc': 'I completed B2 English prep school at Gazi University School of Foreign Languages with an 87/100 average, securing direct final exam exemption.',
         'ach-2026-title': '1st Year — C, C++ & Java Studies & Academic Focus',
         'ach-2026-desc': 'I focused entirely on academia and fundamental software principles during my 1st year in Computer Engineering at Gazi University; mastering syntax, memory management, and Object-Oriented Programming (OOP) in C, C++, and Java.',
-        'ach-2027-title': '2nd Year — Electrical-Electronics Double Major & TEKNOFEST',
-        'ach-2027-desc': 'I will initiate an Electrical & Electronics Engineering Double Major (ÇAP) alongside my 2nd-year CS coursework, actively competing in TEKNOFEST and national/international hackathons.',
+        'ach-ales-title': 'ALES 2026-2 — Quantitative Score 89',
+        'ach-ales-desc': 'Scored 89 in the quantitative section of the August 2026 ALES (Turkish graduate admission exam), ranking 863rd nationwide and placing in the top 1%.',
+        'ach-2027-title': '2nd Year — Electrical-Electronics Double Major & TEKNOFEST UAV',
+        'ach-2027-desc': 'Alongside my 2nd-year CS coursework I started an Electrical & Electronics Engineering Double Major (ÇAP). I work on embedded hardware and edge AI in a TEKNOFEST UAV team, and I am also aiming for awards in national and international hackathons.',
         'ach-2028-title': '3rd Year — Defense Industry Candidate Engineering & Internships',
         'ach-2028-desc': 'I will engage in candidate engineering programs and summer internships at leading defense and hardware firms focusing on embedded systems, Edge AI, and microcontrollers.',
         'ach-2029-title': '4th Year — Valedictorian CS Graduation & EEM Double Degree',
@@ -209,7 +216,10 @@ const translations = {
         'ach-2024-b3': 'Gazi Computer Eng.',
         'ach-2025-b2': 'Final Exam Exemption',
         'ach-2026-b3': 'Academic Focus',
-        'ach-2027-b1': 'EEM Double Major Start',
+        'ach-2027-b1': 'EEE Double Major',
+        'ach-2027-b2': 'TEKNOFEST UAV Team',
+        'ach-ales-b2': 'Rank 863 nationwide',
+        'ach-ales-b3': 'Top 1%',
         'ach-2027-b3': 'Embedded Systems',
         'ach-2028-b1': 'Candidate Engineering',
         'ach-2028-b2': 'Defense Industry Internship',
@@ -274,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardSpotlight();
     initCopyButtons();
     initContactForm();
+    loadGithubProjects();
 
     const yearEl = document.getElementById('currentYear');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -434,8 +445,28 @@ function siteUrl(path) {
     return (document.body.dataset.page === 'achievements' ? '../' : '') + path;
 }
 
+// Projects picked from GitHub by /api/projects; filled in after the page loads
+let githubProjects = [];
+
+function allProjects() {
+    const manual = new Set(siteData.projects.map(p => p.github).filter(Boolean));
+    return [...siteData.projects, ...githubProjects.filter(p => !manual.has(p.github))];
+}
+
+async function loadGithubProjects() {
+    if (!document.getElementById('projectsGrid') && !document.querySelector('[data-requires="projects"]')) return;
+    try {
+        const response = await fetch('/api/projects');
+        if (!response.ok) return;
+        const data = await response.json();
+        githubProjects = Array.isArray(data.projects) ? data.projects : [];
+        renderSiteData();
+    } catch (err) {}
+}
+
 function renderSiteData() {
-    const hasProjects = siteData.projects.length > 0;
+    const projects = allProjects();
+    const hasProjects = projects.length > 0;
     document.querySelectorAll('[data-requires="projects"]').forEach(el => { el.hidden = !hasProjects; });
 
     const die = document.getElementById('pcbDie');
@@ -460,7 +491,7 @@ function renderSiteData() {
     const grid = document.getElementById('projectsGrid');
     if (!section || !grid) return;
     section.hidden = !hasProjects;
-    grid.innerHTML = siteData.projects.map(renderProjectCard).join('');
+    grid.innerHTML = projects.map(renderProjectCard).join('');
 }
 
 function renderProjectCard(project) {
