@@ -99,7 +99,8 @@ module.exports = async function handler(req, res) {
 
     if (!upstream.ok || !upstream.body) {
         console.error('Gemini error', upstream.status, await upstream.text().catch(() => ''));
-        return res.status(502).json({ error: 'upstream_error' });
+        // Upstream status only (e.g. 429 = quota, 400 = bad request); details stay in the logs
+        return res.status(502).json({ error: 'upstream_error', upstreamStatus: upstream.status });
     }
 
     res.writeHead(200, {
