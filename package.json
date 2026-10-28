@@ -1,0 +1,10 @@
+{
+  "name": "abkaynak-site",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/generate-cv.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^22.15.0"
+  }
+}
